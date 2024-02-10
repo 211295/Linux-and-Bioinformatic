@@ -1,0 +1,19 @@
+### Download using wget and the link of the 'Ubuntu_Linux_64_bit_archive' in the directory of SRA-toolkit to 
+$ wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/3.0.10/sratoolkit.3.0.10-ubuntu64.tar.gz
+
+### download the archive sratoolkit.3.0.10-ubuntu64.tar.gz is in the dicrtory after use the cod above
+### you should unzip the 'tar.gz' using the code 'tar xfvz'
+$ tar xfvz sratoolkit.3.0.10-ubuntu64.tar.gz 
+### check with '$ls' the new directory created and change to there with 'cd'
+$ ls
+.     sratoolkit.3.0.10-ubuntu64/bin
+$ cd  sratoolkit.3.0.10-ubuntu64/bin
+### download with faster-dump the data of the specie you want
+### the doot ('.') means you will make something in those directory, and the bash ('/') means 
+$ ./fasterq-dump SRR___________
+
+### instal the fastqc
+$ apt install fastqc
+$ fastqc SRR_________.fastq
+
+### the result will be in html format, and the data is quality and duplication tax
