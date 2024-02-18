@@ -1,0 +1,44 @@
+### Exercise 1.1
+$ wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/3.0.10/sratoolkit.3.0.10-ubuntu64.tar.gz
+
+### download in the directory and finish with this informations: ‘sratoolkit.3.0.10-ubuntu64.tar.gz.1’ saved [93498661/93498661]
+### the download have to finish 100%
+
+### Uzip the docment
+$ ls
+$       sratoolkit.3.0.10-ubuntu64.tar.gz
+### tar means 'tape archive' to creat a Archive and Extract the Archive files
+### xfvz its a pool of commands
+### x means extract
+### f means file
+### v means verbose
+### z means gzip
+$ tar xfvz sratoolkit.3.0.10-ubuntu64.tar.gz
+### extract everything, can you see-> gzip: stdin: unexpected end of file
+###                                   tar: Unexpected EOF in archive
+###                                   tar: Unexpected EOF in archive
+###                                   tar: Error is not recoverable: exiting now
+$ cd sratoolkit.3.0.10-ubuntu64
+$ ls
+$           bin  CHANGES  schema
+$ cd bin
+### OR you can go to bin directory in one command
+$ cd sratoolkit.3.0.10-ubuntu64/bin
+$ ls
+$      
+### download the fasta document using the Run SRR26821455
+### the . (dot) means "doing in this directory" = runs a shell script in the current environment 
+### the / () means 
+$ ./fasterq-dump SRR26821455
+### wait download for the NCBI
+### wiil show this message -> spots read      : 5,463,893
+###                           reads read      : 10,927,786
+###                           reads written   : 10,927,786
+
+### Do individual both FASQC archives was downloaded (SRR26821455_1.fastq and SRR26821455_2.fastq)
+$ fastqc SRR26821455_1.fastq
+$ fastqc SRR26821455_2.fastq
+### wait the download
+### return SRR26821455_1.fastq.html and SRR26821455_2.fastq.html
+open the both 
+### Extract the both files
