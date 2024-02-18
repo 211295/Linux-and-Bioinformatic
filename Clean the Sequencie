@@ -1,10 +1,25 @@
-### Start download the Univec and
+### Start download the Univec and Seqclean
 $ wget 
-$ apt-get install zlib1g-dev
+$ wget https://github.com/ibest/seqyclean/archive/refs/tags/1.10.09.tar.gz
+### unzip the archive > 1.10.09.tar.gz
+$ tar xfvz 1.10.09.tar.gz
+$ cd seqyclean-1.10.09/
+$ make
+### the command make is from the tutorial
+$ cd bin
+$ ls
+$       seqyclean
+### The archive will use to clean
+### start to clean the sequencies
 
-### I start the command-c = Turns on contaminants screening, default=off, <filename> - is a path to a FASTA-file containing contaminant genomes.
-### Using the argument -U <filename> = Single-end mode
+### I start the command-c = Turns on contaminants screening, default=off, <filename> - is a path to a FASTA-file containing contaminant genomes from UniVec
+### Using the argument -U <filename> = Single-end mode (as you can see in seqyclean tutorial)
 ### -o to send the new archive to
-$ /home/usuary_name/directory_name/seqyclean-1.10.09/bin/seqyclean -U archive_name -c /home/usuary_name//directory_name/UniVec -minlen 50 -qual 24 24 -o /home/usuary_name/directory_name/folder_name
-
+$ /home/usuary_name/directory_name/seqyclean-1.10.09/bin/seqyclean -U archive_name -c /home/usuary_name/directory_name/UniVec -minlen 50 -qual 24 24 -o /home/usuary_name/directory_name/folder_name/new_archive_name
+### Basically you have the path of the program you use (/home/usuary_name/directory_name/seqyclean-1.10.09/bin/seqyclean) the name of archive you will use in the programm (-U archive_name)
+### -o and the path you would like to copy (/home/usuary_name/directory_name/folder_name/new_archive_name)
 ### I change to command -v = Turns on vector trimming, default=off. <filename> - is a path to a FASTA-file containing vector genomes.
+$ /home/usuary_name/directory_name/seqyclean-1.10.09/bin/seqyclean -U archive_name -v /home/usuary_name/directory_name/UniVec -minlen 50 -qual 24 24 -o /home/usuary_name/directory_name/folder_name/new_archive_name
+
+### after doing with all the archives... start to make fastq analisys
+$ 
