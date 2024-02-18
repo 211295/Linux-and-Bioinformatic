@@ -1,0 +1,10 @@
+### Start download the Univec and
+$ wget 
+$ apt-get install zlib1g-dev
+
+### I start the command-c = Turns on contaminants screening, default=off, <filename> - is a path to a FASTA-file containing contaminant genomes.
+### Using the argument -U <filename> = Single-end mode
+### -o to send the new archive to
+$ /home/usuary_name/directory_name/seqyclean-1.10.09/bin/seqyclean -U archive_name -c /home/usuary_name//directory_name/UniVec -minlen 50 -qual 24 24 -o /home/usuary_name/directory_name/folder_name
+
+### I change to command -v = Turns on vector trimming, default=off. <filename> - is a path to a FASTA-file containing vector genomes.

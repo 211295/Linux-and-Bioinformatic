@@ -1,6 +1,0 @@
-### Start download the Univec and
-$ wget 
-apt-get install zlib1g-dev
-
-### I start the command-c - Turns on contaminants screening, default=off, <filename> - is a path to a FASTA-file containing contaminant genomes.
-### I change to command -v - Turns on vector trimming, default=off. <filename> - is a path to a FASTA-file containing vector genomes.
