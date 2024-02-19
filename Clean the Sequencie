@@ -1,4 +1,4 @@
-### Start download the Univec and Seqclean
+### Start download the Univec (dataset its a fasta file with contaminants, vectors, adaptors to remove) and Seqclean (programm)
 $ wget 
 $ wget https://github.com/ibest/seqyclean/archive/refs/tags/1.10.09.tar.gz
 ### unzip the archive > 1.10.09.tar.gz
@@ -18,6 +18,7 @@ $       seqyclean
 $ /home/usuary_name/directory_name/seqyclean-1.10.09/bin/seqyclean -U archive_name -c /home/usuary_name/directory_name/UniVec -minlen 50 -qual 24 24 -o /home/usuary_name/directory_name/folder_name/new_archive_name
 ### Basically you have the path of the program you use (/home/usuary_name/directory_name/seqyclean-1.10.09/bin/seqyclean) the name of archive you will use in the programm (-U archive_name)
 ### -o and the path you would like to copy (/home/usuary_name/directory_name/folder_name/new_archive_name)
+
 ### I change to command -v = Turns on vector trimming, default=off. <filename> - is a path to a FASTA-file containing vector genomes.
 $ /home/usuary_name/directory_name/seqyclean-1.10.09/bin/seqyclean -U archive_name -v /home/usuary_name/directory_name/UniVec -minlen 50 -qual 24 24 -o /home/usuary_name/directory_name/folder_name/new_archive_name
 
