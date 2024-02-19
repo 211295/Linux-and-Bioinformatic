@@ -42,3 +42,12 @@ $ fastqc SRR26821455_2.fastq
 ### return SRR26821455_1.fastq.html and SRR26821455_2.fastq.html
 open the both 
 ### Extract the both files
+
+### MultiQC use to summarize all fastqc files in on image
+$ wget https://github.com/MultiQC/MultiQC.git
+$ tar xfvz 
+$ cd 
+$ make
+### wait download and after use the in the folder with all fastaqc documents
+$ multiqc .
+
