@@ -1,0 +1,33 @@
+### Download Trinity 
+$ wget https://github.com/trinityrnaseq/trinityseq/releases/download/Trinity-v2.15.1/trinityrnaseq-v2.15.1.FULL.tar.gz
+### unzip
+$ tar xfvz trinityrnaseq-v2.15.1.FULL.tar.gz
+$ cd trinityrnaseq-v2.15.1/
+$ make
+
+### AAAAA LOOOOT OF FUCKING SHITS
+###
+###
+###
+###
+###
+###
+###
+
+### now use a command line to build a new genome after been analised at FASTQC
+$ /home/usuary/directory/folder/Trinity --seqType <fq> -- max_memory <50G> --single <file_name.fastq, file_name.fastq, file_name.fastq> --CPU <12> -- min_contig_lenth <50>
+
+### Should start install the conda space in directory, as some programms can only work in conda space
+$ wget conda
+
+
+
+### Now install the OrthoFinder
+$ wget https://github.com/davidemms/OrthoFinder/releases/download/2.5.5/OrthoFinder.tar.gz
+$ wget https://github.com/davidemms/OrthoFinder/releases/download/2.5.5/OrthoFinder_source.tar.gz
+
+
+### conda install bioconda::orthofinder
+### conda install bioconda/label/cf201901::orthofinder
+
+https://github.com/davidemms/OrthoFinder/blob/master/README.md
