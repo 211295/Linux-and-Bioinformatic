@@ -1,19 +1,15 @@
 green is the terminal
 ~ = way to your user terminal
 pwd = check you directory
-ls = list
--l = return a list
--h = format more comprehensive
--a = show the hiden archive, with start at " . "
-mkdir = make a directory
-cd = change directory
-touch text.txt = create a text
-nano text.txt = edit the text created with touch
+ls = list (-l) = return a list (-h) = format more comprehensive (-a) = show the hiden archive, with start at " . "
+mkdir 'name_directory' = make a directory
+cd 'name_directory' = change directory
+touch 'text.txt' = create a text
+nano 'text.txt' = edit the text created with touch
 [Ctrl] + x = getout ot documemt / Y to save ; N to dont save
-cat = select the strings in text
-grep = show the line with the string meantioned
-sed = substitute every string insiede the ex: "/old one/new one/"
--i = sobrescreve o arquivo com resultado gerado
+cat 'some_word' = select the strings in text
+grep 'some_word' = show the line with the string meantioned
+sed = substitute every string insiede the ex: "/old one/new one/" (-i) = sobrescreve o arquivo com resultado gerado
 g = in the end of "-i '/old one/new one/g'"
 | = concatenet 2 or more commands in one line
 > 'archive_name' = make a direction of the archive to save in "other archive"
@@ -24,4 +20,7 @@ rm 'directory'/'archive' = remove any archive or folder
 wget 'www...' = download the archive directly on terminal
 .gz = format of archive
 gunzip = unzip file (descompactar arquivo)
-scp -P 'door' -r 'archive_directory'/ 'serve'/'username'/'directory'/'folder' = copy a holy directory to other username, indicate the door (-P) and the kind of archive (-r)
+scp -P 'door' -r 'archive_directory'/ 'serve'/'username'/'directory'/'folder' = copy a holy directory to other username, indicate the door (-P) and the kind of archive (-r) Residual 
+man 'command_you_wanna_learn' = MANUAL OF THE COMMAND, extremy usable 
+apropos 'some_word'= find a word that describre a command, so you can find all commands you wanna with the some_word (-a) = you add more words, concatenete
+help = 
