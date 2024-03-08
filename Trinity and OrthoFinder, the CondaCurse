@@ -5,6 +5,9 @@ $ tar xfvz trinityrnaseq-v2.15.1.FULL.tar.gz
 $ cd trinityrnaseq-v2.15.1/
 $ make
 
+### To much archives to complety the trinity
+
+
 ### AAAAA LOOOOT OF FUCKING SHITS
 ###
 ###
@@ -19,7 +22,6 @@ $ /home/usuary/directory/folder/Trinity --seqType <fq> -- max_memory <50G> --sin
 
 ### Should start install the conda space in directory, as some programms can only work in conda space
 $ wget conda
-
 
 
 ### Now install the OrthoFinder
