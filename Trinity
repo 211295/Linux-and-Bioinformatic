@@ -1,3 +1,7 @@
+######################################################################################################################################
+### 2 OPTIONS USE TRINITY, ONE IN THE SERVIDOR AND OTHER IN A CONDA ENVOIRMENT
+
+### 1 OPTION
 ### Download Trinity 
 $ wget https://github.com/trinityrnaseq/trinityseq/releases/download/Trinity-v2.15.1/trinityrnaseq-v2.15.1.FULL.tar.gz
 ### unzip
@@ -5,31 +9,19 @@ $ tar xfvz trinityrnaseq-v2.15.1.FULL.tar.gz
 $ cd trinityrnaseq-v2.15.1/
 $ make
 
-### To much archives to complety the trinity
-
-
 ### AAAAA LOOOOT OF FUCKING SHITS
 ###
 ###
-###
-###
-###
-###
-###
+### You can download more archives to complete the Trinity, for exemple: Salmon, 
 
 ### now use a command line to build a new genome after been analised at FASTQC
 $ /home/usuary/directory/folder/Trinity --seqType <fq> -- max_memory <50G> --single <file_name.fastq, file_name.fastq, file_name.fastq> --CPU <12> -- min_contig_lenth <50>
 
+### 2 OPTION
 ### Should start install the conda space in directory, as some programms can only work in conda space
-$ wget conda
+### Create an envoirment of Trinity to use and use -n to label the NAME of the new envoirment
+(base)    $ conda create -n Trinity
+(base)    $ conda activate Trinity
+(Trinity) $ conda install bioconda::trinity
+### The data are downloading . . . 
 
-
-### Now install the OrthoFinder
-$ wget https://github.com/davidemms/OrthoFinder/releases/download/2.5.5/OrthoFinder.tar.gz
-$ wget https://github.com/davidemms/OrthoFinder/releases/download/2.5.5/OrthoFinder_source.tar.gz
-
-
-### conda install bioconda::orthofinder
-### conda install bioconda/label/cf201901::orthofinder
-
-https://github.com/davidemms/OrthoFinder/blob/master/README.md
