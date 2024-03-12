@@ -1,0 +1,22 @@
+### The same 2 options to download, 1 in the servidor, and other in Conda Envoirment
+### 1 OPTION
+### Install the OrthoFinder
+$ wget https://github.com/davidemms/OrthoFinder/releases/download/2.5.5/OrthoFinder.tar.gz
+### OR
+$ wget https://github.com/davidemms/OrthoFinder/releases/download/2.5.5/OrthoFinder_source.tar.gz
+### unzip
+$ tar xfzv OrthoFinder.tar.gz
+$ cd OrthoFinder
+$ make
+
+
+### 2 OPTION
+### Create a new envoirment
+(bash)        $ conda creat -n OrthoFinder
+(bash)        $ conda activate OrthoFinder
+(OrthoFinder) $ conda install bioconda::orthofinder
+
+### Can be 
+(OrthoFinder) $ conda install bioconda/label/cf201901::orthofinder
+
+### more informations https://github.com/davidemms/OrthoFinder/blob/master/README.md
