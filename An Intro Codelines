@@ -24,3 +24,14 @@ scp -P 'door' -r 'archive_directory'/ 'serve'/'username'/'directory'/'folder' = 
 man 'command_you_wanna_learn' = MANUAL OF THE COMMAND, extremy usable 
 apropos 'some_word'= find a word that describre a command, so you can find all commands you wanna with the some_word (-a) = you add more words, concatenete
 help = 
+######################################################################################################################################################################################################
+ls = list show | -l = in list way | -lash =  | -h = print size
+[work with a list, similar in python and there is a commands to work as a strings]
+ls - l [abcdef] OR ls - l [a-f] = make a list of all files start with a to f you have
+ls abc[defghi] OR ls abc[d-i] = make a list of all files have the letters d to i after 'abc', so the files are abcd , abce , abcf , abcg , abch , abci PAY ATENTION DONT WORKS FOR NUMBERS just 1-9
+ls abc? = wild-card character to represent exactly one of any kind of character after 'abc'
+ls abc{d,e,f,g,h,i} or ls abc{d..i} = PAY ATENTION ON DOTS BETWEEN 'd' AND 'i' MEANS YOU WANNA GET A RANGE LIKE IN [ ] and the resutl is te same as "ls abc[d-i]"
+ls abc{$((10*5)),$[2**5]} = show list (literaly) of "abc50" and "abc32"
+ls /abc/d*f = takes all files in 'abc' directory start to 'd' and finish with 'f' (litteraly) doesn't matter the length name, therefore the * menas 
+ls /abc/defg[h-o]* = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'o' and doesn't matter the  length name
+ls /abc/defg[hijl]* = shows all files 
