@@ -24,6 +24,9 @@ scp -P 'door' -r 'archive_directory'/ 'serve'/'username'/'directory'/'folder' = 
 man 'command_you_wanna_learn' = MANUAL OF THE COMMAND, extremy usable 
 apropos 'some_word'= find a word that describre a command, so you can find all commands you wanna with the some_word (-a) = you add more words, concatenete
 help = 
+stdind =
+stdout
+stderr
 ######################################################################################################################################################################################################
 ls = list show | -l = in list way | -lash =  | -h = print size
 [work with a list, similar in python and there is a commands to work as a strings]
@@ -36,3 +39,9 @@ ls /abc/d*f = takes all files in 'abc' directory start to 'd' and finish with 'f
 ls /abc/defg[h-o]* = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'o' and doesn't matter the  length name | SAME OF ls /abc/defg{h..o}*
 ls /abc/defg[hijl]* = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'l' and doesn't matter the legnt name
 ls /abc/defg[hijl]? = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'l' and have just one more letter after the string variate, therefore just a file with 6 letters
+ls 
+ls
+ls
+
+########################################################################################################################################################################################################
+
