@@ -1,5 +1,5 @@
 green is the terminal
-~ = way to your user terminal
+~ is the way to your user terminal
 pwd = check you directory
 ls = list (-l) = return a list (-h) = format more comprehensive (-a) = show the hiden archive, with start at " . "
 mkdir 'name_directory' = make a directory
@@ -25,8 +25,9 @@ man 'command_you_wanna_learn' = MANUAL OF THE COMMAND, extremy usable
 apropos 'some_word'= find a word that describre a command, so you can find all commands you wanna with the some_word (-a) = you add more words, concatenete
 help = 
 stdind =
-stdout
-stderr
+stdout =
+stderr =
+scontrol =
 ######################################################################################################################################################################################################
 ls = list show | -l = in list way | -lash =  | -h = print size
 [work with a list, similar in python and there is a commands to work as a strings]
