@@ -10,7 +10,7 @@ $ cd OrthoFinder
 $ make
 
 
-### 2 OPTION
+### 2 OPTION - see ANACONDA, MINICONDA & CONDA file
 ### Create a new envoirment
 (bash)        $ conda creat -n OrthoFinder
 (bash)        $ conda activate OrthoFinder
