@@ -1,6 +1,6 @@
 ### Download the fasta documents of the families in Actinopterygii
 ### Ostei/Actino/Polyptery/
-$ download 
+$ datasets download genome accession GCA_026402145.1 & GCA_900747795.4 & GCF_016835505.1 --include gff3,rna,cds,protein,genome,seq-report
 ### Ostei/Actino/Actinii/
 ### Now in Actinopterii we have 4 groups
 ### Ostei/Actino/Actinii/Acipenciformes/
