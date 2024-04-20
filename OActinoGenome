@@ -1,22 +1,26 @@
-### Download the fasta documents of the families in Actinopterygii
-### Ostei/Actino/Polyptery/
-$ datasets download genome accession GCA_026402145.1 & GCA_900747795.4 & GCF_016835505.1 --include gff3,rna,cds,protein,genome,seq-report
+### Download the fasta files of the families in Actinopterygii
+### Ostei/Actino/Polyptery/ (Polypteridae)
+$
+
 ### Ostei/Actino/Actinii/
-### Now in Actinopterii we have 4 groups
-### Ostei/Actino/Actinii/Acipenciformes/
+### Now in Actinopterii we have 3 groups
+### Ostei/Actino/Actinii/Acipenciformes/ (Acipenseridae, Polyodontidae)
 
-### Ostei/Actino/Actinii/Holostei/
+### Ostei/Actino/Actinii/Holostei/ (Lepisosteidae, Ammiidae)
 
-### Ostei/Actino/Actinii/Elopo/
+### Ostei/Actino/Actinii/Tele/ (Osmeridae, Mormyridae)
+### As known as the true fishes
+### Ostei/Actino/Actinii/Tele/Elopo/ (Muraenidae, Megalopidae, Albulidae, Angulidae, Halosauridae)
 
-### Ostei/Actino/Actinii/Tele/
-### inside Tele, the most diversity of fish in the word, there is some families outside those 3 groups
-### Ostei/Actino/Actinii/Tele/Oto/
+### Ostei/Actino/Actinii/Tele/Oto/ (Castotomidae, Cobitidae, Clupeidae, Cobitidae)
 
-### ### Ostei/Actino/Actinii/Tele/Protacan/
+### Ostei/Actino/Actinii/Tele/Protacan/ (Salmonidae, Umbridae, Esocidae, Galaxiidae)
 
-### Ostei/Actino/Actinii/Tele/Neotele/
-### IN Neotele, we have a lot of species outside big groups
-### Ostei/Actino/Actinii/Teleo/Neotele/Perco
+### Ostei/Actino/Actinii/Tele/Neotele/ (Myctophidae, Labriidae, Gadidae)
+### In Neotele, we have a lot of species outside big groups
+### Ostei/Actino/Actinii/Teleo/Neotele/Perco (Adrianichthyidae, Anabantidae, Apogonidae, Carangidae, Centrarchidae, Cichlidae, Embiotocidae, 
+                                              Fundulidae, Gobiidae, Nothobranchiidae, Percichthyidae, Poeciliidae, Pomacentridae, Scombridae,
+                                              Sinipercidae, Syngnathidae)
 ### Inside Perco, there is the most diversety group in Teleostei: EUPERCARIA
-### Ostei/Actino/Actinii/Tele/Neotele/Pecro/Eupercaria
+### Ostei/Actino/Actinii/Tele/Neotele/Pecro/Eupercaria (Bathydraconidae, Channichthyidae, Cottidae, Gasterosteidae, Hexagrammidae, Labridae,
+                                                        Nototheniidae, Oplegnathidae, Percidae, Sebastidae, Serranidae, Sparidae, Stichaeidae)
