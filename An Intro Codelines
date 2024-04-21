@@ -13,16 +13,20 @@ sed = substitute every string insiede the ex: "/old one/new one/" (-i) = sobresc
 g = in the end of "-i </old one/new one/g>"
 head = the frist part of a file
 tail = the final part of a file
-less = show the file just in the limit of the screen opostive of more
-more = filter  for  paging  through text one screenful at a time    
+less = show the file just in the limit of the screen, provides the same as more plus extensive enhancements, press / and some pattern, the command show this pattern in the file
+more = filter  for  paging  through text one screenful at a time 
+echo = writes each given STRING to standard output, with a space between each and a newline after the last one
 | = concatenet 2 or more commands in one line, pipe
 <file> > <other_file> = make a direction of the archive to save in "other_file"
-<file> >> <other_file> = direction again to a new one, but not substitute, only add the informations
+<new_file> < <file> = redirect the standard input (STDIN)
+<file> >> <other_file> = direction again to a new one, but not substitute, only add the informations, appending 
+<file> 2>> <other_file> = redirect JUST A STARDAR ERROR (STDERR), appending to a existing file
 cp <old_archive> <directory_name/new_archive> = copy the archive in a directory 
     (-u) = update, copy only missing information to new file, (-i) = ask you sure make this copy because cp OVERWIRTE the new copy, (-n) oposite of -i, (-p) = preserves the atributes 
 mv <PATH/file> <diretory/new_name> = move the file to the directory you want, (-i) = ask the intention, (-u) = update, move only the missing information, (-n) not alowed to mv overwrite
 mv <text> <new_name> = change the name of file in currently directory
 rm <directory/archive> = remove any archive or folder (-r) = remove the directory
+wc = word count, print lines and words and bytes from a file (-l) = count lines
 wget www... = download the archive directly on terminal
 . = currently directory
 .. = directory above currently directory
@@ -39,7 +43,7 @@ stdout =
 stderr =
 scontrol =
 [Shift] + [Insert] = Ctrl V
-######################################################################################################################################################################################################
+#########################################################################################################################################################################################################
 ls = list show | -l = in list way | -a = show hidden files in the shell | -h = print size with parameters | -s = size
 [work with a list, similar in python and there is a commands to work as a strings]
 ls - l [abcdef] OR ls - l [a-f] = make a list of all files start with 'a' to 'f' exist
@@ -47,13 +51,23 @@ ls abc[defghi] OR ls abc[d-i] = make a list of all files have the letters d to i
 ls abc? = wild-card character to represent exactly one of any kind of character after 'abc'
 ls abc{d,e,f,g,h,i} or ls abc{d..i} = PAY ATENTION ON DOTS BETWEEN 'd' AND 'i' MEANS YOU WANNA GET A RANGE LIKE IN [ ] and the resutl is te same as "ls abc[d-i]"
 ls abc{$((10*5)),$[2**5]} = show list (literaly) of "abc50" and "abc32"
-ls /abc/d*f = takes all files in 'abc' directory start to 'd' and finish with 'f' (litteraly) doesn't matter the length name, therefore the * menas 
+ls /abc/d*f = takes all files in 'abc' directory start to 'd' and finish with 'f' (litteraly) doesn't matter the length name, therefore the * menas zero or more characters 
 ls /abc/defg[h-o]* = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'o' and doesn't matter the  length name | SAME OF ls /abc/defg{h..o}*
 ls /abc/defg[hijl]* = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'l' and doesn't matter the legnt name
 ls /abc/defg[hijl]? = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'l' and have just one more letter after the string variate, therefore just a file with 6 letters
-ls 
-ls
-ls
+ls abc??* = shows all files start with 'abc' following any 2 letters, and more than 5 letters
+ls -l [a-f] | wc -l > new_file = create a list of files start a to f, pipe with counter, then count the lines was created by ls -l and finely appeding to a new_file 
 
 ########################################################################################################################################################################################################
+echo $((expr)) = STRDIN 0
+echo $((2*30)) OR echo $[2*30] = 60
+echo $((5*90/6)) OR echo $[5*90/6] = 75, because we have 90 divided by 6 and multiply for 5
+echo $((5+6*8-90/5)) OR echo $[5+6*8-90/5] = 35, 5 + 48 - 18. Remainder 35
+echo $((5+(6*8-90)/5)) OR echo $[5+(6*8-90)/5] = -3, 5 + (48-90)/5 = 5 + (-42)/5 = 5 - 8,4 = -3
+echo $((5+(6*8-90)%5)) OR echo $[5+(6*8-90)%5]= 3, because the % means the remainder of the division, so (-42)/5 remainder -2. 
+echo {x..y} = will print the range x to y (decresment and incriscment)
+echo {x..y..z} = will print the range x to y with the logical z
+echo 
+echo
 
+######################################################################################################################################################################################################## 
