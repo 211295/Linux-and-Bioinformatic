@@ -1,7 +1,7 @@
 green is the terminal
 ~ is the way to your user terminal
 pwd = check you directory, print work directory 
-ls = show list / (-l) = return in a list format, (-h) = format more comprehensive, (-a) = show the hiden archive, with start at " . "
+ls = show list / (-l) = return in a list format, (-h) = format more comprehensive with size parameters, (-a) = show the hiden archive, with start at " . ", (-t) = sort by time, newest first
 mkdir <PATH/name_directory> = make a directory / (-p) = creat a parent directory does not exist 
 cd <name_directory> = change directory
 touch <text.txt> = create a text with name <text.txt> 
@@ -11,14 +11,21 @@ cat <some_word> = select the strings in text
 grep <some_word> = show the line with the string meantioned
 sed = substitute every string insiede the ex: "/old one/new one/" (-i) = sobrescreve o arquivo com resultado gerado
 g = in the end of "-i </old one/new one/g>"
+head = the frist part of a file
+tail = the final part of a file
+less = show the file just in the limit of the screen opostive of more
+more = filter  for  paging  through text one screenful at a time    
 | = concatenet 2 or more commands in one line, pipe
 <file> > <other_file> = make a direction of the archive to save in "other_file"
 <file> >> <other_file> = direction again to a new one, but not substitute, only add the informations
 cp <old_archive> <directory_name/new_archive> = copy the archive in a directory 
     (-u) = update, copy only missing information to new file, (-i) = ask you sure make this copy because cp OVERWIRTE the new copy, (-n) oposite of -i, (-p) = preserves the atributes 
-mv <PATH/text> <directory/new_name> = move the archive and folder to the same directory with other name
-rm <directory/archive> = remove any archive or folder
+mv <PATH/file> <diretory/new_name> = move the file to the directory you want, (-i) = ask the intention, (-u) = update, move only the missing information, (-n) not alowed to mv overwrite
+mv <text> <new_name> = change the name of file in currently directory
+rm <directory/archive> = remove any archive or folder (-r) = remove the directory
 wget www... = download the archive directly on terminal
+. = currently directory
+.. = directory above currently directory
 .gz = format of archive
 gunzip = unzip file (descompactar arquivo)
 scp -P <door> -r <archive_directory>/ 'serve'/'username'/'directory'/'folder'> = copy a holy directory to other username, indicate the door (-P) and the kind of archive (-r) Residual 
@@ -33,9 +40,9 @@ stderr =
 scontrol =
 [Shift] + [Insert] = Ctrl V
 ######################################################################################################################################################################################################
-ls = list show | -l = in list way | -lash =  | -h = print size
+ls = list show | -l = in list way | -a = show hidden files in the shell | -h = print size with parameters | -s = size
 [work with a list, similar in python and there is a commands to work as a strings]
-ls - l [abcdef] OR ls - l [a-f] = make a list of all files start with a to f you have
+ls - l [abcdef] OR ls - l [a-f] = make a list of all files start with 'a' to 'f' exist
 ls abc[defghi] OR ls abc[d-i] = make a list of all files have the letters d to i after 'abc', so the files are abcd , abce , abcf , abcg , abch , abci PAY ATENTION DONT WORKS FOR NUMBERS just 1-9
 ls abc? = wild-card character to represent exactly one of any kind of character after 'abc'
 ls abc{d,e,f,g,h,i} or ls abc{d..i} = PAY ATENTION ON DOTS BETWEEN 'd' AND 'i' MEANS YOU WANNA GET A RANGE LIKE IN [ ] and the resutl is te same as "ls abc[d-i]"
