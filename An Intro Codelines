@@ -7,14 +7,15 @@ cd <name_directory> = change directory
 touch <text.txt> = create a text with name <text.txt> 
 nano <text.txt> = edit the text created with touch
 [Ctrl] + x = getout ot documemt / Y to save ; N to dont save
-cat <some_word> = select the strings in text
+cat <file> <other_file> <another_file> = show in the screen all of the files in orther, so you can attatch in other file using > 
+cat <some_word> = show lect the strings in text
 grep <some_word> = show the line with the string meantioned
 sed = substitute every string insiede the ex: "/old one/new one/" (-i) = sobrescreve o arquivo com resultado gerado
 g = in the end of "-i </old one/new one/g>"
 head = the frist part of a file
 tail = the final part of a file
-less = show the file just in the limit of the screen, provides the same as more plus extensive enhancements, press / and some pattern, the command show this pattern in the file
-more = filter  for  paging  through text one screenful at a time 
+less = show the file just in the limit of the screen, provides the same as more plus extensive enhancements, press / and some pattern, the command show this pattern in the file | zless = compressed
+more = filter  for  paging  through text one screenful at a time | zmore = compressed
 echo = writes each given STRING to standard output, with a space between each and a newline after the last one
 | = concatenet 2 or more commands in one line, pipe
 <file> > <other_file> = make a direction of the archive to save in "other_file"
@@ -26,7 +27,9 @@ cp <old_archive> <directory_name/new_archive> = copy the archive in a directory
 mv <PATH/file> <diretory/new_name> = move the file to the directory you want, (-i) = ask the intention, (-u) = update, move only the missing information, (-n) not alowed to mv overwrite
 mv <text> <new_name> = change the name of file in currently directory
 rm <directory/archive> = remove any archive or folder (-r) = remove the directory
-wc = word count, print lines and words and bytes from a file (-l) = count lines
+wc <file> = word count, print lines and words and bytes from a file (-l) = count lines
+find <file> or <directory> = search for files, the output is a list of files or directories, you can concatenet with others commands (wc, head, less, tail, sort)
+sort = ordenate the list of files or directories
 wget www... = download the archive directly on terminal
 . = currently directory
 .. = directory above currently directory
@@ -71,3 +74,9 @@ echo
 echo
 
 ######################################################################################################################################################################################################## 
+cat file1 file2 file3 > all_files = take all the files and concatenate in a new file
+cat file1 - file3 = 
+
+
+#########################################################################################################################################################################################################
+cut 
