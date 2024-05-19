@@ -21,8 +21,14 @@
 (base) $ cd busco/
 
 ### HOW TO USE WITH CONDA
-(BUSCO) $ busco -i <fasta_file> -m <mode> <other_options>
-(BUSCO) $ 
+(BUSCO) $ busco -i <fasta_file> -m <mode> -o <folder_name> -c <numeber_of_cores> -l <lineage> -
+### -i the fasta file can be genomic or protein and -m you define the mode of the file "genome", "protein", "trasncriptome"
+### -o output folder name would like to have. To check the lineages = busco --list-datasets 
+(BUSCO) $ busco -i Actino_*.fna -m genome -o Busco_Actino -c 2 -l actinopterygii_odb10
+### OR
+(BUSCO) $ busco -i Sarco_*.fna -m genome -o Busco_Sarco -c 4 -l tetrapoda_odb10
+### OR
+(BUSCO) $ busco -i Actino_*.fna Sarco_*.fna -m genome -o Busco_Ostei -c 2 -l vertebrata_odb10
 
 ###############################################################################################################################################################################################################
 ### 2 ways to dowloand quast
@@ -42,5 +48,5 @@
 (base) $ cd quast-5.2.0
 
 ### HOW TO USE WITH CONDA
-(QUAST) $ 
+(QUAST) $ python quast.py <commands> <contig_file(s)>
 (QUAST) $ 
