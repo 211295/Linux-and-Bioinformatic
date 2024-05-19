@@ -4,7 +4,7 @@
 
 ###############################################################################################################################################################################################################
 ### AS ALWAYS YOU HAVE 2 WAYS TO DOWNLOAD, FIRST IN CONDA AND SECOND IN SERVE
-### 1 OPTION
+### 1 OPTION - see ANACONDA, MINICONDA & CONDA file
 ### as the others programms, make a envoirment in conda
 (base)  $ conda create -n BUSCO
 (base)  $ conda activate BUSCO
@@ -32,7 +32,7 @@
 
 ###############################################################################################################################################################################################################
 ### 2 ways to dowloand quast
-### 1 OPTION
+### 1 OPTION - see ANACONDA, MINICONDA & CONDA file
 (base)  $ conda creat -n QUAST
 (base)  $ conda activate QUAST
 (QUAST) $ conda install bioconda::QUAST 
