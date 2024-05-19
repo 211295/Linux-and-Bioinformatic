@@ -1,0 +1,46 @@
+### BUSCO as a quality analysis tools 
+
+### QUAST use the 
+
+###############################################################################################################################################################################################################
+### AS ALWAYS YOU HAVE 2 WAYS TO DOWNLOAD, FIRST IN CONDA AND SECOND IN SERVE
+### 1 OPTION
+### as the others programms, make a envoirment in conda
+(base)  $ conda create -n BUSCO
+(base)  $ conda activate BUSCO
+(BUSCO) $ conda install bioconda::BUSCO
+
+### DOWNLOAD A LOT OF THINGS
+
+### 2 OPTION
+### Install in default terms 
+### There is more componets to install to make BUSCO works like : BioPython (https://biopython.org/) | Pandas (https://pandas.pydata.org/) | BBMAP (https://jgi.doe.gov/data-and-tools/software-tools/bbtools/)
+### tBLASTn 2.2 | Augustus 3.2 (https://bioinf.uni-greifswald.de/augustus/) | Metauek (https://github.com/soedinglab/metaeuk) | Prodigal (https://github.com/hyattpd/Prodigal) | HMMER3.1 (http://hmmer.org/) |
+### SEPP (https://github.com/smirarab/sepp/) | R and ggplot2
+(base) $ git clone https://gitlab.com/ezlab/busco.git
+(base) $ cd busco/
+
+### HOW TO USE WITH CONDA
+(BUSCO) $ busco -i <fasta_file> -m <mode> <other_options>
+(BUSCO) $ 
+
+###############################################################################################################################################################################################################
+### 2 ways to dowloand quast
+### 1 OPTION
+(base)  $ conda creat -n QUAST
+(base)  $ conda activate QUAST
+(QUAST) $ conda install bioconda::QUAST 
+(QUAST) $ conda update
+
+### DOWNLOAD A LOT OF THINGS
+
+### 2 OPTION 
+### There are some limits to use the tool. In the manual "slightly limited functionality: BUSCO is not working there." 
+### 
+(base) $ wget https://github.com/ablab/quast/releases/download/quast_5.2.0/quast-5.2.0.tar.gz
+(base) $ tar -xzfv quast-5.2.0.tar.gz
+(base) $ cd quast-5.2.0
+
+### HOW TO USE WITH CONDA
+(QUAST) $ 
+(QUAST) $ 
