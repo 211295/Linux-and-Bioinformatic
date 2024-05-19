@@ -17,7 +17,7 @@ $ make
 ### now use a command line to build a new genome after been analised at FASTQC
 $ /home/usuary/directory/folder/Trinity --seqType <fq> -- max_memory <50G> --single <file_name.fastq, file_name.fastq, file_name.fastq> --CPU <12> -- min_contig_lenth <50>
 
-### 2 OPTION
+### 2 OPTION - see ANACONDA, MINICONDA & CONDA file
 ### Should start install the conda space in directory, as some programms can only work in conda space
 ### Create an envoirment of Trinity to use and use -n to label the NAME of the new envoirment
 (base)    $ conda create -n Trinity
