@@ -27,7 +27,8 @@
             wget http://www.repeatmasker.org/RepeatScout-1.0.6.tar.gz;
             wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64;
             wget https://www.repeatmasker.org/rmblast/rmblast-2.14.0+-x64-linux.tar.gz; 
-            
+            wget https://www.perl.org/get.html#unix_like
 (base) $ gunzip *.gz
-(base) $ tar -xvf *.tar
+(base) $ tar -xvf *.tar; ls -las
+### Total of documents
 ### You need RepeatMasker also, see below
