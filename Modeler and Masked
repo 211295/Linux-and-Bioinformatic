@@ -14,8 +14,20 @@
             conda install -c bioconda perl-class-data-inheritable; conda install -c bioconda perl-exception-class; conda install -c bioconda perl-test-pod; conda install -c bioconda perl-file-which; 
             conda install -c bioconda perl-mce; conda install -c bioconda perl-threaded; conda install -c bioconda perl-list-util; conda install -c bioconda perl-math-utils; 
             conda install -c bioconda cdbtools; conda install -c eumetsat perl-yaml-xs; conda install -c bioconda perl-data-dumper
-(Modeler) $ conda install bioconda::repeatmodeler
-
 ### The perl-file-which need only to comparing to reference annotation
 (Modeler) $ conda install bioconda::repeatmodeler
             conda install bioconda/label/cf201901::repeatmodeler
+
+### 2 OPTION
+### Install in default terms 
+### Initiate with cloning the GitHub repository 
+(base) $ git clone  https://github.com/Dfam-consortium/RepeatModeler
+### As you can see in the https://www.repeatmasker.org/RepeatModeler/, you need more programms (RECON, RepeatScout and LtrHarvest) and more databases (Tandem Repeater Finder)
+(base) $ wget http://www.repeatmasker.org/RepeatModeler/RECON-1.08.tar.gz; 
+            wget http://www.repeatmasker.org/RepeatScout-1.0.6.tar.gz;
+            wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64;
+            wget https://www.repeatmasker.org/rmblast/rmblast-2.14.0+-x64-linux.tar.gz; 
+            
+(base) $ gunzip *.gz
+(base) $ tar -xvf *.tar
+### You need RepeatMasker also, see below
