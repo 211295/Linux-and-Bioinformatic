@@ -24,6 +24,9 @@
 (BUSCO) $ busco -i <fasta_file> -m <mode> -o <folder_name> -c <numeber_of_cores> -l <lineage> -
 ### -i the fasta file can be genomic or protein and -m you define the mode of the file "genome", "protein", "trasncriptome"
 ### -o output folder name would like to have. To check the lineages = busco --list-datasets 
+(base) $ conda activate BUSCO
+### check the catalog/list of lineages or the full available datasets
+(BUSCO) $ busco --lineages_datasets ; busco --list-dataset
 (BUSCO) $ busco -i Actino_*.fna -m genome -o Busco_Actino -c 8 -l actinopterygii_odb10
 ### OR
 (BUSCO) $ busco -i Sarco_*.fna -m genome -o Busco_Sarco -c 8 -l tetrapoda_odb10
@@ -32,6 +35,18 @@
 
 ### exemple of protain mode
 (BUSCO) $ busco -i Actino_*_prot.faa -m protein -o Busco_Actino -c 8 -l actinopterygii_odb10
+
+### Separate, or copy, all *.txt
+(BUSCO) $ for file in Busco_[AS]*.fna
+                do cd $file ; mv *.txt ~/PATH/; cd ..
+                done
+(BUSCO) $ for file in Busco_[AS]*.fna
+                do cd $file ; cp *.txt ~/PATH/; cd ..
+                done
+### After busco run, alocate all *.txt inside each directory output to other place and use the command phyton3 to create the figure
+### Use in the directory with all *.txt files
+(BUSCO) $  python3 ~/miniconda3/envs/busco/bin/generate_plot.py -wd busco_actino
+### -wd working directory the figures will be
 
 ###############################################################################################################################################################################################################
 ### 2 ways to dowloand quast
