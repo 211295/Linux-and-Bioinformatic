@@ -22,12 +22,13 @@
 ### Install in default terms 
 ### Initiate with cloning the GitHub repository 
 (base) $ git clone  https://github.com/Dfam-consortium/RepeatModeler
-### As you can see in the https://www.repeatmasker.org/RepeatModeler/, you need more programms (RECON, RepeatScout, LtrHarvest) and more databases (Tandem Repeater Finder, perl)
+### As you can see in the https://www.repeatmasker.org/RepeatModeler/, you need more programms (RECON, RepeatScout, LtrHarvest) and more databases (Tandem Repeater Finder)
 (base) $ wget http://www.repeatmasker.org/RepeatModeler/RECON-1.08.tar.gz; 
             wget http://www.repeatmasker.org/RepeatScout-1.0.6.tar.gz;
             wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64;
             wget https://www.repeatmasker.org/rmblast/rmblast-2.14.0+-x64-linux.tar.gz; 
             wget https://platform.activestate.com/create-account?nextRoute=%2Fcreate-project%3Flanguage%3Dperl%26newUser%3Dtrue%26autoCreate%3Dtrue%26version%3D5.36.3%26os%3Dlinux
+            wget https://github.com/oushujun/LTR_retriever/archive/refs/tags/v2.9.8.tar.gz
 (base) $ gunzip *.gz
 (base) $ tar -xvf *.tar; ls -las
 ### You need RepeatMasker also, see below. Total of documents = 2 files, 5 directorys, 4 files .tar
