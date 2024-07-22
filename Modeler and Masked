@@ -51,8 +51,10 @@
 (base) $ wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.6.tar.gz
 (base) $ gunzip *.gz
 (base) $ tar -xvf *.tar; ls -las
-### 
-(base) $ 
+
+### Start use the program. Using the defaut 
+(base) $ ~/<PATH>/RepeatMasker/RepeatMasker *.fna
+### Need to 
 (base) $
 (base) $
 (base) $
