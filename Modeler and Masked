@@ -32,3 +32,32 @@
 (base) $ gunzip *.gz
 (base) $ tar -xvf *.tar; ls -las
 ### You need RepeatMasker also, see below. Total of documents = 2 files, 5 directorys, 4 files .tar
+### Creat a Database using the FASTA datum
+(base) $ ~/<PATH>/RepeatModeler/BuildDatabase -name RMod_Database *.fna          ### just 1 FASTA
+(base) $ ~/<PATH>/RepeatModeler/BuildDatabase -          ### a lot of FASTAS
+(base) $ ~/<PATH>/RepeatModeler/RepeatModeler -database RMod_Database
+
+###############################################################################################################################################################################################################
+### AS ALWAYS YOU HAVE 2 WAYS TO DOWNLOAD, FIRST IN CONDA AND SECOND IN SERVE
+### 1 OPTION - see ANACONDA, MINICONDA & CONDA file
+### As the others programms, make a envoirment in conda and install all these other programms
+(base) $ conda creat -n Masker
+(base) $ conda activate Masker
+(Masker) $ conda install bioconda::repeatmasker
+
+### 2 OPTION
+### Install in default terms 
+### Initiate acessing this page https://www.repeatmasker.org/RepeatMasker/ and take the link
+(base) $ wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.6.tar.gz
+(base) $ gunzip *.gz
+(base) $ tar -xvf *.tar; ls -las
+### 
+(base) $ 
+(base) $
+(base) $
+(base) $
+(base) $
+(base) $
+(base) $
+
+
