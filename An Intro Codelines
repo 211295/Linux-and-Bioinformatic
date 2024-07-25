@@ -15,6 +15,7 @@ g = in the end of "-i </old one/new one/g>"
 head = the frist part of a file
 tail = the final part of a file
 less = show the file just in the limit of the screen, provides the same as more plus extensive enhancements, press / and some pattern, the command show this pattern in the file | zless = compressed
+        inside less, use crtl B " -> divide the screen in two and you can see the command line and the less window
 more = filter  for  paging  through text one screenful at a time | zmore = compressed
 echo = writes each given STRING to standard output, with a space between each and a newline after the last one
 | = concatenet 2 or more commands in one line, pipe
