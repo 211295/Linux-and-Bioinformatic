@@ -1,7 +1,7 @@
 green is the terminal
 ~ is the way to your user terminal
 pwd = check you directory, print work directory 
-ls = show list / (-l) = return in a list format, (-h) = format more comprehensive with size parameters, (-a) = show the hiden archive, with start at " . ", (-t) = sort by time, newest first
+ls = show list / (-l) = return a list, (-h) = format more comprehensive with human size parameters, (-a) = show the hiden archive, with start at " . ", (-t) = sort by time, newest first (-r) = reverse the list
 mkdir <PATH/name_directory> = make a directory / (-p) = creat a parent directory does not exist 
 cd <name_directory> = change directory
 touch <text.txt> = create a text with name <text.txt> 
