@@ -30,12 +30,16 @@
 ### As you can see in the https://www.repeatmasker.org/RepeatModeler/, you need more programms (RECON, RepeatScout, LtrHarvest) and more databases (Tandem Repeater Finder)
 (base) $ wget http://www.repeatmasker.org/RepeatModeler/RECON-1.08.tar.gz; 
             wget http://www.repeatmasker.org/RepeatScout-1.0.6.tar.gz;
-            wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64;
+            wget https://github.com/Benson-Genomics-Lab/TRF/archive/refs/tags/v4.09.1.tar.gz;
+            wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.dos64.exe;
             wget https://www.repeatmasker.org/rmblast/rmblast-2.14.0+-x64-linux.tar.gz; 
             wget https://platform.activestate.com/create-account?nextRoute=%2Fcreate-project%3Flanguage%3Dperl%26newUser%3Dtrue%26autoCreate%3Dtrue%26version%3D5.36.3%26os%3Dlinux
             wget https://github.com/oushujun/LTR_retriever/archive/refs/tags/v2.9.8.tar.gz
 (base) $ gunzip *.gz
 (base) $ tar -xvf *.tar; ls -las
+### Move the trf*.exe inside the TRF* directory, its better, and create a link called "trf" only to this file
+(base) $ mv trf*.exe TRF-4.09.1; cd TRF-4.09.1 ; link 
+
 ### You need RepeatMasker also, see below. Total of documents = 2 files, 5 directorys, 4 files .tar
 ### Creat a Database using the FASTA datum
 (base) $ ~/<PATH>/RepeatModeler/BuildDatabase -name RMod_Database *.fna          ### just 1 FASTA
@@ -59,12 +63,21 @@
 
 ### Start use the program. Using the defaut 
 (base) $ ~/<PATH>/RepeatMasker/configure
+### See whats say. If need more programms. I needed famDB and the PATH of TRF (see RepeatModeler, line 33)
+(base) $ cd ~/<PATH>/RepeatMasker/Liberies/famdb/
+(base) $ wget https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.0.h5.gz
+(base) $ gunzip *.gz
 
-### See whats say. If need more 
-(base) $
-(base) $
-(base) $
-(base) $
+### Insert in configuration the PATH of the libery dfam* and again use the configure command
+(base) $ ~/<PATH>/RepeatMasker/configure
+RepeatMasker Configuration Program
+
+Checking for libraries...
+ - Found a FamDB root partition
+
+The full path including the name for the TRF program.
+TRF_PRGM: home/<PATH>/trf # remember this is a hyperlink (see in RepeatModeler, line 40 and 41)
+
 (base) $
 (base) $
 
