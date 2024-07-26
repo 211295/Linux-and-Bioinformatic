@@ -4,3 +4,11 @@
 ##########################################################################################################################################################################################################################################
 ### AS ALWAYS YOU HAVE 2 WAYS TO DOWNLOAD, FIRST IN CONDA AND SECOND IN SERVE
 ### 1 OPTION - see ANACONDA, MINICONDA & CONDA file
+### as the others programms, make a envoirment in conda
+(base)  $ conda create -n BRAKER2
+(base)  $ conda activate BRAKER2
+(BUSCO) $ conda install bioconda::braker2
+
+### DOWNLOAD A LOT OF THINGS
+
+### 2 OPTION - install 
