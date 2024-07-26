@@ -1,4 +1,5 @@
-### BRAKER is powerfull and complete programm for genome annotation and predict genes. A union of others programms like 
+### BRAKER is powerfull and complete programm for genome structor annotation (regions not CDs + predict genes) and fuction annotation (biological information). 
+### A union of others programms like 
 
 
 ##########################################################################################################################################################################################################################################
@@ -7,8 +8,12 @@
 ### as the others programms, make a envoirment in conda
 (base)  $ conda create -n BRAKER2
 (base)  $ conda activate BRAKER2
-(BUSCO) $ conda install bioconda::braker2
+(BRAKER2) $ conda install bioconda::braker2
 
 ### DOWNLOAD A LOT OF THINGS
+(BRAKER2) $ conda info --envs
 
-### 2 OPTION - install 
+### 2 OPTION
+### Install in default terms 
+### There is more componets to install BRAKER and run that
+(base) $ 
