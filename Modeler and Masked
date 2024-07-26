@@ -44,6 +44,7 @@
 ### Creat a Database using the FASTA datum
 (base) $ ~/<PATH>/RepeatModeler/BuildDatabase -name RMod_Database *.fna          ### just 1 FASTA
 (base) $ ~/<PATH>/RepeatModeler/BuildDatabase -          ### a lot of FASTAS
+### After create the database, use the database to run the programm
 (base) $ ~/<PATH>/RepeatModeler/RepeatModeler -database RMod_Database -threads 32 -LTRStruct >& file.out
 
 ##########################################################################################################################################################################################################################################
