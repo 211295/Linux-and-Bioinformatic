@@ -38,7 +38,7 @@
 (base) $ gunzip *.gz
 (base) $ tar -xvf *.tar; ls -las
 ### Move the trf*.exe inside the TRF* directory, its better, and create a link called "trf" only to this file
-(base) $ mv trf*.exe TRF-4.09.1; cd TRF-4.09.1 ; link 
+(base) $ mv trf*.exe TRF-4.09.1; cd TRF* ; ln -s -T trf*.exe trf # (-T) target and (-s) symbolic link
 
 ### You need RepeatMasker also, see below. Total of documents = 2 files, 5 directorys, 4 files .tar
 ### Creat a Database using the FASTA datum
@@ -76,8 +76,19 @@ Checking for libraries...
  - Found a FamDB root partition
 
 The full path including the name for the TRF program.
-TRF_PRGM: home/<PATH>/trf # remember this is a hyperlink (see in RepeatModeler, line 40 and 41)
+TRF_PRGM: home/<PATH>/trf # remember this "trf" is a hyperlink (see in RepeatModeler, line 40 and 41)
 
+Add a Search Engine:
+   1. CrossMatch: [ Un-configured ]
+   2. RMBlast - NCBI Blast with RepeatMasker extensions: [ Un-configured ]
+   3. WUBlast/ABBlast (required by DupMasker): [ Un-configured ]
+   4. DeCypher (TimeLogic): [ Un-configured ]
+
+   5. Done
+Enter Selection: 2
+### Now take the information of rmblastn in 
+The path to the installation of the RMBLAST sequence alignment program.
+RMBLAST_DIR: home/<PATH>/
 (base) $
 (base) $
 
