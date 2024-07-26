@@ -1,8 +1,6 @@
 ### RepeatModeler usefull tool to indetificante and define Transposons (TEs), 
 
-### 
-
-###############################################################################################################################################################################################################
+##########################################################################################################################################################################################################################################
 ### AS ALWAYS YOU HAVE 2 WAYS TO DOWNLOAD, FIRST IN CONDA AND SECOND IN SERVE
 ### 1 OPTION - see ANACONDA, MINICONDA & CONDA file
 ### As the others programms, make a envoirment in conda and install all these other programms
@@ -17,7 +15,7 @@
 ### The perl-file-which need only to comparing to reference annotation
 (Modeler) $ conda install bioconda::repeatmodeler # or mamba install -c bioconda -c conda-forge repeatmodeler
             conda install bioconda/label/cf201901::repeatmodeler
-### This 
+### This is other option
 (base) $ export MAMBA_ROOT_PREFIX=/opt/Micromamba/
 (base) $ eval "$(/opt/bin/Micromamba/1.5.8-0/bin/micromamba shell hook -s posix)"
 (base) $ micromamba activate RepeatModeler-2.0.5
@@ -37,16 +35,20 @@
             wget https://github.com/oushujun/LTR_retriever/archive/refs/tags/v2.9.8.tar.gz
 (base) $ gunzip *.gz
 (base) $ tar -xvf *.tar; ls -las
-### Move the trf*.exe inside the TRF* directory, its better, and create a link called "trf" only to this file
+### Move the trf*.exe inside the TRF* directory, its better, and create a symbolic link called "trf" only to this file
 (base) $ mv trf*.exe TRF-4.09.1; cd TRF* ; ln -s -T trf*.exe trf # (-T) target and (-s) symbolic link
 
 ### You need RepeatMasker also, see below. Total of documents = 2 files, 5 directorys, 4 files .tar
+
+### RUN THE PROGRAMM:
 ### Creat a Database using the FASTA datum
 (base) $ ~/<PATH>/RepeatModeler/BuildDatabase -name RMod_Database *.fna          ### just 1 FASTA
 (base) $ ~/<PATH>/RepeatModeler/BuildDatabase -          ### a lot of FASTAS
-(base) $ ~/<PATH>/RepeatModeler/RepeatModeler -database RMod_Database -threads 32 - 
+(base) $ ~/<PATH>/RepeatModeler/RepeatModeler -database RMod_Database -threads 32 -LTRStruct >& file.out
 
-###############################################################################################################################################################################################################
+##########################################################################################################################################################################################################################################
+### RepeatMasker use 
+
 ### AS ALWAYS YOU HAVE 2 WAYS TO DOWNLOAD, FIRST IN CONDA AND SECOND IN SERVE
 ### 1 OPTION - see ANACONDA, MINICONDA & CONDA file
 ### As the others programms, make a envoirment in conda and install all these other programms
@@ -58,25 +60,36 @@
 ### Install in default terms 
 ### Initiate acessing this page https://www.repeatmasker.org/RepeatMasker/ and take the link
 (base) $ wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.6.tar.gz
+### You should have other programms, see RepeatModeler
 (base) $ gunzip *.gz
 (base) $ tar -xvf *.tar; ls -las
 
-### Start use the program. Using the defaut 
+### START USE THE PROGRAMM, LETS CONFIGURE ###
 (base) $ ~/<PATH>/RepeatMasker/configure
-### See whats say. If need more programms. I needed famDB and the PATH of TRF (see RepeatModeler, line 33)
+### Actually, the command configure can only work at RepeatMasker directory
+(base) $ cd ~/<PATH>/RepeatMasker ; ./configure
+### See whats say. If need more programms. I needed famDB data bases and the TRF (see RepeatModeler, line 31). So go to famdb directory and download the dataset (see in https://www.dfam.org/releases/Dfam_3.8/families/FamDB/README.txt)
 (base) $ cd ~/<PATH>/RepeatMasker/Liberies/famdb/
-(base) $ wget https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.0.h5.gz
+(base) $ nohup wget https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.0.h5.gz ### (Mammals and others Eukaryas)
+(base) $ nohup wget https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.3.h5.gz ### (Sarcopterygii)
+(base) $ nohup wget https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.6.h5.gz ### (Deuterostomes, Chondricties and Basal Actinopterygiis)
+### Take a feel hours
 (base) $ gunzip *.gz
 
 ### Insert in configuration the PATH of the libery dfam* and again use the configure command
-(base) $ ~/<PATH>/RepeatMasker/configure
+(base) $ cd ~/<PATH>/RepeatMasker/; ./configure
+
 RepeatMasker Configuration Program
+The full path of FamDB in Liberies
+FAMDB: /home/<PATH>/RepeatMasker/Liberies/famdb
+
+### continue configuration pressing ENTER
 
 Checking for libraries...
  - Found a FamDB root partition
 
 The full path including the name for the TRF program.
-TRF_PRGM: home/<PATH>/trf # remember this "trf" is a hyperlink (see in RepeatModeler, line 40 and 41)
+TRF_PRGM: home/<PATH>/TRF*/trf                             ### remember this "trf" is a hyperlink (see in RepeatModeler, line 38 and 39)
 
 Add a Search Engine:
    1. CrossMatch: [ Un-configured ]
@@ -85,11 +98,46 @@ Add a Search Engine:
    4. DeCypher (TimeLogic): [ Un-configured ]
 
    5. Done
-Enter Selection: 2
-### Now take the information of rmblastn in 
-The path to the installation of the RMBLAST sequence alignment program.
-RMBLAST_DIR: home/<PATH>/rmblast-2.14.0/bin/rmblastn 
-(base) $
-(base) $
 
+Enter Selection: 2
+### Press 2 and ENTER. Now take the information of rmblastn and makeblastdb in RMBlast directory
+
+The path to the installation of the RMBLAST sequence alignment program.
+RMBLAST_DIR: home/<PATH>/rmblast-2.14.0/bin/ 
+### Press ENTER
+
+Add a Search Engine:
+   1. Crossmatch: [ Un-configured ]
+   2. RMBlast: [ Configured, Default ]
+   3. HMMER3.1 & DFAM: [ Un-configured ]
+   4. ABBlast: [ Un-configured ]
+
+   5. Done
+
+
+Enter Selection: 5
+
+### Press 5 and ENTER, know you have your programm configured 
+
+Building RMBlast frozen libraries..
+
+FamDB Directory     : /home/fssalles/MandM/RepeatMasker/Libraries/famdb
+FamDB Generator     : famdb.py v1.0
+FamDB Format Version: 1.0
+FamDB Creation Date : 2023-11-15 11:30:15.311827
+
+Database: Dfam
+Version : 3.8
+Date    : 2023-11-14
+
+Dfam - A database of transposable element (TE) sequence alignments and HMMs.
+### As you can see in Partition Details only the Partion 0, 3 and 6 (reference of Mammals and others Eukaryas, bacteria and virus) are available, but you can add the partion you need (0 - 8)
+
+### Lests start use:
+(base) $ cd ~/<PATH>/files.fasta
+(base) $ ~/<PATH>/RepeatMasker -s -a -species 'name_of_specie' *.fna ### (-s) slow process, more sensitive (-q) Quick and (-qq) Rush job (-a) alignment
+(base) $ 
+(base) $ 
+(base) $ 
+(base) $ https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.6.h5.gz.md5sum
 
