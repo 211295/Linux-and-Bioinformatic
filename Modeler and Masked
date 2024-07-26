@@ -19,7 +19,9 @@
 (base) $ export MAMBA_ROOT_PREFIX=/opt/Micromamba/
 (base) $ eval "$(/opt/bin/Micromamba/1.5.8-0/bin/micromamba shell hook -s posix)"
 (base) $ micromamba activate RepeatModeler-2.0.5
-(RepeatModeler-2.0) $ 
+### Go to directory of
+(RepeatModeler-2.0) $ BuildDatabase -name RMod_Database <file>.fna >& database.out
+(RepeatModeler-2.0) $ RepeatModeler -database database.out -threads <numbercores> -LRTStruct >& RM.out
 
 ### 2 OPTION
 ### Install in default terms 
@@ -90,7 +92,7 @@ Checking for libraries...
  - Found a FamDB root partition
 
 The full path including the name for the TRF program.
-TRF_PRGM: home/<PATH>/TRF*/trf                             ### remember this "trf" is a hyperlink (see in RepeatModeler, line 38 and 39)
+TRF_PRGM: home/<PATH>/TRF*/trf                             ### remember this "trf" is a hyperlink (see in RepeatModeler, line 40 and 41)
 
 Add a Search Engine:
    1. CrossMatch: [ Un-configured ]
@@ -131,7 +133,7 @@ Version : 3.8
 Date    : 2023-11-14
 
 Dfam - A database of transposable element (TE) sequence alignments and HMMs.
-### As you can see in Partition Details only the Partion 0, 3 and 6 (reference of Mammals and others Eukaryas, bacteria and virus) are available, but you can add the partion you need (0 - 8)
+### As you can see in Partition Details only the Partion 0, 3 and 6 (Eukaryas unicelular, bacteria and virus, Actinpterygiis and Sarcopterygiis) are available, but you can add the partion you need (0 - 8)
 
 ### Lests start use, move to the directory you have your fasta files:
 (base) $ cd ~/<PATH>/<files.fasta>/
