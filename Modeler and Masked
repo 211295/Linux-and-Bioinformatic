@@ -133,8 +133,12 @@ Date    : 2023-11-14
 Dfam - A database of transposable element (TE) sequence alignments and HMMs.
 ### As you can see in Partition Details only the Partion 0, 3 and 6 (reference of Mammals and others Eukaryas, bacteria and virus) are available, but you can add the partion you need (0 - 8)
 
-### Lests start use:
-(base) $ cd ~/<PATH>/files.fasta
+### Lests start use, move to the directory you have your fasta files:
+(base) $ cd ~/<PATH>/<files.fasta>/
+### Start searching which is the real name of those species you have fasta files using the famdb.pl command
+(base) $ famdb.py -h; fambd.py -names -h 
+(base) $ famdb families <familie_name> --format fasta_name --include-class-in-name -ad ### (--format) output format
+### Now you can run the programm with the name specie
 (base) $ ~/<PATH>/RepeatMasker -s -a -species 'name_of_specie' *.fna ### (-s) slow process, more sensitive (-q) Quick and (-qq) Rush job (-a) alignment
 (base) $ 
 (base) $ 
