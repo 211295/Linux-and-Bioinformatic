@@ -88,7 +88,7 @@ Add a Search Engine:
 Enter Selection: 2
 ### Now take the information of rmblastn in 
 The path to the installation of the RMBLAST sequence alignment program.
-RMBLAST_DIR: home/<PATH>/
+RMBLAST_DIR: home/<PATH>/rmblast-2.14.0/bin/rmblastn 
 (base) $
 (base) $
 
