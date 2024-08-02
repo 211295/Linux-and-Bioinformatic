@@ -6,16 +6,13 @@ cd <name_directory> = change directory
 touch <text.txt> = create a text with name <text.txt> 
 nano <text.txt> = edit the text created with touch
 [Ctrl] + x = getout ot documemt / Y to save ; N to dont save
-cat <file> <other_file> <another_file> = show in the screen all of the files in orther, so you can attatch in other file using > 
-cat <some_word> = show lect the strings in text
 grep <some_word> = show the line with the string meantioned
 sed = substitute every string insiede the ex: "/old one/new one/" (-i) = sobrescreve o arquivo com resultado gerado
-g = in the end of "-i </old one/new one/g>"
 head = the frist part of a file
 tail = the final part of a file
-less = show the file just in the limit of the screen, provides the same as more plus extensive enhancements, press / and some pattern, the command show this pattern in the file | zless = compressed
+less = show the file just in the limit of the screen, provides the same as more plus extensive enhancements, press / and some pattern, the command show this pattern in the file
         inside less, use crtl B " -> divide the screen in two and you can see the command line and the less window
-more = filter  for  paging  through text one screenful at a time | zmore = compressed
+
 echo = writes each given STRING to standard output, with a space between each and a newline after the last one 
 mv <PATH/file> <diretory/new_name> = move the file to the directory you want, (-i) = ask the intention, (-u) = update, move only the missing information, (-n) not alowed to mv overwrite
 mv <text> <new_name> = change the name of file in currently directory
@@ -27,8 +24,6 @@ sort = ordenate the list of files or directories
 wget www... = download the archive directly on terminal
 . = currently directory
 .. = directory above currently directory
-.gz = format of archive
-gunzip = unzip file (descompactar arquivo)
 scp -P <door> -r <archive_directory>/ 'serve'/'username'/'directory'/'folder'> = copy a holy directory to other username, indicate the door (-P) and the kind of archive (-r) Residual 
 man <command_you_wanna_learn> = MANUAL OF THE COMMAND, extremy usable 
 apropos <some_word>= find a word that describre a command, so you can find all commands you wanna with the some_word (-a) = you add more words, concatenete
@@ -59,8 +54,8 @@ scontrol =
 Standard input (stdin) is represented by number 0, where data comes from to enter the program
 Standard output (stdout) is represented by number 1, where data goes when it gets out of the program
 Standard error (stderr) is represented by number 2,  where program errors (or warnings or diagnostic messages) go to when issued
-List of commands accept only stdin : 
-List of commands accept only stdout : 
+List of commands accept only stdin : less, more, tail, head 
+List of commands accept only stdout : rev 
 List of commands use to redirect the stdin : 
 List of commands use to redirect the stdout : 
 List of commands dont accept either: mkdir , cd , wget , 
@@ -97,6 +92,7 @@ ls /abc/defg[hijl]* = shows all files in 'abc' directory with name 'defg' follow
 ls /abc/defg[hijl]? = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'l' and have just one more letter after the string variate, therefore just a file with 6 letters
 ls abc??* = shows all files start with 'abc' following any 2 characteres, and more or equal than 5 letters _ _ _ _ _ ...
 ls -l [a-f] | wc -l > new_file = create a list of files start with a to f, pipe with counter, then count the lines was created by ls -l and finely appeding to a new_file 
+ls -l /<directory>/<file> = open a screen of vizualization of 'ls -l'
 file command determine file type
 
 ###################################################################################################################################################################################################################
@@ -121,16 +117,65 @@ echo
 echo
 
 ################################################################################################################################################################################################################### 
-cat concatenate files and print on the standard output
+cat concatenate files and print on the standard output, show the strings in text
+zcat = variant of cat that deals with compressed data (.gz)
 cat <file1> = just print the standard output in the screen
 cat <file1> <file2> <file3> > new_files = take all the files and concatenate in a new_file in the same other as given
-cat file1 - file3 = 
-cat -A </directory/file> OR cat -vET </directory/file> = show the $ in the end of each line, and display a TAB charactares with ^I
+cat <file1> - <file3> = read the contents of file1, then the contents of STDIN, then the contents of file3; finally, it will send everything, in that order, to STDOUT
+cat -A </directory/file> OR cat -vET </directory/file> = -E show the $ in the end of each line, and display a TAB charactares with ^I
+cat -bvn /etc/passwd = make a list of user informations | (-b) = --number-nonblank, only the non-empty lines show up numbered | (-v) = --show-nonprinting | (-n) = --number show the number all output lines
+cat -bn </directory/file> | more +5 = print the number 5 to the end of lines
+cat -bn </directory/file> | less +9 = print the number 9 to the end of lines, but in the full screen, if smaller than the screen = (~) complete every line
+cat -s </directory/file> = the consecutive repeated empty lines are not shown, suppress repeated empty output lines
+
+tac concatenate and print files in reverse, reverse of cat
+tac <options> <file> = inverse the lines of the text file
+rev <file> = reverse the intery line, but not the lines each them
 
 ###################################################################################################################################################################################################################
-cut 
+find search for files in a directory hierarchy
+find / -name <file> 2> /dev/null
 
 ###################################################################################################################################################################################################################
-more
-less
+more AND less viewrs,not editors, pagers presentation on scree. Do not read the complete file before. 
+zmore AND zless = variants of more and less, respectively, that deal with compressed data (.gz)
+more +5 <file> = just show the line 5 to the end
+more +/<pattenr_in_file> <file> = start displaying content after a specific piece of text is first found. Filter for  paging  through text one screenful at a time
+less <file> = show the file just in the limit of the screen, press SPACE to roll down, or the 
+          inside less use <crtl B "> = divide the screen in two and you can see the command line and the less window
+                      use /<parttner_in_file> = can find a specific word after press the / and press N to next match
+less +/<pattenr_in_file> <file> = same as more, but the less display, after finding the first match, you can see the next by typing n (next match)
+less -S <file> = do not want the lines to be wrapped ("break") on the screen, but to be chopped instead. Easier to see "tables"
+
+fold wrap each input line to fit in specified width. Wrap input lines in each FILE. have just 3 options
+fold -b -s -w <INT> <file> = (-b) = count bytes rather than columns | (-s) =  break at spaces | (-w) = use WIDTH columns instead of 80
+
+###################################################################################################################################################################################################################
+column utility formats its input into multiple columns, provides a format tabel for data.
+column -t <file> = display columns data (with fields separated by “white space”, such as tabs or spaces) in a table
+column -s '<delimeter>' <file> = use something different from white space as the field delimiter
+column -t -s $'\t' <file> | less -S = creat the less page of the table format with tab as a delimeter (cod of tab is $'\t')
+column -tn <file> = make more close each other
+
+cut remove sections from each line of files, uses the TAB character as the default  column delimiter. Print selected parts of lines from each FILE to standard output. 
+cut -f <INT> <file> = print only the column you especify by INT number | (-f) = --fields=LIST, select only these fields
+cut -f x,y <file> = print only the column number x and column number y
+cut -f x-* <file> = print the columns number x to the end
+cut -f <INT> -d <delimiter> <file> = print only the column | (-d) --delimiter=<DELIM> use delimiter instead of TAB for field delimiter 
+cut -s <file> = print the | (-s) = --only-delimited, do not print lines not containing delimiters
+
+###################################################################################################################################################################################################################
+
+
+
+
+###################################################################################################################################################################################################################
+
+
+
+
+###################################################################################################################################################################################################################
+
+
+
 
