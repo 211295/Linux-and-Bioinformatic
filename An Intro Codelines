@@ -1,7 +1,6 @@
 green is the terminal
 ~ is the way to your user terminal
 pwd = check you directory, print work directory 
-ls = show list / (-l) = return a list, (-h) = format more comprehensive with human size parameters, (-a) = show the hiden archive, with start at " . ", (-t) = sort by time, newest first (-r) = reverse the list
 mkdir <PATH/name_directory> = make a directory / (-p) = creat a parent directory does not exist 
 cd <name_directory> = change directory
 touch <text.txt> = create a text with name <text.txt> 
@@ -17,18 +16,12 @@ tail = the final part of a file
 less = show the file just in the limit of the screen, provides the same as more plus extensive enhancements, press / and some pattern, the command show this pattern in the file | zless = compressed
         inside less, use crtl B " -> divide the screen in two and you can see the command line and the less window
 more = filter  for  paging  through text one screenful at a time | zmore = compressed
-echo = writes each given STRING to standard output, with a space between each and a newline after the last one
-| = concatenet 2 or more commands in one line, pipe
-<file> > <other_file> = make a direction of the archive to save in "other_file"
-<new_file> < <file> = redirect the standard input (STDIN)
-<file> >> <other_file> = direction again to a new one, but not substitute, only add the informations, appending 
-<file> 2>> <other_file> = redirect JUST A STARDAR ERROR (STDERR), appending to a existing file
-cp <old_archive> <directory_name/new_archive> = copy the archive in a directory 
-    (-u) = update, copy only missing information to new file, (-i) = ask you sure make this copy because cp OVERWIRTE the new copy, (-n) oposite of -i, (-p) = preserves the atributes 
+echo = writes each given STRING to standard output, with a space between each and a newline after the last one 
 mv <PATH/file> <diretory/new_name> = move the file to the directory you want, (-i) = ask the intention, (-u) = update, move only the missing information, (-n) not alowed to mv overwrite
 mv <text> <new_name> = change the name of file in currently directory
 rm <directory/archive> = remove any archive or folder (-r) = remove the directory
 wc <file> = word count, print lines and words and bytes from a file (-l) = count lines
+file — determine file type
 find <file> or <directory> = search for files, the output is a list of files or directories, you can concatenet with others commands (wc, head, less, tail, sort)
 sort = ordenate the list of files or directories
 wget www... = download the archive directly on terminal
@@ -42,42 +35,102 @@ apropos <some_word>= find a word that describre a command, so you can find all c
 info <command> or <documentation> = Read documantion and info of commands
 which -a <filename> = locate a command, returns the pathnames
 help = 
-stdind =
-stdout =
-stderr =
 scontrol =
 [Shift] + [Insert] = Ctrl V
-#########################################################################################################################################################################################################
-ls = list show | -l = in list way | -a = show hidden files in the shell | -h = print size with parameters | -s = size
+/home = this is where user data lives
+/root = the administrative user's home directory. Mind the difference between /, the root directory and /root, the home directory of the root user
+/usr = programs, libraries, documentation etc. for all user-related programs
+/bin = common programs, shared by the system, the system administrator and the users
+/sbin = programs for use by the system and the system administrator
+/etc = important system configuration files are mostly in /etc
+/boot = the startup files and the kernel. In some recent distributions also grub data. Grub is the GRand Unified Boot loader
+/initrd = on some distributions, information for booting
+/dev = contains references to all the CPU and peripheral hardware, which are represented as files with special properties
+/tmp = temporary space for use by the system, cleaned upon reboot
+/var = storage for all variable files and temporary files created by users, such as  log files, the mail queue, the print spooler area, space for temporary storage of  files downloaded from the Internet, etc.
+/lib = library files, includes files for all kinds of programs needed by the system  and the users
+/lost+found = every partition has a lost+found in its upper directory; files that were saved during failures are here
+/mnt = standard mount point for external file systems, e.g. a CD-ROM or a digital camera
+/net = standard mount point for entire remote file systems
+/opt = typically contains extra and third party software
+/proc = a virtual file system containing information about system resources
+
+###################################################################################################################################################################################################################
+Standard input (stdin) is represented by number 0, where data comes from to enter the program
+Standard output (stdout) is represented by number 1, where data goes when it gets out of the program
+Standard error (stderr) is represented by number 2,  where program errors (or warnings or diagnostic messages) go to when issued
+List of commands accept only stdin : 
+List of commands accept only stdout : 
+List of commands use to redirect the stdin : 
+List of commands use to redirect the stdout : 
+List of commands dont accept either: mkdir , cd , wget , 
+ > : redirect STDOUT to the file named after the sign / can create new files OR OVERWRITE AN EXIST FILE, so be carefull
+<file> > <other_file> = make a direction of the archive to save in "other_file"
+ 2> : redirect STDERR to the file / only the erro will and redirect to the file / can create new files OR OVERWRITE AN EXIST FILE
+ >> : redirect, appending STDOUT to the file
+ 2>> : redirect, appending STDERR to the file
+<file> 2>> <other_file> = redirect JUST A STARDAR ERROR (STDERR), appending to a existing file
+ < : redirect STDIN from the file
+<new_file> < <file> = redirect the standard input (STDIN)
+ << : redirect STDIN as a here-document
+ <<< : redirect STDIN as a here-string
+<command_line> > <file> 2>&1 = It is possible to merge STDOUT and STDERR and send them to the same file
+<command_line> &> <file> = the same above / send the two streams to the same file 
+<command_line> >> <file> 2>&1 = Appending, without overwrite, the STDOUT and STDERR in the previous exist file
+<command_line> &>> <file> = 
+
+Piping = The operator for the pipe is the vertical bar ( | ) concatenet 2 or more commands in one line, like a pipe
+<command1> | <command2> | <command3>  =  STDERR does not get in the pipe, by default, so use |& to have the STDERR go along with STDOUT
+
+###################################################################################################################################################################################################################
+ls make list
+ls = list show ; -l = in list way | -a = show hidden files in the shell | -h = print size with parameters | -s = size | -t = sort by time, newest first | -r = reverse the list
 [work with a list, similar in python and there is a commands to work as a strings]
 ls - l [abcdef] OR ls - l [a-f] = make a list of all files start with 'a' to 'f' exist
 ls abc[defghi] OR ls abc[d-i] = make a list of all files have the letters d to i after 'abc', so the files are abcd , abce , abcf , abcg , abch , abci PAY ATENTION DONT WORKS FOR NUMBERS just 1-9
 ls abc? = wild-card character to represent exactly one of any kind of character after 'abc'
 ls abc{d,e,f,g,h,i} or ls abc{d..i} = PAY ATENTION ON DOTS BETWEEN 'd' AND 'i' MEANS YOU WANNA GET A RANGE LIKE IN [ ] and the resutl is te same as "ls abc[d-i]"
-ls abc{$((10*5)),$[2**5]} = show list (literaly) of "abc50" and "abc32"
+ls abc{$((10*5)),$[2**5]} = show list (literaly) of "abc50" and "abc32". the coma ( , ) separate the lists
 ls /abc/d*f = takes all files in 'abc' directory start to 'd' and finish with 'f' (litteraly) doesn't matter the length name, therefore the * menas zero or more characters 
 ls /abc/defg[h-o]* = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'o' and doesn't matter the  length name | SAME OF ls /abc/defg{h..o}*
 ls /abc/defg[hijl]* = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'l' and doesn't matter the legnt name
 ls /abc/defg[hijl]? = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'l' and have just one more letter after the string variate, therefore just a file with 6 letters
-ls abc??* = shows all files start with 'abc' following any 2 letters, and more than 5 letters
-ls -l [a-f] | wc -l > new_file = create a list of files start a to f, pipe with counter, then count the lines was created by ls -l and finely appeding to a new_file 
+ls abc??* = shows all files start with 'abc' following any 2 characteres, and more or equal than 5 letters _ _ _ _ _ ...
+ls -l [a-f] | wc -l > new_file = create a list of files start with a to f, pipe with counter, then count the lines was created by ls -l and finely appeding to a new_file 
+file command determine file type
 
-########################################################################################################################################################################################################
+###################################################################################################################################################################################################################
+cp - copy files and directories
+cp <file> ~/<PATH>/<new_name> / 
+cp -r /<directory/ <file1> <file2> <file3> -t ~/<PATH>/<target> = copy the directory you want and all files into directory | -r = recursively | -t = target where you would like to copy
+cp -u -i -p <file> <new_file> = (-u) = update, copy only missing information to new file, (-i) = ask you sure make this copy because cp OVERWIRTE the new copy, (-n) oposite of -i, (-p) = preserves the atributes
+cp -l <file> <new_name> =  hard link files instead of copying
+cp -f <file> <other_file> = --force
+cp -s <file> <new_name> = --symbolic-link make symbolic links instead of copying, is almost the same ln
+
+###################################################################################################################################################################################################################
 echo $((expr)) = STRDIN 0
 echo $((2*30)) OR echo $[2*30] = 60
 echo $((5*90/6)) OR echo $[5*90/6] = 75, because we have 90 divided by 6 and multiply for 5
 echo $((5+6*8-90/5)) OR echo $[5+6*8-90/5] = 35, 5 + 48 - 18. Remainder 35
 echo $((5+(6*8-90)/5)) OR echo $[5+(6*8-90)/5] = -3, 5 + (48-90)/5 = 5 + (-42)/5 = 5 - 8,4 = -3
 echo $((5+(6*8-90)%5)) OR echo $[5+(6*8-90)%5]= 3, because the % means the remainder of the division, so (-42)/5 remainder -2. 
-echo {x..y} = will print the range x to y (decresment and incriscment)
+echo {x..y} OR {y..x} = will print the range x to y (decresment and incriscment)
 echo {x..y..z} = will print the range x to y with the logical z
 echo 
 echo
 
-######################################################################################################################################################################################################## 
-cat file1 file2 file3 > all_files = take all the files and concatenate in a new file
+################################################################################################################################################################################################################### 
+cat concatenate files and print on the standard output
+cat <file1> = just print the standard output in the screen
+cat <file1> <file2> <file3> > new_files = take all the files and concatenate in a new_file in the same other as given
 cat file1 - file3 = 
 cat -A </directory/file> OR cat -vET </directory/file> = show the $ in the end of each line, and display a TAB charactares with ^I
 
-#########################################################################################################################################################################################################
+###################################################################################################################################################################################################################
 cut 
+
+###################################################################################################################################################################################################################
+more
+less
+
