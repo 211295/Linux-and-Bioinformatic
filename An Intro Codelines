@@ -12,7 +12,6 @@ head = the frist part of a file
 tail = the final part of a file
 less = show the file just in the limit of the screen, provides the same as more plus extensive enhancements, press / and some pattern, the command show this pattern in the file
         inside less, use crtl B " -> divide the screen in two and you can see the command line and the less window
-
 echo = writes each given STRING to standard output, with a space between each and a newline after the last one 
 mv <PATH/file> <diretory/new_name> = move the file to the directory you want, (-i) = ask the intention, (-u) = update, move only the missing information, (-n) not alowed to mv overwrite
 mv <text> <new_name> = change the name of file in currently directory
@@ -20,7 +19,6 @@ rm <directory/archive> = remove any archive or folder (-r) = remove the director
 wc <file> = word count, print lines and words and bytes from a file (-l) = count lines
 file — determine file type
 find <file> or <directory> = search for files, the output is a list of files or directories, you can concatenet with others commands (wc, head, less, tail, sort)
-sort = ordenate the list of files or directories
 wget www... = download the archive directly on terminal
 . = currently directory
 .. = directory above currently directory
@@ -160,15 +158,17 @@ column -tn <file> = make more close each other
 cut remove sections from each line of files, uses the TAB character as the default  column delimiter. Print selected parts of lines from each FILE to standard output. 
 cut -f <INT> <file> = print only the column you especify by INT number | (-f) = --fields=LIST, select only these fields
 cut -f x,y <file> = print only the column number x and column number y
-cut -f x-* <file> = print the columns number x to the end
 cut -f <INT> -d <delimiter> <file> = print only the column | (-d) --delimiter=<DELIM> use delimiter instead of TAB for field delimiter 
 cut -s <file> = print the | (-s) = --only-delimited, do not print lines not containing delimiters
 
 ###################################################################################################################################################################################################################
-
-
-
-
+sort sort lines of text files, ordenate the list of files or directories by differents parameters (numerical, alphabetical, month)
+sort -b <file> = sort the lines of files ignoring the leading blanks. Search fields are separated by blank-space (spaces or TAB), but that can be changed using an option
+sort -n <file> = sort according to numerical value |(-n) --numeric-sort
+sort -r <file> = sort the file but reverse the result of comparisons | (-r) --reverse
+sort -M <file> = compare< 'JAN' < ... < 'DEC' | (-M) --month-sort
+sort -h <file> = compare human readable numbers (e.g., 2K 1G)
+        
 ###################################################################################################################################################################################################################
 
 
