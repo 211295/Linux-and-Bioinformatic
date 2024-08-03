@@ -8,8 +8,6 @@ nano <text.txt> = edit the text created with touch
 [Ctrl] + x = getout ot documemt / Y to save ; N to dont save
 grep <some_word> = show the line with the string meantioned
 sed = substitute every string insiede the ex: "/old one/new one/" (-i) = sobrescreve o arquivo com resultado gerado
-head = the frist part of a file
-tail = the final part of a file
 less = show the file just in the limit of the screen, provides the same as more plus extensive enhancements, press / and some pattern, the command show this pattern in the file
         inside less, use crtl B " -> divide the screen in two and you can see the command line and the less window
 echo = writes each given STRING to standard output, with a space between each and a newline after the last one 
@@ -53,7 +51,7 @@ Standard input (stdin) is represented by number 0, where data comes from to ente
 Standard output (stdout) is represented by number 1, where data goes when it gets out of the program
 Standard error (stderr) is represented by number 2,  where program errors (or warnings or diagnostic messages) go to when issued
 List of commands accept only stdin : less, more, tail, head 
-List of commands accept only stdout : rev 
+List of commands accept only stdout : rev , colrm
 List of commands use to redirect the stdin : 
 List of commands use to redirect the stdout : 
 List of commands dont accept either: mkdir , cd , wget , 
@@ -96,12 +94,12 @@ file command determine file type
 ###################################################################################################################################################################################################################
 cp - copy files and directories
 cp <file> ~/<PATH>/<new_name> / 
-cp -r /<directory/ <file1> <file2> <file3> -t ~/<PATH>/<target> = copy the directory you want and all files into directory | -r = recursively | -t = target where you would like to copy
-cp -u -i -p <file> <new_file> = (-u) = update, copy only missing information to new file, (-i) = ask you sure make this copy because cp OVERWIRTE the new copy, (-n) oposite of -i, (-p) = preserves the atributes
+cp -r /<directory/ <file1> <file2> <file3> -t ~/<PATH>/<target> = copy the directory you want and all files into directory | (-r) recursively | (-t) target where you would like to copy
+cp -u -i -p <file> <new_file> = (-u) update, copy only missing information to new file | (-i) ask you sure make this copy because cp OVERWIRTE the new copy | (-n) oposite of -i | (-p) preserves the atributes
 cp -l <file> <new_name> =  hard link files instead of copying
 cp -f <file> <other_file> = --force
 cp -s <file> <new_name> = --symbolic-link make symbolic links instead of copying, is almost the same ln
-
+scp - speciall copy, when you would like to 
 ###################################################################################################################################################################################################################
 echo $((expr)) = STRDIN 0
 echo $((2*30)) OR echo $[2*30] = 60
@@ -121,7 +119,7 @@ cat <file1> = just print the standard output in the screen
 cat <file1> <file2> <file3> > new_files = take all the files and concatenate in a new_file in the same other as given
 cat <file1> - <file3> = read the contents of file1, then the contents of STDIN, then the contents of file3; finally, it will send everything, in that order, to STDOUT
 cat -A </directory/file> OR cat -vET </directory/file> = -E show the $ in the end of each line, and display a TAB charactares with ^I
-cat -bvn /etc/passwd = make a list of user informations | (-b) = --number-nonblank, only the non-empty lines show up numbered | (-v) = --show-nonprinting | (-n) = --number show the number all output lines
+cat -bvn /etc/passwd = make a list of user informations | (-b) --number-nonblank, only the non-empty lines show up numbered | (-v) --show-nonprinting | (-n) --number show the number all output lines
 cat -bn </directory/file> | more +5 = print the number 5 to the end of lines
 cat -bn </directory/file> | less +9 = print the number 9 to the end of lines, but in the full screen, if smaller than the screen = (~) complete every line
 cat -s </directory/file> = the consecutive repeated empty lines are not shown, suppress repeated empty output lines
@@ -146,8 +144,10 @@ less +/<pattenr_in_file> <file> = same as more, but the less display, after find
 less -S <file> = do not want the lines to be wrapped ("break") on the screen, but to be chopped instead. Easier to see "tables"
 
 fold wrap each input line to fit in specified width. Wrap input lines in each FILE. have just 3 options
-fold -b -s -w <INT> <file> = (-b) = count bytes rather than columns | (-s) =  break at spaces | (-w) = use WIDTH columns instead of 80
+fold -b -s -w <INT> <file> = (-b) = count bytes rather than columns | (-s) break at spaces | (-w) use WIDTH columns instead of 80
 
+head = the frist part of a file
+tail = the final part of a file
 ###################################################################################################################################################################################################################
 column utility formats its input into multiple columns, provides a format tabel for data.
 column -t <file> = display columns data (with fields separated by “white space”, such as tabs or spaces) in a table
@@ -160,17 +160,43 @@ cut -f <INT> <file> = print only the column you especify by INT number | (-f) = 
 cut -f x,y <file> = print only the column number x and column number y
 cut -f <INT> -d <delimiter> <file> = print only the column | (-d) --delimiter=<DELIM> use delimiter instead of TAB for field delimiter 
 cut -s <file> = print the | (-s) = --only-delimited, do not print lines not containing delimiters
+cut -f x,y <file> | sort -n -k 2,2 = get the columns x and y , and after pipe sort results numerically by the second column (originally, column y)
+
+colrm allows to delet columns from the file, specify 2 numbers (started ended), if just 1 number, remove all columns after the number. The TAB counts for 8 columns, and space count 1 column
+colrm [x y] <file> = remove the columns starting x position and finishing in y position
 
 ###################################################################################################################################################################################################################
 sort sort lines of text files, ordenate the list of files or directories by differents parameters (numerical, alphabetical, month)
 sort -b <file> = sort the lines of files ignoring the leading blanks. Search fields are separated by blank-space (spaces or TAB), but that can be changed using an option
-sort -n <file> = sort according to numerical value |(-n) --numeric-sort
+sort -k <INT> -n <file> = sort according to numerical value and the x position you would like to sort | (-n) --numeric-sort | (-k) --key=KEYDEFF (for start and stop position), gives location and type
+sort -k x,x <file> = just sort by the x position
+sort -k x,y <file> = sort by the x position to y position, like a dictionary 
+sort -k x,xn -k y,yd -k z,zM <file> = sort by x position numerically, y position alphabetically, z position by Months (n , d , M are in KEYDEFF)       
 sort -r <file> = sort the file but reverse the result of comparisons | (-r) --reverse
 sort -M <file> = compare< 'JAN' < ... < 'DEC' | (-M) --month-sort
 sort -h <file> = compare human readable numbers (e.g., 2K 1G)
-        
-###################################################################################################################################################################################################################
+sort -f -u <file> = sort the lines ignoring case character and output only the first of an equal run | (-f) --ignore-case | (-u) --unique
+sort -R <file> = "sort" by random way | (-R) --random-sort
+sort -r <file> = reverse order EXTREMELY USEFULL | (-r) --reverse
+sort -t <file> = sort uses white-space (spaces or tabs) as field delimiters | (-t) --field-separator=SEP use SEP instead of non-blank to blank transition
+sort -c <file> = simply check whether a file is sorted or not | (-c) --check, --check=diagnose-first
 
+shuf generate random permutations. Write a random permutation of the input lines to standard output.
+shuf -o <out_put> -r <file> = write result to FILE instead of standard output and allow the repeats lines | (-o) --output=OUTPUT | (-r) --repeat
+shuf -n <INT> <file> = create a shuffle lines and delimited by the number you want of a file, if the number is higher than the lines, will use just the lines there are in file | (-n) --head-count=COUNT
+shuf -i 0-9 = print digits 0 to 9, one per line, randomly
+shuf -i 0-9 -r -n 50 = print 50 digits (0 to 9) randomly
+shuf -e heads tails -r -n 50 = simulate 50 coin tosses | (-e) echo so its a like a print you would like to shuffle
+shuf -e A T C G -n 10000 -r -z | fold -w 70 = creat a sequence of fasta file | (-z) --zero-terminated, line delimiter is NUL, not newline
+
+paste put things together, so join different files into one, which will be present as a column in the new file, creating a table
+paste <file1> <file2> <file3> = create a table out of files in the order
+paste -d ",$" <file1> <file2> <file3> = create a table separating the column 1 and 2 by "," and the 2 and 3 by "$" | (-d) --delimiters=LIST
+paste -s <file> = transpose the lines in columns and vice-versa, like in a matrice switing the i and j each other | (-s) --serial
+
+join join lines from two files based on one common column (on a common field) containing an identifier string. The files must be sorted based on that common column.
+
+###################################################################################################################################################################################################################
 
 
 
