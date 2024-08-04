@@ -61,20 +61,20 @@ List of commands dont accept either: mkdir , cd , wget ,
  >> : redirect, appending STDOUT to the file
  2>> : redirect, appending STDERR to the file
 <file> 2>> <other_file> = redirect JUST A STARDAR ERROR (STDERR), appending to a existing file
- < : redirect STDIN from the file
+ < : redirect STDIN from a file to a programm
 <new_file> < <file> = redirect the standard input (STDIN)
- << : redirect STDIN as a here-document
- <<< : redirect STDIN as a here-string
+ << : redirect STDIN as a here-document,
+ <<< : redirect STDIN as a here-string to a program
 <command_line> > <file> 2>&1 = It is possible to merge STDOUT and STDERR and send them to the same file
 <command_line> &> <file> = the same above / send the two streams to the same file 
 <command_line> >> <file> 2>&1 = Appending, without overwrite, the STDOUT and STDERR in the previous exist file
 <command_line> &>> <file> = 
 
-Piping = The operator for the pipe is the vertical bar ( | ) concatenet 2 or more commands in one line, like a pipe
+Piping = The operator for the pipe is the vertical bar ( | ) concatenet 2 or more commands in one line, redirect STDOUT of one program to STDIN of the next program.
 <command1> | <command2> | <command3>  =  STDERR does not get in the pipe, by default, so use |& to have the STDERR go along with STDOUT
 
 ###################################################################################################################################################################################################################
-ls make list
+make list and viewr the conttents of a directory
 ls = list show ; -l = in list way | -a = show hidden files in the shell | -h = print size with parameters | -s = size | -t = sort by time, newest first | -r = reverse the list
 [work with a list, similar in python and there is a commands to work as a strings]
 ls - l [abcdef] OR ls - l [a-f] = make a list of all files start with 'a' to 'f' exist
@@ -92,7 +92,7 @@ ls -l /<directory>/<file> = open a screen of vizualization of 'ls -l'
 file command determine file type
 
 ###################################################################################################################################################################################################################
-cp - copy files and directories
+copy files and directories
 cp <file> ~/<PATH>/<new_name> / 
 cp -r /<directory/ <file1> <file2> <file3> -t ~/<PATH>/<target> = copy the directory you want and all files into directory | (-r) recursively | (-t) target where you would like to copy
 cp -u -i -p <file> <new_file> = (-u) update, copy only missing information to new file | (-i) ask you sure make this copy because cp OVERWIRTE the new copy | (-n) oposite of -i | (-p) preserves the atributes
@@ -113,11 +113,11 @@ echo
 echo
 
 ################################################################################################################################################################################################################### 
-cat concatenate files and print on the standard output, show the strings in text
+concatenate files and print on the standard output, show the strings in text
 zcat = variant of cat that deals with compressed data (.gz)
 cat <file1> = just print the standard output in the screen
 cat <file1> <file2> <file3> > new_files = take all the files and concatenate in a new_file in the same other as given
-cat <file1> - <file3> = read the contents of file1, then the contents of STDIN, then the contents of file3; finally, it will send everything, in that order, to STDOUT
+cat <file1> - <file3> = read the contents of file1, then the contents of STDIN, then the contents of file3 will be sent to STDOUT; finally, it will send everything, in that order, to STDOUT
 cat -A </directory/file> OR cat -vET </directory/file> = -E show the $ in the end of each line, and display a TAB charactares with ^I
 cat -bvn /etc/passwd = make a list of user informations | (-b) --number-nonblank, only the non-empty lines show up numbered | (-v) --show-nonprinting | (-n) --number show the number all output lines
 cat -bn </directory/file> | more +5 = print the number 5 to the end of lines
@@ -166,7 +166,7 @@ colrm allows to delet columns from the file, specify 2 numbers (started ended), 
 colrm [x y] <file> = remove the columns starting x position and finishing in y position
 
 ###################################################################################################################################################################################################################
-sort sort lines of text files, ordenate the list of files or directories by differents parameters (numerical, alphabetical, month)
+sort lines of text files, ordenate the list of files or directories by differents parameters (numerical, alphabetical, month)
 sort -b <file> = sort the lines of files ignoring the leading blanks. Search fields are separated by blank-space (spaces or TAB), but that can be changed using an option
 sort -k <INT> -n <file> = sort according to numerical value and the x position you would like to sort | (-n) --numeric-sort | (-k) --key=KEYDEFF (for start and stop position), gives location and type
 sort -k x,x <file> = just sort by the x position
@@ -194,7 +194,7 @@ paste <file1> <file2> <file3> = create a table out of files in the order
 paste -d ",$" <file1> <file2> <file3> = create a table separating the column 1 and 2 by "," and the 2 and 3 by "$" | (-d) --delimiters=LIST
 paste -s <file> = transpose the lines in columns and vice-versa, like in a matrice switing the i and j each other | (-s) --serial
 
-join join lines from two files based on one common column (on a common field) containing an identifier string. The files must be sorted based on that common column.
+join lines from two files based on one common column (on a common field) containing an identifier string. The files must be sorted based on that common column.
 
 ###################################################################################################################################################################################################################
 
