@@ -88,7 +88,6 @@ ls /abc/defg[hijl]* = shows all files in 'abc' directory with name 'defg' follow
 ls /abc/defg[hijl]? = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'l' and have just one more letter after the string variate, therefore just a file with 6 letters
 ls abc??* = shows all files start with 'abc' following any 2 characteres, and more or equal than 5 letters _ _ _ _ _ ...
 ls -l [a-f] | wc -l > new_file = create a list of files start with a to f, pipe with counter, then count the lines was created by ls -l and finely appeding to a new_file 
-ls -l /<directory>/<file> = open a screen of vizualization of 'ls -l'
 file command determine file type
 
 ###################################################################################################################################################################################################################
@@ -100,6 +99,7 @@ cp -l <file> <new_name> =  hard link files instead of copying
 cp -f <file> <other_file> = --force
 cp -s <file> <new_name> = --symbolic-link make symbolic links instead of copying, is almost the same ln
 scp - speciall copy, when you would like to 
+
 ###################################################################################################################################################################################################################
 echo $((expr)) = STRDIN 0
 echo $((2*30)) OR echo $[2*30] = 60
@@ -163,7 +163,8 @@ cut -s <file> = print the | (-s) = --only-delimited, do not print lines not cont
 cut -f x,y <file> | sort -n -k 2,2 = get the columns x and y , and after pipe sort results numerically by the second column (originally, column y)
 
 colrm allows to delet columns from the file, specify 2 numbers (started ended), if just 1 number, remove all columns after the number. The TAB counts for 8 columns, and space count 1 column
-colrm [x y] <file> = remove the columns starting x position and finishing in y position
+colrm x y < <file> = remove the columns starting x position and finishing in y position
+colrm x < <file> = anything after x position are discarded
 
 ###################################################################################################################################################################################################################
 sort lines of text files, ordenate the list of files or directories by differents parameters (numerical, alphabetical, month)
@@ -180,6 +181,7 @@ sort -R <file> = "sort" by random way | (-R) --random-sort
 sort -r <file> = reverse order EXTREMELY USEFULL | (-r) --reverse
 sort -t <file> = sort uses white-space (spaces or tabs) as field delimiters | (-t) --field-separator=SEP use SEP instead of non-blank to blank transition
 sort -c <file> = simply check whether a file is sorted or not | (-c) --check, --check=diagnose-first
+sort -t , -k x <file> = sort the data in x position after the comma ',' (separator)
 
 shuf generate random permutations. Write a random permutation of the input lines to standard output.
 shuf -o <out_put> -r <file> = write result to FILE instead of standard output and allow the repeats lines | (-o) --output=OUTPUT | (-r) --repeat
@@ -191,17 +193,1454 @@ shuf -e A T C G -n 10000 -r -z | fold -w 70 = creat a sequence of fasta file | (
 
 paste put things together, so join different files into one, which will be present as a column in the new file, creating a table
 paste <file1> <file2> <file3> = create a table out of files in the order
-paste -d ",$" <file1> <file2> <file3> = create a table separating the column 1 and 2 by "," and the 2 and 3 by "$" | (-d) --delimiters=LIST
+paste -d ',$' <file1> <file2> <file3> = create a table separating the column 1 and 2 by "," and the 2 and 3 by "$" | (-d) --delimiters=LIST
 paste -s <file> = transpose the lines in columns and vice-versa, like in a matrice switing the i and j each other | (-s) --serial
 
 join lines from two files based on one common column (on a common field) containing an identifier string. The files must be sorted based on that common column.
+join j -1 <file1> <file2> = see the column 1 of the “join field” was construct, therefore, print the file1
+join j -2 <file1> <file2> = 
+sort <file*> | join -1 2 -2 1 <file1> <file2> = sort files and create a table with 2 columns using the second column of the first file in first FIELD, and and the first column of the second file in second FIELD
+###################################################################################################################################################################################################################
+translate (i.e. substitute) is the default, squeeze (i.e. eliminates repetitions), and/or delete characters from standard input, writing to standard output
+tr a-z A-Z < <file> = all lower-case letters have been changed to upper-case
 
+
+rename files at time
+
+
+
+move files
 ###################################################################################################################################################################################################################
 
 
 
 ###################################################################################################################################################################################################################
 
-
-
-
+  490  man grep
+  491  grep avo /data/column_exemple
+  492  grep avocado /data/column_exemple
+  493  man grep
+  494  find /data/assembly_summary_genbank.txt
+  495  wc /data/assembly_summary_genbank.txt
+  496  man wc
+  497  grep Nasonia /data/assembly_summary_genbank.txt | wc
+  498  man wc
+  499  grep Nasonia /data/assembly_summary_genbank.txt | wc -l
+  500  man wc
+  501  grep Nasonia /data/assembly_summary_genbank.txt | wc -c
+  502  man grep
+  503  grep -wc ">" /data/sequences.fas
+  504  grep -wc > /data/sequences.fas
+  505  man grep
+  506  grep -c ">" /data/sequences.fas
+  507  grep -c > /data/sequences.fas
+  508  nano /data/sequences.fas
+  509  grep -c lenghts /data/sequences.fas
+  510  grep -c lenght /data/sequences.fas
+  511  grep -c length /data/sequences.fas
+  512  grep -c numreads /data/sequences.fas
+  513  grep -c K /data/sequences.fas
+  514  grep -c Ksor /data/sequences.fas
+  515  grep -wc Mus /data/sequences.fas
+  516  grep -wc Mus /data/assembly_summary_genbank.txt
+  517  man grep
+  518  grep -F -wc Mus /data/assembly_summary_genbank.txt
+  519  grep -F -wc Musa /data/assembly_summary_genbank.txt
+  520  grep -F -wc Museum /data/assembly_summary_genbank.txt
+  521  grep -F -wc Mu /data/assembly_summary_genbank.txt
+  522  grep -F -wc Mus /data/assembly_summary_genbank.txt
+  523  grep -F -wc Mus /data/assembly_summary_genbank.txt | ls -s | wc -l
+  524  grep -F -wc Mus /data/assembly_summary_genbank.txt | ls -l | wc -l
+  525  man grep
+  526  grep -F -wcfe Mus /data/assembly_summary_genbank.txt | wc -l
+  527  grep -F -fe Mus /data/assembly_summary_genbank.txt | wc -l
+  528  grep -F -wc Mus /data/assembly_summary_genbank.txt | ls - | wc -l
+  529  grep -F -wc Mus /data/assembly_summary_genbank.txt | wc -l
+  530  man wc
+  531  grep -F -w Mus /data/assembly_summary_genbank.txt | wc -l
+  532  sort -u -k8,8 /data/assembly_summary_genbank.txt | grep -w "Mus"
+  533  sort -u -k8,8 /data/assembly_summary_genbank.txt | grep -cw "Mus"
+  534  cut -f8 /data/assembly_summary_genbank.txt | grep -w Mus
+  535  cut -f8 /data/assembly_summary_genbank.txt | grep -w Mus | sort -u
+  536  cut -f8 /data/assembly_summary_genbank.txt | grep -cw Mus | sort -u
+  537  cut -f8 /data/assembly_summary_genbank.txt | grep -w Mus | uniq
+  538  cut -f8 /data/assembly_summary_genbank.txt | grep -w Mus | uniq -c
+  539  sed 's/banana/kiwi' /data/sed_example
+  540  cat /data/sed_example
+  541  sed 's/banana/kiwi/' /data/sed_example
+  542  sed 's/banana/kiwi/g/' /data/sed_example
+  543  sed 's/banana/kiwi/g' /data/sed_example
+  544  sed 's/banana/kiwi/i' /data/sed_example
+  545  sed 's/banana/kiwi/gi' /data/sed_example
+  546  sed '1d' /data/READ
+  547  sed '/sequence/s/NCBI/KIWI/" /data/READ
+  548  sed '/sequence/s/NCBI/KIWI/' /data/READ
+  549  sed '/sequence/s/NCBI/KIWI/' /data/READ
+  550  sed '/sequence/d' /data/READ
+  551  sed -n '5,10!p' /data/READ
+  552  sed -n '5,10!d' /data/READ
+  553  sed -n '5,10!p' /data/READ
+  554  sed -n '5,10!' /data/READ
+  555  cat /data/file_X
+  556  sed 's/TCGSX/ADWP/' /data/file_X
+  557  sed 's/TCGSX/ADWP' /data/file_X
+  558  sed '/s/TCGSX/ADWP/' /data/file_X
+  559  sed 's/TCGSX/ADWP/' /data/file_X
+  560  sed 's/ADWP/TCGSX/g' /data/file_X
+  561  cat /data/expression.diff
+  562  wc -l /data/expression.diff
+  563  sed '1d' /data/expression.diff | wc -l
+  564  sed '/header/d' /data/expression.diff | wc -l
+  565  head /data/expression.diff
+  566  grep '##' /data/results_assembly | wc -l
+  567  man grep
+  568  grep -v '##' /data/results_assembly | wc -l
+  569  grep -wcv '##' /data/results_assembly
+  570  grep -cv '##' /data/results_assembly
+  571  sed '1,/##/d' /data/results_assembly | wc -l
+  572  info awk
+  573  cut -f 1,4,5 my_file
+  574  nano Commands.s
+  575  nano Commands.save
+  576  man awk
+  577  awk -F ";" '/SP/ {print $3 $1}' /data/awkdata
+  578  awk -F "\t" '/SP/ {print $3 $1}' /data/awkdata
+  579  awk -F "," '/SP/ {print $3 $1}' /data/awkdata
+  580  cat /data/awkdata
+  581  awk -F "," '/SP/ {print $3 "" $1}' /data/awkdata
+  582  awk -F ";" '/SP/ {print $3 "" $1}' /data/awkdata
+  583  awk -F ";" '/SP/ {print $3 " " $1}' /data/awkdata
+  584  awk -F ";" '/SP/ {print $3 "\t" $1}' /data/awkdata
+  585  awk '{print $1 ": " $2 + 10}' /data/column_example
+  586  awk '{print $1 ": " $2 + "reais"}' /data/column_example
+  587  awk '{print $1 ": " $2 + 'reais'}' /data/column_example
+  588  awk '{print $1 ": " $2 "reais"}' /data/column_example
+  589  awk '{print $1 ": " $2 " reais"}' /data/column_example
+  590  awk '{print $3, $14, $13}' /data/expression.diffawk '$13 < 0.05 {print $3, $14, $13}' /data/expression.diff
+  591  head /data/expression.diff
+  592  awk '$13 < 0.05 {print $3, $14, $13}' /data/expression.diff
+  593  awk '0.9 < $13 < 0.05 {print $3, $14, $13}' /data/expression.diff
+  594  awk '/0.9/ {print $3, $14, $13}' /data/expression.diff
+  595  awk '/0.99/ {print $3, $14, $13}' /data/expression.diff
+  596  cat /data/ANI_report_bacteria.txt
+  597  head /data/ANI_report_bacteria.txt
+  598  awk '/Idiomarina/ {print $6, $24, $4, $4*$5}' /data/ANI_report_bacteria.txt
+  599  awk '/Idiomarina/ {print $6, $24, $4}' /data/ANI_report_bacteria.txt
+  600  awk '/Idiomarina/ {print $6, $24, $4, $5}' /data/ANI_report_bacteria.txt
+  601  awk '/Idiomarina/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt
+  602  awk -F "\t" '/Idiomarina/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt
+  603  awk -F $"\t" '/Idiomarina/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt
+  604  awk -F $"\t" '/Idiomarina / {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt
+  605  awk -F $"\t" '$6~/Idiomarina / {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt
+  606  awk -F $"\t" '$1~/Idiomarina / {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt
+  607  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt
+  608  head /data/ANI_report_bacteria.txt
+  609  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | sort
+  610  awk -F $"\t" '$1~/9009/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | sort
+  611  awk -F $"\t" '$1~/9/ $1~/0/ $1~/4/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | sort
+  612  awk -F $"\t" '$1~/90/ /[a-h] {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | sort
+  613  awk -F $"\t" '$1~/90/ /[a-h]/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | sort
+  614  awk -F $"\t" '$1~/90/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | sort - [a-h]
+  615  man sort
+  616  awk -F $"\t" '$1~/90/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | sort -k key=[a-h]
+  617  awk -F $"\t" '$1~/90/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | cat -e [a-h] | sort
+  618  awk -F $"\t" '$1~/90/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | cat -e '[a-h]' | sort
+  619  man cat
+  620  man grep
+  621  awk -F $"\t" '$1~/90/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | grep -w '[a-h]' | sort
+  622  awk -F $"\t" '$1~/90/ {print $6, $24, $4}' /data/ANI_report_bacteria.txt | grep -w '[a-h]' | sort
+  623  awk -F $"\t" '$1~/9009/ {print $6, $24, $4}' /data/ANI_report_bacteria.txt | grep -w '[a-h]' | sort
+  624  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | grep -w '[a-h]' | sort
+  625  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | grep -w '[a-h]' | sort \ less
+  626  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | grep -w '[a-h]' | sort | less
+  627  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | grep -w '[A-H]' | sort | less
+  628  head /data/ANI_report_bacteria.txt
+  629  awk -F $"\t" '$1~/GCA/ {print $6, $24, $4}' /data/ANI_report_bacteria.txt | grep -w '[A-H]' | sort | less
+  630  awk -F $"\S" '$6~/Idiomarina / {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt
+  631  awk -F $"\s" '$6~/Idiomarina / {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt
+  632  grep /usr/share/dict/american-english
+  633  man grep
+  634  grep -F **j*r /usr/share/dict/american-english
+  635  grep -F ..j.r /usr/share/dict/american-english
+  636  grep -F a* /usr/share/dict/american-english
+  637  grep a* /usr/share/dict/american-english
+  638  head /usr/share/dict/american-english c
+  639  less /usr/share/dict/american-english c
+  640  man grep
+  641  grep -f **j*r /usr/share/dict/american-english
+  642  man grep
+  643  grep -f **j*r -i /usr/share/dict/american-english
+  644  grep -f ..j.r -i /usr/share/dict/american-english
+  645  grep -f '\*r' -i /usr/share/dict/american-english
+  646  grep -f '*r' -i /usr/share/dict/american-english
+  647  grep '\*r' -i /usr/share/dict/american-english
+  648  grep '..j.r' -i /usr/share/dict/american-english
+  649  grep '^..j.r$' -i /usr/share/dict/american-english
+  650  count -l /usr/share/dict/american-english
+  651  count /usr/share/dict/american-english
+  652  man count
+  653  info count
+  654  apropos count
+  655  apropos -a count -e line
+  656  apropos -a count line
+  657  man wc
+  658  wc -l /usr/share/dict/american-english
+  659  info ls
+  660  man info
+  661  man which
+  662  bash
+  663  man bash
+  664  ls ; cd my_new_dir2/ ; ls ; cd subdir2 ; ls
+  665  cd ../..
+  666  rm -r my_new_dir2
+  667  cat cat_out
+  668  cat cat_out | sort
+  669  cat cat_out | sort | ls -lha
+  670  man echo
+  671  man bash
+  672  man bashrc
+  673  info bashrc
+  674  ls -lha
+  675  man ls
+  676  awk -F &"\t" '$1~/GCA/ {print &6, &24, &4}' /data/ANI_report_bacteria.txt | sort | grep -w '[A-H]' | less
+  677  awk -F &"\t" '$1~/GCA/ {print &6, &24, &4}' /data/ANI_report_bacteria.txt | sort | less
+  678  awk -F &"\t" '$1~/GCA/ {print &6, &24, &4}' /data/ANI_report_bacteria.txt
+  679  awk -F "\t" '$1~/GCA/ {print &6, &24, &4}' /data/ANI_report_bacteria.txt
+  680  awk -F &"\t" '$1~/GCA/ {print &6, &24, &4}' /data/ANI_report_bacteria.txt
+  681  CA
+  682  head /data/ANI_report_bacteria.txt
+  683  history
+  684  wk '/Idiomarina/ {print $6, $24, $4, $4*$5}' /data/ANI_report_bacteria.txt
+  685  awk '/Idiomarina/ {print $6, $24, $4, $4*$5}' /data/ANI_report_bacteria.txt
+  686  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | grep -w '[A-H]' | sort | less
+  687  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | sort | grep -w '[A-H]' | less
+  688  man tail
+  689  man less
+  690  man more
+  691  ls /bin/q*
+  692  ls /bin/q?
+  693  ls -l /bin/usr | wc -l
+  694  man wc
+  695  ls /usr/bin | wc -l
+  696  ls -l /usr/bin | wc
+  697  ls -la /usr/bin | wc
+  698  ls -lsha /usr/bin | wc
+  699  ls -lsha /usr/bin | wc -l
+  700  ls /usr/bin | wc -l
+  701  man more
+  702  more /usr/bin/laptop-detect
+  703  less /usr/bin/laptop-detect
+  704  man more
+  705  more +5 /usr/bin/laptop-detect
+  706  less /usr/bin/laptop-detect /echo
+  707  less -S /usr/bin/laptop-detect
+  708  info echo
+  709  echo $((expr))
+  710  echo $((2*30))
+  711  echo $(5*90)
+  712  echo $((5*90%6))
+  713  echo $((5*90/6))
+  714  echo $((5+6*8-90/5))
+  715  echo $((5+(6*8-90)/5))
+  716  echo $((5+(6*8-90)%5))
+  717  echo $[5+(6*8-90)%5]
+  718  ls -l /usr/share /usr/blah
+  719  ls -l /usr/share
+  720  ls -l /usr/share | wc -l
+  721  ls -l /usr/share /usr/blah | wc -l
+  722  man find
+  723  find systemd
+  724  find tools
+  725  find usr
+  726  find /usr
+  727  find /usr | less
+  728  find /usr/bin | less
+  729  find /usr/bin | wc -l ; find /usr | wc -l
+  730  find /usr/lib/file
+  731  find /usr/lib/file/
+  732  find /usr/bin | more
+  733  find /usr/bin | head
+  734  find /usr/bin | sort | head
+  735  find ?/bin | less
+  736  find /?*/bin | less
+  737  find /?*/bin | zless
+  738  cat file1 - file3
+  739  find file1
+  740  find /?*/file1
+  741  find /?*/?*/file1
+  742  find /?*/?*/file3
+  743  find /?*/?*/?*/file3
+  744  find /?*/?*/?*/?*/file3
+  745  cd usr/local/bin | less
+  746  cd /usr/local/bin | less
+  747  cd /usr/local/bin ; ls
+  748  cat file1 - file3 > all_data ; ls
+  749  cat average
+  750  cd ../../../
+  751  cat /data/cat_example
+  752  find /cat_example
+  753  find /data/cat_example
+  754  cat -A /data/cat_example
+  755  man cat
+  756  exit
+  757  apropos -e clean -a screen
+  758  apropos -e screen
+  759  apropos -e clear -a screen
+  760  man info
+  761  man whatis
+  762  man man
+  763  man grep
+  764  grep -w z?*a
+  765  man find
+  766  echo [z-a]
+  767  echo $((z-a))
+  768  echo $[z-a]
+  769  ls $[z-a]
+  770  man echo
+  771  echo z-a
+  772  echo z,a
+  773  echo $z,a
+  774  echo $ [z,a]
+  775  echo $((z:a))
+  776  echo z:a
+  777  echo ((z:a))
+  778  echo '((z:a))'
+  779  echo $((z:a))
+  780  echo $((z-a))
+  781  echo $((a-z))
+  782  echo $((a:z))
+  783  echo $((a-z))
+  784  echo $((a,z))
+  785  echo $((a..z))
+  786  echo -e $((a..z))
+  787  echo -e {a..z}
+  788  man echo
+  789  echo -e {z..a}
+  790  man noup
+  791  info noup
+  792  man nooup
+  793  man nohup
+  794  apropos turn -a off
+  795  apropos work -a keep
+  796  apropos working -a keep
+  797  apropos -e turn off
+  798  info nohup
+  799  apropos log off
+  800  apropos work -a turned off
+  801  apropos work -a off
+  802  apropos shell -a disappear
+  803  apropos shell -a turn off
+  804  apropos shell -a turn
+  805  apropos shell -a log off
+  806  apropos shell
+  807  ls
+  808  cd MT ; ls
+  809  cd ..
+  810  mkdir /MT/M2.1 ; cd MT ; ls
+  811  mkdir /MT/M2.1/ ; cd MT ; ls
+  812  mkdir home/felipess/MT/M2.1/ ; cd MT ; ls
+  813  cd ..
+  814  mkdir /home/felipess/MT/M2.1 ; cd MT ; ls
+  815  rm -r M2.1
+  816  cd..
+  817  cd ..
+  818  mkdir /home/felipess/MT/M2.1 ; cd MT ; ls
+  819  rm -r M2.1 ; LS
+  820  rm -r M2.1 ; ls
+  821  mkdir /home/felipess/MT/M2.1 ; cd MT ; ls ; cd M2.1
+  822  touch file_M2.2
+  823  ls
+  824  cd ../..
+  825  touch /home/felipess/MT/M2.1/file_M2.21 ; ls
+  826  cd MT/M2.1 ; ls
+  827  cd .. ; ls
+  828  mv /MT/M2.3 /MT/M2.3n ; ls
+  829  apropos rename -a directories
+  830  apropos rename -a directory
+  831  apropos rename
+  832  man mv
+  833  cd MT2.3
+  834  ls
+  835  cd M2.3
+  836  mv -t /M2.3N
+  837  cd ..
+  838  mv -t /M2.3 /M2.3n ; ls
+  839  rename /M2.3 /M2.3n ; ls
+  840  man rename
+  841  mv -tv /M2.3 /M2.3n ; ls
+  842  mv -t -v /M2.3 /M2.3n ; ls
+  843  mv /M2.3 /M2.3n
+  844  mv /M2.3 /M2.3n ; ls
+  845  cd M2.3
+  846  rename - M2.3n ; cd
+  847  cd /MT/M2.3
+  848  cd MT/M2.3
+  849  apropos rename
+  850  man renameat
+  851  apropos -e rename -a directory
+  852  apropos -e rename -a directories
+  853  apropos -e rename -a files
+  854  man rename.ul
+  855  cd ..
+  856  rename.ul M2.3 M2.3n -v
+  857  rename.ul --help
+  858  man mv
+  859  mv M2.3 M2.3n
+  860  ls
+  861  mv M2.3n M2.3 ; ls
+  862  mv /MT/M2.3n /MT/M2.3 ; cd MT ; ls
+  863  cd .. ; ls ; cd data ; ls
+  864  find Q2.4
+  865  cd /MT/M2.3n ; ls
+  866  cd MT/M2.3n ; ls
+  867  cd MT
+  868  ls
+  869  cd M2.3 ; ls
+  870  cd .. ; cd M2.4 ; ls
+  871  man scp
+  872  ls -l /usr/local/bin > /MT/M3.5/M3.5_out
+  873  ls -l /usr/local/bin | cp /MT/M3.5/M3.5_out
+  874  ls -l /usr/local/bin
+  875  ls -l /usr/local/bin/
+  876  cd
+  877  ls -l /usr/local/bin/
+  878  ls -l /usr/local/bin/ > mv /MT/M3.5/M3.5_out
+  879  ls /usr/local/bin/
+  880  ls /usr/local/bin/ > nano > mv average /MT/M3.5/M3.5_out
+  881  ls /usr/local/bin/ | cat
+  882  ls -l /usr/local/bin/ | cat | mv /MT/M3.5/M3.5_out
+  883  cd MT/M3.5 ; ls
+  884  ls -l /usr/local/bin/ | cat > /MT/M3.5/M3.5_out
+  885  cd
+  886  ls -l /usr/local/bin/ | cat > /MT/M3.5/M3.5_out
+  887  ls -l /usr/local/bin/ | cat > touch /MT/M3.5/M3.5_out
+  888  ls -l /usr/local/bin/ | cat > nano /MT/M3.5/M3.5_out
+  889  ls -l /usr/local/bin/ | cat
+  890  ls -l /usr/local/bin/ | cat >> /MT/M3.5/M3.5_out
+  891  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
+  892  M3.5_out
+  893  ls -l /usr/local/bin/ | cat
+  894  nano
+  895  <<
+  896  >>
+  897  <<
+  898  <<
+  899  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
+  900  M3.5_out
+  901  ls -l /usr/local/bin/ | cat
+  902  nano
+  903  <<
+  904  >>
+  905  <<
+  906  <<
+  907  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
+  908  M3.5_out
+  909  ls -l /usr/local/bin/ | cat
+  910  nano
+  911  <<
+  912  >>
+  913  <<
+  914  <<
+  915  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
+  916  M3.5_out
+  917  ls -l /usr/local/bin/ | cat
+  918  nano
+  919  <<
+  920  >>
+  921  <<
+  922  <<
+  923  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
+  924  M3.5_out
+  925  ls -l /usr/local/bin/ | cat
+  926  nano
+  927  <<
+  928  >>
+  929  <<
+  930  <<
+  931  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
+  932  M3.5_out
+  933  ls -l /usr/local/bin/ | cat
+  934  nano
+  935  <<
+  936  >>
+  937  <<
+  938  <<
+  939  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
+  940  M3.5_out
+  941  ls -l /usr/local/bin/ | cat
+  942  nano
+  943  <<
+  944  >>
+  945  <<
+  946  <<
+  947  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
+  948  M3.5_out
+  949  ls -l /usr/local/bin/ | cat
+  950  nano
+  951  <<
+  952  >>
+  953  <<
+  954  <<
+  955  ls -l /usr/local/bin/ | cat >> /MT/M3.5/M3.5_out
+  956  clar
+  957  clear
+  958  cd
+  959  ls -l /usr/local/bin/ | cat > /MT/M3.5/M3.5_out
+  960  ls -l /usr/local/bin/ | cat >> /MT/M3.5/M3.5_out
+  961  ls -l /usr/local/bin/ | cat >> touch /MT/M3.5/M3.5_out
+  962  apropos create -a file
+  963  apropos -ea create file
+  964  nano /MT/M3.5/M3.5_out
+  965  cd MT/M3.5M3.5_out ; ls
+  966  cd MT/M3.5/M3.5_out ; ls
+  967  cd MT/M3.5 ; ls
+  968  touch
+  969  man toucc
+  970  man touch
+  971  cd ; rm nano ; rm touch ; ls
+  972  ls -l /usr/local/bin/ | cat >> nano /MT/M3.5/M3.5_out
+  973  nano /MT/M3.5/M3.5_out ; ls -l /usr/local/bin/ | cat >> /MT/M3.5/M3.5_out
+  974  cd MT/M3.5 ;l s
+  975  ls
+  976  cd
+  977  less /data/DNA_sequences.fas
+  978  grep GAATTC /data/DANA_sequences.fas
+  979  grep GAATTC /data/DNA_sequences.fas
+  980  grep GAATTC /data/DNA_sequences.fas | wc -l
+  981  grep -e GAATTC /data/DNA_sequences.fas | wc -l
+  982  man grep
+  983  grep -e GAATTC -w /data/DNA_sequences.fas | wc -l
+  984  grep -ew GAATTC /data/DNA_sequences.fas | wc -l
+  985  grep -w GAATTC /data/DNA_sequences.fas | wc -l
+  986  grep -w GAATTC /data/DNA_sequences.fas
+  987  man grep
+  988  grep -ex GAATTC /data/DNA_sequences.fas | wc -l
+  989  grep -x GAATTC /data/DNA_sequences.fas | wc -l
+  990  man grep
+  991  grep -e -n GAATTC /data/DNA_sequences.fas
+  992  grep -n GAATTC /data/DNA_sequences.fas
+  993  grep -n GAATTC /data/DNA_sequences.fas | wc -l
+  994  nano
+  995  grep {GA,$CATG,CT} /data/DNA_sequencies.fas
+  996  grep ((GA,$CATG,CT)) /data/DNA_sequencies.fas
+  997  grep ((GA$C$A$T$GCT)) /data/DNA_sequencies.fas
+  998  touch IUPAC CODE
+  999  cat IUPAC Code
+ 1000  cat IUPAC CODE
+ 1001  ls
+ 1002  cat 'IUPAC CODE'
+ 1003  cat 'IUPAC code'
+ 1004  grep -e ACATGC -e ACATGT -e GCATGC -e GCATGT /data/DNA_sequencies.fas
+ 1005  grep -e ACATGC -e ACATGT -e GCATGC -e GCATGT /data/DNA_sequences.fas
+ 1006  grep {GA,$CATG,CT} /data/DNA_sequences.fas
+ 1007  grep {GA,$C$A$T$G,CT} /data/DNA_sequences.fas
+ 1008  grep {GA,$CATG,CT} /data/DNA_sequences.fas | wc -l
+ 1009  grep { /data/DNA_sequences.fas | wc -l
+ 1010  grep -e ACATGC -e ACATGT -e GCATGC -e GCATGT /data/DNA_sequences.fas | wc -l
+ 1011  man grep
+ 1012  grep -e ACATGC -e ACATGT -e GCATGC -e GCATGT /data/DNA_sequences.fas -i | wc -l
+ 1013  man grep
+ 1014  nano 'IUPAC'
+ 1015  ls
+ 1016  nano IUPAC
+ 1017  RM IUPAC
+ 1018  rm IUPAC
+ 1019  nano 'IUPAC code'
+ 1020  cat 'IUPAC code'
+ 1021  grep -e CACCGGCG -e CGCCGGCG -e CACCGGTG -e CGCCGGTG /data/DNA_sequences.fas -i | wc -l
+ 1022  grep -e [C,GA,C,C,G,G,TC,G] /data/DNA_sequences.fas -i | wc -l
+ 1023  man grep
+ 1024  grep -f -e CACCGGCG -e CGCCGGCG -e CACCGGTG -e CGCCGGTG /data/DNA_sequences.fas -i | wc -l
+ 1025  grep -f CACCGGCG -f CGCCGGCG -f CACCGGTG -f CGCCGGTG /data/DNA_sequences.fas -i | wc -l
+ 1026  less /data/prot_sequences.fas
+ 1027  nano protein
+ 1028  cat protein
+ 1029  head /data/prot_sequences.fas
+ 1030  grep [KRHQSA],[DENQ],E,L$ /data/prot_sequences.fas | wc -l
+ 1031  grep '[KRHQSA],[DENQ],E,L$' /data/prot_sequences.fas | wc -l
+ 1032  grep '[KRHQSA][DENQ]EL$' /data/prot_sequences.fas | wc -l
+ 1033  man grep
+ 1034  grep -c 'MR[DE][IL]' /data/prot_sequences.fas |
+ 1035  grep -c 'MR[DE][IL]' /data/prot_sequences.fas
+ 1036  wc -l /data/prot_sequences.fas
+ 1037  grep -c '[STA]?????G?[QKRN]??[LIVMQ][KRQT]??[KR]?[GS]??[KQ]?[LIVM][LIVM][LIVM]' /data/prot_sequences.fas
+ 1038  grep '[STA]?????G?[QKRN]??[LIVMQ][KRQT]??[KR]?[GS]??[KQ]?[LIVM][LIVM][LIVM]' /data/prot_sequences.fas
+ 1039  grep -e '[STA]?????G?[QKRN]??[LIVMQ][KRQT]??[KR]?[GS]??[KQ]?[LIVM][LIVM][LIVM]' /data/prot_sequences.fas
+ 1040  grep -e '[STA]?????G?[QKRN]??[LIVMQ][KRQT]??[KR]?[GS]??[KQ]?[LIVM][LIVM][LIVM]' /data/prot_sequences.fas | wc -l
+ 1041  ls -lc /usr/bin
+ 1042  ls -lc /usr/bin | wc -l
+ 1043  ls -c /usr/bin
+ 1044  man ls
+ 1045  ls -lah | wc -l
+ 1046  ls -lah
+ 1047  ls -lah /usr/bin | wc -l
+ 1048  ls -lah /usr/bin
+ 1049  man ls
+ 1050  ls -g /usr/bin
+ 1051  ls -g /usr/bin | wc -l
+ 1052  head /data/expression.diff
+ 1053  cat /data/expression.diff | wc -l
+ 1054  man column
+ 1055  man columrm
+ 1056  cut -f 1,[3-50] /data/expression.diff | touch
+ 1057  cut -f 1,[3-50] /data/expression.diff
+ 1058  cut -f 1,3* /data/expression.diff
+ 1059  cut -d -f 1 /data/expression.diff
+ 1060  head /data/expression.diff
+ 1061  awk -F &"\t" '$2~/XLOC/ {print &2}' /data/expression.diff | less
+ 1062  awk '{print &2}' /data/expression.diff | less
+ 1063  awk -F " " '{print &2}' /data/expression.diff | less
+ 1064  awk '/XLOC/ {print &2}' /data/expression.diff | less
+ 1065  awk '/XLOC/ {print &2}' /data/expression.diff | wc -l
+ 1066  awk '$2~/XLOC/ {print &2}' /data/expression.diff | wc -l
+ 1067  man colmrm
+ 1068  man colrm
+ 1069  apropos count -a column
+ 1070  apropos -e count -a column
+ 1071  apropos -e count columns
+ 1072  apropos columns
+ 1073  colrm 3* /data/expression.diff | print
+ 1074  colrm 3 * /data/expression.diff | print
+ 1075  colrm 3 * /data/expression.diff
+ 1076  colrm [3,*] /data/expression.diff
+ 1077  man wc
+ 1078  apropos remove -a copies
+ 1079  apropos delete -a copies
+ 1080  apropos delete -a copy
+ 1081  apropos remove -a copy
+ 1082  apropos cut -a copy
+ 1083  man cut
+ 1084  man colrm
+ 1085  colrm [1,1] /data/expression.diff
+ 1086  history
+ 1087  cat /data/assembly_summary
+ 1088  less /data/assembly_summary
+ 1089  awk '{print $3, $14, $13}' /data/expression.diff
+ 1090  awk '{print $3, $14, $13}' /data/expression.diff | less
+ 1091  awk '{print $2}' /data/expression.diff | less
+ 1092  awk '/sample_1/ /sample_2 {print}' /data/expression.diff | less
+ 1093  awk '/sample_1/ /sample_2 {print $3 $4}' /data/expression.diff | less
+ 1094  awk '/sample_1/ /sample_2 {print $3 $4}' /data/expression.diff | ls -c
+ 1095  awk '/sample_1/ /sample_2/ {print sample_1 sample_2}' /data/expression.diff |
+ 1096  awk '/sample_1/ /sample_2/ {print sample_1 sample_2}' /data/expression.diff
+ 1097  man awk
+ 1098  awk '/sample_1/ /sample_2 {print $2}' /data/expression.diff | less
+ 1099  awk '/sample_1/ /sample_2 {print $2}' /data/expression.diff | wc -l
+ 1100  awk '/sample_1/ /sample_2 {print $2}' /data/expression.diff | unic -c | wc -l
+ 1101  awk '/sample_1/ /sample_2 {print $2}' /data/expression.diff | uniq -c | wc -l
+ 1102  man uniq
+ 1103  awk '/sample_1/ /sample_2 {print $2}' /data/expression.diff | uniq | wc -l
+ 1104  awk '/log2(fold_change) {print}' /data/expression.diff | head
+ 1105  awk '/log2(fold_change)/ {print}' /data/expression.diff | head
+ 1106  awk '/log2(fold_change)/ {print "log2"}' /data/expression.diff | head
+ 1107  awk '/log2/ {print "log2"}' /data/expression.diff | head
+ 1108  head /data/expression.diff
+ 1109  awk '/sample_1/ /sample_2 {print $9}' /data/expression.diff
+ 1110  awk '/log2(fold_change) {print $9}' /data/expression.diff | sort | head
+ 1111  awk '/log2(fold_change)/ {print $9}' /data/expression.diff | sort | head
+ 1112  head /data/expression.diff
+ 1113  awk '/gene_id/ {print $3 $9}' /data/expression.diff | sort | head
+ 1114  awk '/gene_id/ {print $3 $9}' /data/expression.diff
+ 1115  awk '{print $3 $9}' /data/expression.diff
+ 1116  awk '{print $3 " " $9}' /data/expression.diff
+ 1117  awk '{print $3 " " $9}' /data/expression.diff | sort | head
+ 1118  awk '{print $2,$3,$9}' /data/expression.diff | sort | head
+ 1119  awk '{print $9}' /data/expression.diff | sort | head
+ 1120  awk '/log_2/ {print}' /data/expression.diff | sort | head
+ 1121  awk '$13 < 0.05 {print $3, $14, $13}' /data/expression.diff | head
+ 1122  awk '$13 == MAX {print $3, $14, $13}' /data/expression.diff | head
+ 1123  awk '$13 = MAX {print $3, $14, $13}' /data/expression.diff | head
+ 1124  awk '$13 > 500 {print $3, $14, $13}' /data/expression.diff | head
+ 1125  awk '$13 > 100 {print $3, $14, $13}' /data/expression.diff | head
+ 1126  awk '$13 > 10 {print $3, $14, $13}' /data/expression.diff | head
+ 1127  awk '$13 > 0.99 {print $3, $14, $13}' /data/expression.diff | head
+ 1128  awk '$13 > 0.99999 {print $3, $14, $13}' /data/expression.diff | head
+ 1129  awk '$13 > 0.99999 $14 == yes {print $3, $14, $13}' /data/expression.diff | head
+ 1130  awk '$13 > 0.99999 $14 = yes {print $3, $14, $13}' /data/expression.diff | head
+ 1131  awk '$13 > 0.99999 $14 == yes {print $3, $14, $13}' /data/expression.diff | head
+ 1132  awk '$13 > 0.99999 if $14 == yes {print $3, $14, $13}' /data/expression.diff | head
+ 1133  awk '$13 > 0.99999 $14 == yes {print $3, $14, $13}' /data/expression.diff | sort $13 | head
+ 1134  awk '$13 > 0.99999 $14 == yes {print $13, $14, $3}' /data/expression.diff | sort $13 | head
+ 1135  awk '$13 > 0.99999 $14 == yes {print $13, $14, $3}' /data/expression.diff | sort | head
+ 1136  awk '$13 > 0.99999 $14 == yes {print $13, $14, $3}' /data/expression.diff | sort | uniq | head
+ 1137  awk '$13 > 0.99999 $14 == yes {print $13, $14, $3}' /data/expression.diff | uniq | head
+ 1138  awk '$13 > 0.99999 $14 == yes {print $13, $14, $3}' /data/expression.diff | sort | uniq | head
+ 1139  awk '$13 > 0.99999 $14 == yes {print $13, $14, $3}' /data/expression.diff | sort -n | uniq | head
+ 1140  awk '$13 > 0.99999 {print $13, $14, $3}' /data/expression.diff | sort -n | uniq | head
+ 1141  awk '{print $13, $14, $3}' /data/expression.diff | sort -n | uniq | head
+ 1142  awk '{print $9, $14, $3}' /data/expression.diff | sort -n | uniq | head
+ 1143  awk '{print $9, $14, $3}' /data/expression.diff | sort -nr | uniq | head
+ 1144  awk '$13 > 0.99999 $14 == yes {print $13, $14, $3}' /data/expression.diff | sort -nr | head
+ 1145  awk '$13 > 0.99999 $14 == /yes/ {print $13, $14, $3}' /data/expression.diff | sort -nr | head
+ 1146  awk '$13 > 0.99999 $14 == /yes/ {print $13, $14, $3}' /data/expression.diff | sort -nr | less
+ 1147  awk '$14 == "yes" {print $13, $14, $3}' /data/expression.diff | sort -nr | less
+ 1148  awk '$14 == "yes" {print $13, $14, $3}' /data/expression.diff | sort -nr | head
+ 1149  cat /data/assembly_summary
+ 1150  bash
+ 1151  history
+ 1152  echo[70000/180]
+ 1153  echo((70000/180))
+ 1154  echo[(70000/180)]
+ 1155  ls -l
+ 1156  man groups
+ 1157  groups
+ 1158  cd /data/PE21/
+ 1159  ls - l
+ 1160  ls -l
+ 1161  less my_file_a
+ 1162  more my_file_a
+ 1163  head my_file_a
+ 1164  tail my_file_a
+ 1165  nano my_file_a
+ 1166  cd another_dir/ ; ls
+ 1167  ls -l
+ 1168  cd ..
+ 1169  more my_file_b
+ 1170  group
+ 1171  groups
+ 1172  more felipess
+ 1173  less felipess
+ 1174  less /felipess
+ 1175  more /felipess
+ 1176  more /felipess/
+ 1177  more my_file_42
+ 1178  ls -l | grep felipess
+ 1179  ls also_a_dir/
+ 1180  cd also_a_dir/ ; ls -l
+ 1181  ls another_dir/
+ 1182  cd some_dir/
+ 1183  ls -l
+ 1184  cd .. ; ls -l some_dir
+ 1185  ls -l some_dir
+ 1186  man ls
+ 1187  ls -lashd
+ 1188  cd some_dir/
+ 1189  more just_a_file
+ 1190  less just_a_file
+ 1191  nano just_a_file
+ 1192  cd ..
+ 1193  cd third_dir/
+ 1194  ls third_dir/
+ 1195  ls -l third_dir/
+ 1196  cd third_dir/
+ 1197  nano third_dir/another_file
+ 1198  less third_dir/3rd_file
+ 1199  nano third_dir/3rd_file
+ 1200  man chmod
+ 1201  man df
+ 1202  df
+ 1203  df .
+ 1204  du .
+ 1205  cd
+ 1206  df .
+ 1207  du .
+ 1208  df .
+ 1209  df /usr/bin/
+ 1210  df -h /usr/bin/
+ 1211  du -h /usr/bin/
+ 1212  du /usr/bin/
+ 1213  du -b /usr/bin/
+ 1214  du -B /usr/bin/
+ 1215  du -B=1 /usr/bin/
+ 1216  du -B 1K /usr/bin/
+ 1217  df -h .
+ 1218  df -h ~
+ 1219  man free
+ 1220  free
+ 1221  cd ..
+ 1222  free
+ 1223  cd felipess
+ 1224  man free
+ 1225  info free
+ 1226  less /proc/meminfo ; ls
+ 1227  less /proc/meminfo
+ 1228  man htop
+ 1229  top
+ 1230  htop
+ 1231  htop
+ 1232  lscpu
+ 1233  ls
+ 1234  df -h
+ 1235  free -h
+ 1236  eco
+ 1237  echo
+ 1238  printenv
+ 1239  env
+ 1240  wget 200.144.244.172/average
+ 1241  ls
+ 1242  less average
+ 1243  ./ average
+ 1244  ./average
+ 1245  chmod +x average ; ls -l average
+ 1246  ./ average
+ 1247  ./average
+ 1248  ./average
+ 1249  ./average -h
+ 1250  mkdir newbin ; ls
+ 1251  echo $PATH
+ 1252  echo $PATH newbin
+ 1253  man export
+ 1254  info export
+ 1255  export PATH=$felipess:~/bin
+ 1256  ls
+ 1257  cd newbin/
+ 1258  ls
+ 1259  cd ../
+ 1260  ls -lash
+ 1261  export PATH=~/bin
+ 1262  ls -lash
+ 1263  env
+ 1264  printenv
+ 1265  echo $PATH
+ 1266  exit
+ 1267  ls
+ 1268  echo &PATH
+ 1269  printenv
+ 1270  echo &PATH
+ 1271  echo &USER
+ 1272  echo PATH
+ 1273  mv average /newbin ; cd newbin ; ls
+ 1274  cd ..
+ 1275  ls
+ 1276  mv average newbin
+ 1277  cd newbin
+ 1278  ls
+ 1279  cd ..
+ 1280  LC_NUMERIC
+ 1281  local
+ 1282  locale
+ 1283  export LC_TIME=pt_BR.UTF-8
+ 1284  locale
+ 1285  man wget
+ 1286  time rsync -av /data/JC JC
+ 1287  ls JC
+ 1288  cd JC
+ 1289  LS
+ 1290  ls
+ 1291  cd JC
+ 1292  ls
+ 1293  cd ../../ ; rm -r JC ; time rsync -av /data/JC . ; ls
+ 1294  cd JC ; ls
+ 1295  ls library/
+ 1296  apropos jar -a extract
+ 1297  time rsync -av /data/JC .
+ 1298  ls
+ 1299  cd JC ; ls
+ 1300  cd .. ; rm -r JC ; ls
+ 1301  cd ..
+ 1302  time rsync -av /data/JC .
+ 1303  time rsync -avz /data/JC JC2
+ 1304  ll
+ 1305  alias ll='ls -l'
+ 1306  ll
+ 1307  alias lla='ls -la'
+ 1308  lla
+ 1309  alias llash='ls -lash'
+ 1310  llash
+ 1311  ll
+ 1312  alias llash
+ 1313  alias
+ 1314  less .bashrc
+ 1315  nano .bashrc
+ 1316  ll
+ 1317  grep ">" 'IUPAC code'
+ 1318  less "IUPAC code"
+ 1319  grep "G" 'IUPAC code'
+ 1320  grep -l "G" 'IUPAC code'
+ 1321  grep -l "G"
+ 1322  man ln
+ 1323  ln -s /etc/passwd my_first_link
+ 1324  ll
+ 1325  lla
+ 1326  llash
+ 1327  nano nano
+ 1328  rm nano
+ 1329  ln -s /etc/blah my_second_link ; lla
+ 1330  ln /ect/passwd hard_link_1 ; llash
+ 1331  ln /data/shaw hard_link_1 ; lls
+ 1332  llash
+ 1333  mkdir link_tests ; cd link_tests ; ln -s ../../dummy/PE24/2007/manifest_2007
+ 1334  llash
+ 1335  ln -s ~dummy/PE24/2008/manifest_2008 ; llash
+ 1336  rm manifest_2007 manifest_2008
+ 1337  ll
+ 1338  ln -s ../../dummy/PE24/2007/manifest_2007 ; ln -s ~dummy/PE24/manifest_2008 ; llash
+ 1339  rm manifest_2007
+ 1340  ln -s ../../PE24/2008/manifest_2007 ; llash
+ 1341  rm manifest_2007 ; ln -s ../../PE24/manifest_2007 ; llash
+ 1342  rm manifest_2007 ; ln -s ../../dummy/PE24/manifest_2007 ; llash
+ 1343  touch manifest_2007
+ 1344  nano manifest_2007
+ 1345  history
+ 1346  nano .bachrc
+ 1347  nano .bashrc
+ 1348  ll
+ 1349  history
+ 1350  cd .. ; nano .bashrc
+ 1351  history
+ 1352  man stat
+ 1353  ll
+ 1354  ln /tmp
+ 1355  cd link_tests/ ; ln ~/PE24/manifest_2016 manifest_2016b
+ 1356  llash
+ 1357  cat manifest_2016b
+ 1358  stat manifest_2016b
+ 1359  stat ~/PE24/manifest_2016
+ 1360  stat manifest_2016b ~/PE24/manifest_2016
+ 1361  ln -s /ect/magic magic ; llash
+ 1362  rm magic ; ln -s /etc/magic . ; llash
+ 1363  stat magic /etc/magic
+ 1364  echo Hello >> magic
+ 1365  echo Hello >> manifest_2016b
+ 1366  cat manifest_2016b
+ 1367  more ~/PE24/manifest_2016
+ 1368  exit
+ 1369  ls PE25
+ 1370  ll PE25
+ 1371  ls -lR PE25
+ 1372  rm ~/PE25/subdir1/subsub1.1/blue
+ 1373  ls -lR PE25
+ 1374  rm -r PE25
+ 1375  ls -lR PE25
+ 1376  man mk
+ 1377  rmdir dir1
+ 1378  man grid
+ 1379  man bzip2
+ 1380  cp data/exemple_gzip1 ./
+ 1381  cp data/exemple_gzip* .
+ 1382  cp /data/exemple_gzip* .
+ 1383  cp /data/example_gzip* .
+ 1384  ll example_gzip*
+ 1385  gzip -9 example_gzip* ; ll example_gzip*
+ 1386  gzip -d *.gz ; ll example_gzip*
+ 1387  man gzip
+ 1388  man bzip2
+ 1389  ll /data/mrbayes-3.2.6.tar.gz
+ 1390  tar -xzvf /data/mrbayes-3.2.6.tar.gz
+ 1391  man tar
+ 1392  ll example_gzip*
+ 1393  ls
+ 1394  gzip -9k example_gzip* ; ls
+ 1395  ll example_gzip*
+ 1396  bzip2 example_gzip* ; ll example_gzip*
+ 1397  gzip example_gzip[12].bz2
+ 1398  ll example_gzip*
+ 1399  rm example_gzip* ; ls
+ 1400  cp data/exemple_gzip* . ; ll example_gzip*
+ 1401  cp data/exemple_gzip* .
+ 1402  cp data/example_gzip* .
+ 1403  gzip -9k example_gzip* ; ls
+ 1404  cp data/example_gzip* . ; ls
+ 1405  cp /data/example_gzip* . ; ls
+ 1406  bzip2 /data/example_gzip* ; ll example_gzip*
+ 1407  gzip -9k example_gzip* ; ls
+ 1408  tar -xvrf /data/example_1.tgz ; ls
+ 1409  tar -xvf /data/example_1.tgz ; ls
+ 1410  tree Q2.4/b/10/
+ 1411  tar /data/example_2.tar.bz2
+ 1412  btar /data/example_2.tar.bz2
+ 1413  tar -b /data/example_2.tar.bz2
+ 1414  ll /data/example_2.tar.bz2
+ 1415  bzip2 /data/example_2.tar.bz2 | tar -xrvf
+ 1416  ll /data/example_2.tar.bz2
+ 1417  tar -xvf /data/example_2.tar.bz2
+ 1418  man comm
+ 1419  comm -3 /data/file_comA /data/file_comB
+ 1420  head /data/file_comA
+ 1421  head /data/file_comB
+ 1422  diff /data/Darwin_1 /data/Darwin_2
+ 1423  man comm
+ 1424  man diff
+ 1425  diff -23 /data/diff1us /data/diff2us | wc -l
+ 1426  diff -3 /data/diff1us /data/diff2us | wc -l
+ 1427  diff /data/diff1us /data/diff2us | wc -l
+ 1428  diff /data/diff1us /data/diff2us
+ 1429  comm -23 /data/diff1us /data/diff2us | wc -l
+ 1430  comm -2 /data/diff1us /data/diff2us | wc -l
+ 1431  comm -3 /data/diff1us /data/diff2us | wc -l
+ 1432  diff /data/diff1us /data/diff2us
+ 1433  man diff
+ 1434  diff -q /data/diff1us /data/diff2us
+ 1435  diff -c /data/diff1us /data/diff2us
+ 1436  diff -u /data/diff1us /data/diff2us
+ 1437  nano
+ 1438  chmod +x FILA ; ll FILA
+ 1439  echo $PATH
+ 1440  ./FILA
+ 1441  nano
+ 1442  nano FILA
+ 1443  ./FILA
+ 1444  nano FILA
+ 1445  ./FILA
+ 1446  ./exercise
+ 1447  chmde +x exercise
+ 1448  chmode +x exercise
+ 1449  chmod +x exercise
+ 1450  ./exercise
+ 1451  ./FILA
+ 1452  nano FILA
+ 1453  ./MP
+ 1454  x=10
+ 1455  x=$(( x + 5))
+ 1456  echo x
+ 1457  echo "x"
+ 1458  x=10
+ 1459  x=$((++x))
+ 1460  echo "$x"
+ 1461  x=10
+ 1462  x$((x/4))
+ 1463  x=$((x/4))
+ 1464  echo "$x"
+ 1465  man find
+ 1466  find /data/genomas/ -iname 'Try*' -type f -exec ls -l {} ;
+ 1467  find /data/genomas/ -iname 'Try*' -type f -exec ls -l {} \;
+ 1468  find /data/genomas/ -iname 'Try*' -type f -exec ls -l {} +
+ 1469  find /data/genomas/ -iname 'Try*' -type f -exec wc -l {} \;
+ 1470  find /data/genomas/ -iname 'Try*' -type f -exec wc -l {} +
+ 1471  find /data/ -name '*cotings*' -and -type d
+ 1472  find / -iname 'DATA*'
+ 1473  find ~ -perm -o=w
+ 1474  man find
+ 1475  find / -perm 777 -type f 2> /dev/null
+ 1476  find / -perm 777 -type f 2> /dev/null | wc -l
+ 1477  find -name 'avarage$'
+ 1478  find / -iname 'avarage$'
+ 1479  find / -name '$avarage'
+ 1480  find / -iname 'avarage$' | wc -l
+ 1481  find / -name '$avarage' | wc -l
+ 1482  find / -name 'avarage$' | wc -l
+ 1483  find ~ -name 'ave*'
+ 1484  find ~ -name 'ave'*
+ 1485  find ~ -iname 'ave'*
+ 1486  man init
+ 1487  man ps
+ 1488  ps
+ 1489  ps x
+ 1490  man ps
+ 1491  ps
+ 1492  ps ax
+ 1493  TY          TIME CMD
+ 1494  13404 pts/37   00:00:00 bash
+ 1495  18420 pts/37
+ 1496  man ps
+ 1497  xeyes
+ 1498  xeye
+ 1499  xeyes
+ 1500  man cancel
+ 1501  info cancel
+ 1502  apropos foreground
+ 1503  man xeyes
+ 1504  man ps
+ 1505  man jobs
+ 1506  apropos jobs
+ 1507  apropos job
+ 1508  help fg
+ 1509  xeyes &
+ 1510  jobs
+ 1511  xeyes &
+ 1512  apt-cache showpkg
+ 1513  apt-get install raxml
+ 1514  sudo apt-get install raxml
+ 1515  apt-get upgrade
+ 1516  sudo apt-get upgrade
+ 1517  tar -xvfz /data/week_14/blastres_PROKKA_06232017.faa.gz
+ 1518  gz /data/week_14/blastres_PROKKA_06232017.faa.gz
+ 1519  cd /data/week_14/
+ 1520  zcat blastres_PROKKA_06232017.faa.gz
+ 1521  zcat blastres_PROKKA_06232017.faa.gz | wc -l
+ 1522  zcat blastres_PROKKA_06232017.faa.gz | col -k [3] | sort | grep "100.000" | wc -l
+ 1523  zcat blastres_PROKKA_06232017.faa.gz | grep "100.000" | wc -l
+ 1524  zcat blastres_PROKKA_06232017.faa.gz | cut -f 1 | sort -u | wc -l
+ 1525  zcat blastres_PROKKA_06232017.faa.gz | cut -f 1 | sort | uniq | wc -l
+ 1526  zcat blastres_PROKKA_06232017.faa.gz | cut -f 3 | grep "100.000" | wc -l
+ 1527  man avarage
+ 1528  man average
+ 1529  zcat blastres_PROKKA_06232017.faa.gz | cut -f 3 | average
+ 1530  zcat blastres_PROKKA_06232017.faa.gz | average -c 3
+ 1531  zcat blastres_PROKKA_06232017.faa.gz | wc -l
+ 1532  zcat blastres_PROKKA_06232017.faa.gz | ls -slah | sort
+ 1533  zcat blastres_PROKKA_06232017.faa.gz | sort -ni
+ 1534  zcat blastres_PROKKA_06232017.faa.gz | sort -n
+ 1535  zcat blastres_PROKKA_06232017.faa.gz | cut -f 3 | sort -n
+ 1536  zcat blastres_PROKKA_06232017.faa.gz | cut -f 3 | sort -n | head
+ 1537  zcat blastres_PROKKA_06232017.faa.gz | cut -f 123 | sort -n | head
+ 1538  zcat blastres_PROKKA_06232017.faa.gz | cut -f [123] | sort -n | head
+ 1539  zcat blastres_PROKKA_06232017.faa.gz | cut -f [1-3] | sort -n | head
+ 1540  zcat blastres_PROKKA_06232017.faa.gz | cut -f [1,3] | sort -n | head
+ 1541  zcat blastres_PROKKA_06232017.faa.gz | cut -f 1,3 | sort -n | head
+ 1542   z
+ 1543  zcat blastres_PROKKA_06232017.faa.gz | head
+ 1544  zcat blastres_PROKKA_06232017.faa.gz | grep " | sort -n | head
+ 1545  zcat blastres_PROKKA_06232017.faa.gz | grep "20.397" | head
+ 1546  zcat blastres_PROKKA_06232017.faa.gz | grep '20.397' | head
+ 1547  zcat blastres_PROKKA_06232017.faa.gz | awk '$3 ~ /20.397/{print $1, $3}'
+ 1548  zcat blastres_PROKKA_06232017.faa.gz | sort -k 3,3 -n | head
+ 1549  zcat blastres_PROKKA_06232017.faa.gz | cut -f 1,3 | sort -nk 2 | head
+ 1550  zcat blastres_PROKKA_06232017.faa.gz | cut -f 11 | sort -n | head
+ 1551  zcat blastres_PROKKA_06232017.faa.gz | cut -f 11 | sort -n | tail
+ 1552  zcat blastres_PROKKA_06232017.faa.gz | cut -f 11 | avarage
+ 1553  zcat blastres_PROKKA_06232017.faa.gz |
+ 1554  zcat blastres_PROKKA_06232017.faa.gz | sort -k 11,11 -n | head
+ 1555  zcat blastres_PROKKA_06232017.faa.gz | cut -f 1,11 | sort -nk 3
+ 1556  zcat blastres_PROKKA_06232017.faa.gz | cut -f 1,11 | sort -n 2
+ 1557  zcat blastres_PROKKA_06232017.faa.gz | sort -k 11,11 -n | head
+ 1558  zcat blastres_PROKKA_06232017.faa.gz | sort -k 11 -n | head
+ 1559  zcat blastres_PROKKA_06232017.faa.gz | cut -f 11 | sort -g | head
+ 1560  zcat blastres_PROKKA_06232017.faa.gz | cut -f 11 | sort -g | tail
+ 1561  zcat blastres_PROKKA_06232017.faa.gz | average -e
+ 1562  zcat blastres_PROKKA_06232017.faa.gz | cut -f 11 | average -e
+ 1563  zcat blastres_PROKKA_06232017.faa.gz | cut -f 11 | average -d 200
+ 1564  zcat blastres_PROKKA_06232017.faa.gz | cut -f 11 | average -d 170
+ 1565  man cut
+ 1566  cut -d='#' culicidae2.log
+ 1567  grep -v '#' culicidae2.log > newculicidae2.log
+ 1568  grep -v '#' culicidae2.log >> newculicidae2.log
+ 1569  grep -v '#' /data/week_14/culicidae2.log > /EPE/culicidae_clean.log
+ 1570  grep -v '#' /data/week_14/culicidae2.log > /EPE/culicidae_clean.log/
+ 1571  mkdir EPE ; grep -v '#' /data/week_14/culicidae2.log > /EPE/culicidae_clean.log/
+ 1572  grep -v '#' /data/week_14/culicidae2.log > /EPE/culicidae_clean.log
+ 1573  grep -v '#' /data/week_14/culicidae2.log > EPE/culicidae_clean.log
+ 1574  sed "/#/d" /data/week_14/culicidae2.log > EPE/culicidae_clean_sed.log
+ 1575  less EPE/culicidae_clean.log
+ 1576  nano EPE/culicidae_clean.log
+ 1577  EPE/culicidae_clean.log | cut -f 1 | sort -n | tail
+ 1578  cat EPE/culicidae_clean.log | cut -f 1 | sort -n | tail
+ 1579  less -S EPE/culicidae_clean.log
+ 1580  less -S EPE/culicidae_clean.log | tail -1
+ 1581  cut -f 2 EPE/culicidae_clean.log
+ 1582  less -S EPE/culicidae_clean.log | cut -f 2 | average -e
+ 1583  less -S EPE/culicidae_clean.log | cut -f 2 | sort -g
+ 1584  less -S EPE/culicidae_clean.log | cut -f 2 | sort -g | tail
+ 1585  sort -k 2,2 -n culicidae_clean.log | tail
+ 1586  sort -k 2,2 -n EPE/culicidae_clean.log | tail
+ 1587  man rename.ul
+ 1588  head /data/datasets/new_york_tree_census_2015.csv
+ 1589  less -S /data/datasets/new_york_tree_census_2015.csv
+ 1590  wc -l < cut -d ',' -f 9 < /data/datasets/new_york_tree_census_2015.csv | sort | uniq
+ 1591  < cut -d ',' -f 9 | wc -l < /data/datasets/new_york_tree_census_2015.csv | sort | uniq
+ 1592  grep "Alive" /data/datasets/new_york_tree_census_2015.csv | cut -d ',' -f 9 | sed '1d' | sort -u | wc -l
+ 1593  less -S /data/datasets/vehicle_brand-model-year_by_location_2022-12.csv
+ 1594  less -S /data/datasets/vehicle_brand-model-year_by_location_2022-12.csv | cut -d ';'
+ 1595  cut -d ';' < cat -S /data/datasets/vehicle_brand-model-year_by_location_2022-12.csv
+ 1596  less -S /data/datasets/vehicle_brand-model-year_by_location_2022-12.csv
+ 1597  ls -lsah -S /data/datasets/vehicle_brand-model-year_by_location_2022-12.csv
+ 1598  less -S /data/datasets/vehicle_brand-model-year_by_location_2022-12.csv | grep "XL 125"
+ 1599  less -S /data/datasets/vehicle_brand-model-year_by_location_2022-12.csv | grep "XL 125" | grep "1986" | grep "Sao Paulo" | wc -l
+ 1600  less -S /data/datasets/vehicle_brand-model-year_by_location_2022-12.csv | grep "XL 125" | grep "1986" | grep "Sao Paulo" | average
+ 1601  less -S /data/datasets/vehicle_brand-model-year_by_location_2022-12.csv | grep "XL 125" | grep "1986"
+ 1602  grep "1986" < grep "XL125" < less -S /data/datasets/vehicle_brand-model-year_by_location_2022-12.csV
+ 1603  sed '1d' /data/datasets/vehicle_brand-model-year_by_location_2022-12.csv | grep -i "XL 125" | grep "1986" | grep -i ";Sao Paulo;"
+ 1604  sed '1d' /data/datasets/vehicle_brand-model-year_by_location_2022-12.csv | grep -i "XL 125" | grep "1986" | grep -i ";Sao Paulo;" | cut -f 5 -d ';' | average -t
+ 1605  sed '1d' /data/datasets/vehicle_brand-model-year_by_location_2022-12.csv | grep -i "XL 125" | grep "1986" | grep -i ";Sao Paulo;" | cut -f 5 -d ';' | average
+ 1606  cat /data/datasets/daily_eletricity_generation_by_source_brazil.csv
+ 1607  less -S /data/datasets/daily_eletricity_generation_by_source_brazil.csv
+ 1608  sed '1d' /data/datasets/daily_eletricity_generation_by_source_brazil.csv | cut -d ',' -f 1,5
+ 1609  sed '1d' /data/datasets/daily_eletricity_generation_by_source_brazil.csv | cut -d ',' -f 1,5 | sort -nk 2
+ 1610  sed '1d' /data/datasets/daily_eletricity_generation_by_source_brazil.csv | cut -d ',' -f 1,5 | sort -nk 2,2
+ 1611  sed '1d' /data/datasets/daily_eletricity_generation_by_source_brazil.csv | cut -d ',' -f 1,5 | sort -n
+ 1612  sed '1d' /data/datasets/daily_eletricity_generation_by_source_brazil.csv | cut -d ',' -f 1,5 | sort -nk 2
+ 1613  sed '1d' /data/datasets/daily_eletricity_generation_by_source_brazil.csv | cut -d ',' -f 1,5 | cut -d ',' | sort -nk 2,2
+ 1614  cut -f 5 /data/datasets/daily_eletricity_generation_by_source_brazil.csv | sort -n
+ 1615  cut -f 5 /data/datasets/daily_eletricity_generation_by_source_brazil.csv | sort -n | head
+ 1616  cut -d ',' -f 5 /data/datasets/daily_eletricity_generation_by_source_brazil.csv | sort -n | head
+ 1617  cut -d ',' -f 5 /data/datasets/daily_eletricity_generation_by_source_brazil.csv | sort -n | tail
+ 1618  cut -d ',' -f 1,5 /data/datasets/daily_eletricity_generation_by_source_brazil.csv | sort -nk 2 | tail
+ 1619  cut -d ',' -f 1,5 /data/datasets/daily_eletricity_generation_by_source_brazil.csv | sort -nk 2,2 | tail
+ 1620  cut -d ',' -f 1,5 /data/datasets/daily_eletricity_generation_by_source_brazil.csv | sort -nr -k 2 | head
+ 1621  cut -d ',' -f 1,5 /data/datasets/daily_eletricity_generation_by_source_brazil.csv | sort -nr -k 2 -t ','| head
+ 1622  cut -d ',' -f 1,5 --output-delimiter $'t\' /data/datasets/daily_eletricity_generation_by_source_brazil.csv | sort -nr -k 2 | head
+ 1623  less
+ 1624  less  -S
+ 1625  cat
+ 1626  cat
+ 1627  cut -d ',' -f 5 /data/datasets/daily_eletricity_generation_by_source_brazil.csv | average
+ 1628  ls -lsah data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz
+ 1629  zcat data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz
+ 1630  zcat data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | cut -f 4 | head
+ 1631  zcat data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz > new_file
+ 1632  zcat data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut -f 4 | grep 'A' | wc -l
+ 1633  zcat data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut -f 4 | grep -i 'A' | wc -l
+ 1634  zcat data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz
+ 1635  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut -f 4 | grep -i 'A' | wc -l
+ 1636  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut -f 4 | grep -i 'A' | wc -l ; zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut -f 4 | grep -i 'G' | wc -l ; zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut -f 4 | grep -i 'T' | wc -l ; zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut -f 4 | grep -i 'C' | wc -l
+ 1637  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut -f 4 | grep -i 'A' > nucleotidesA
+ 1638  ls
+ 1639  nucelotidesT < zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut -f 4 | grep -i 'T'
+ 1640  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut -f 4 | grep -i 'T' > nucleotidesT
+ 1641  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut -f 4 | grep -i 'A' > nucleotidesA
+ 1642  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut -f 4 | grep -i 'G' > nucleotidesG
+ 1643  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut
+ 1644  for file in nucleotides* ; do wc -l $file ; done
+ 1645  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut -f 4 | sort | uniq -c
+ 1646  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | HEAD
+ 1647  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | head
+ 1648  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | head
+ 1649  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '#' | cut -f 5
+ 1650  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '^#' | cut -f 5 | sort | uniq -c
+ 1651  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '^#' | cut -f 5 | sort -u | grep -c ','
+ 1652  zgrep -v "#" /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | cut -f 5 | sort -u | grep -c ','
+ 1653  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '^#' | cut -f 5 | grep ',' | uniq -c
+ 1654  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '^#' | cut -f 5 | grep ',' | sort | uniq -c
+ 1655  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v '^#' | cut -f 5 | grep ',' | sort | uniq -c | wc -l
+ 1656  zgrep -v "#" /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | cut -f 1 | sort | uniq -c
+ 1657  zgrep -v "#" /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | cut -f 1,3 | sort | uniq -c
+ 1658  zcat /data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz | grep -v "^#" | grep -c -w "^2"
+ 1659  zcat /data/week_14/blastres_PROKKA_06232017.faa.gz | sort -R | ls -n 200 > EPE/gene_list
+ 1660  zcat /data/week_14/blastres_PROKKA_06232017.faa.gz | sort -R | head -s 200 > EPE/gene_list
+ 1661  zcat /data/week_14/blastres_PROKKA_06232017.faa.gz | sort -R | head -n 200 > EPE/gene_list
+ 1662  wc -l EPE/gene_list
+ 1663  zcat /data/week_14/blastres_PROKKA_06232017.faa.gz | cut -f 1 | sort -u | shuf -n 200 > EPE/gene_list_new
+ 1664  sort -u EPE/gene_list | wc -l ; sort -u EPE/gene_list_new | wc -l
+ 1665  wget http://200.144.244.172/files/selectseq.gz ; gz *.gz
+ 1666  zcat selectseq.gz
+ 1667  selectseq -l -n ~/EPE/gene_list_new
+ 1668  scp selectseq -P 2112 gabrielsg@200.144.244.172
+ 1669  scp selectseq -P 2112 gabrielsg@200.144.244.172:/~
+ 1670  selectseq -l EPE/gene_list_new -o EPE/200seq.fas -s /data/week_14/PROKKA_06232017.ffn
+ 1671  cat EPE/200seq.fas | grep -c ">"
+ 1672  ,
+ 1673  df -h /data/assembly_summary
+ 1674  more /vmlinuz
+ 1675  more /data/assembly_summary
+ 1676  ln /data/Q1.5/ A1.5
+ 1677  ls -lash /data/Q1.5/
+ 1678  ls /data/Q1.5/
+ 1679  ls -lash /data/Q1.5/
+ 1680  ls -lash /data/Q1.5/A1.5
+ 1681  ln -d -s /data/Q1.5/ A1.5
+ 1682  ls -lash /data/Q1.5/A1.5
+ 1683  ls -lash /data/A1.5
+ 1684  ls -lash A1.5
+ 1685  ls -lash ~/FE/f2.2/file_F2.2
+ 1686  ls -lash ~/FE/F2.2/file_F2.2
+ 1687  cgroups
+ 1688  cd ..
+ 1689  echo (2+2)
+ 1690  echo (('2+2'))
+ 1691  sum 2+2
+ 1692  sum (2+2)
+ 1693  chmod 777 FE6.1.bash
+ 1694  FE6.1.bash
+ 1695  cat FE6.1.bash
+ 1696  bash FE6.1.bash
+ 1697  nano FE6.1.bash
+ 1698  bash FE6.1.bash
+ 1699  touch FE6.2.bash
+ 1700  nano FE6.2.bash
+ 1701  bash FE6.2.bash
+ 1702  for x in {1..10} ; echo x
+ 1703  for x in {1..10} ; echo ((x))
+ 1704  for x in {1..10} ; echo [$x]
+ 1705  for x in {1..10} ; echo $x
+ 1706  for x in {1..10} ; echo {$x}
+ 1707  for x in {1..10} ; echo -e {$x}
+ 1708  for x in {1..10} ; echo (($))
+ 1709  for x in {1..10} ; echo $((x))
+ 1710  for x in {1..10} ; echo $(x)
+ 1711  for x in {1..10} ; echo ${x}
+ 1712  for x in {1..10} ; x
+ 1713  for x in {1..10} ; $x
+ 1714  for x in {1..10} ; echo $x
+ 1715  for x in {1..10} ; echo $[x]
+ 1716  for x in {1..10} ; echo {$x}
+ 1717  man echo
+ 1718  echo {1..10}
+ 1719  nano FE6.1.bash
+ 1720  bash FE6.
+ 1721  bash FE6.1.bash
+ 1722  for x in {1..10} ; echo random{$x}
+ 1723  for x in {1..10} ; echo {$x}
+ 1724  for x in {1..10} ; echo $x | random
+ 1725  for x in {1..10} ; random | echo $x
+ 1726  for x in echo {1..10}; do echo $x | random; done
+ 1727  for x in echo {1..10}; do random | echo $x ; done
+ 1728  for x in echo {1..10}; do echo $x ; done
+ 1729  nano FE6.1.bash
+ 1730  bash FE6.1.bash
+ 1731  nano FE6.1.bash
+ 1732  bash FE6.1.bash
+ 1733  nano FE6.1.bash
+ 1734  man find
+ 1735  find
+ 1736  apropos run -a programm
+ 1737  apropos run -a program
+ 1738  head  /data/list_HA
+ 1739  head /data/list_WT /data/list_HA
+ 1740  diff /data/list_WT /data/list_HA
+ 1741  sort /data/list_WT /data/list_HA | diff
+ 1742  cat /data/list_WT /data/list_HA | sort | comm -2
+ 1743  comm -2 < cat /data/list_WT /data/list_HA | sort
+ 1744  sort /data/list_WT > /data/list_WT_sorted ; cat list_WT_sorted
+ 1745  sort /data/list_WT > /data/list_WT_sorted ; cat /data/list_WT_sorted
+ 1746  sort /data/list_WT > list_WT_sorted ; cat list_WT_sorted
+ 1747  sort /data/list_HA > list_HA_sorted ; cat list_WT_sorted
+ 1748  comm list_WT_sorted list_HA_sorted
+ 1749  comm -2 list_WT_sorted list_HA_sorted | wc -l
+ 1750  diff list_WT_sorted list_HA_sorted
+ 1751  comm -2 list_WT_sorted list_HA_sorted > ~/mutant-only_prot ; cat mutant-only_prot
+ 1752  comm -13 list_WT_sorted list_HA_sorted > ~/mutant-only_prot ; cat mutant-only_prot
+ 1753  gzip -c ~mutant-only_prot > mutant-only_prot.gz ; ls
+ 1754  ls -lash /usr/bin/
+ 1755  ls -s /usr/bin/
+ 1756  ls -h /usr/bin/
+ 1757  ls -lh /usr/bin/
+ 1758  df /usr/bin/
+ 1759  df -h /usr/bin/
+ 1760  du -h /usr/bin/
+ 1761  df -h /data/
+ 1762  htop
+ 1763  df .
+ 1764  df -h .
+ 1765  du -h *
+ 1766  cd ~/usr/bin
+ 1767  cd ~/usr/bin/
+ 1768  cd /usr/bin/
+ 1769  du -sh .
+ 1770  htop
+ 1771  top
+ 1772  grep MemTotal ./
+ 1773  cd ..
+ 1774  grep MemTotal
+ 1775  top -h
+ 1776  htop -h
+ 1777  htop
+ 1778  free -h -s
+ 1779  cd ..
+ 1780  htop
+ 1781  man htop
+ 1782  ps
+ 1783  man ps
+ 1784  chronyc -n
+ 1785  who
+ 1786  man w
+ 1787  ls -lash /data/
+ 1788  ls -lash /data/ | grep "????rwx???"
+ 1789  ls -l /data/ | grep "????rwx???"
+ 1790  ls -l /data
+ 1791  ls -l /data/ > permission_other ; grep "#???????rwx" permission_other
+ 1792  ls
+ 1793  cd ..
+ 1794  cd ../..
+ 1795  cd ~/
+ 1796  ls -l /data/ > permission_other ; grep "#???????rwx" permission_other
+ 1797  cat permission_other
+ 1798  tree -f /data/
+ 1799  ls -l *
+ 1800  ls -l * > permission_other ; grep "#???????rwx" permission_other
+ 1801  ls -l * > other ; grep "#???????rwx" permission_other
+ 1802  touch other
+ 1803  chmod 777 ./
+ 1804  cd ..
+ 1805  chmod -w /data/
+ 1806  chmod -777 /data/
+ 1807  ls -l /data/* > others ; cat others
+ 1808  cd ~/
+ 1809  ls -l /data/* > others ; cat others
+ 1810  ls -l /data/* > others ; grep "#???????rwx" others
+ 1811  ls -l /data/* > others ; grep "^???????rwx" others
+ 1812  grep "^???????rwx" others
+ 1813  grep "???????rwx" others
+ 1814  grep "*rwx" others
+ 1815  grep "???????rwx" others
+ 1816  grep "rwx" others
+ 1817  find file_M6
+ 1818  man locate
+ 1819  man -A -e locate
+ 1820  locate -A -e file_M6
+ 1821  locate -A blast
+ 1822  locate -A ^blast
+ 1823  locate -A -e blast
+ 1824  locate -A -e "^blast"
+ 1825  locate -A -e blast*
+ 1826  locate -b blast
+ 1827  locate -b ^blast
+ 1828  locate -b blast*
+ 1829  man locate
+ 1830  locate -i f*a /data/
+ 1831  locate -e -b -i f*a /data/
+ 1832  ls -l /data/* > others
+ 1833  cat others
+ 1834  ls -l /data/*
+ 1835  ls -l /data/* > others2
+ 1836  wget http://200.144.244.172/files/muscle_src.tar.gz
+ 1837  gzup muscle_src.tar.gz
+ 1838  gzip muscle_src.tar.gz
+ 1839  tar -xvsf muscle_src.tar.gz
+ 1840  ls
+ 1841  apropos maxiters
+ 1842  ls
+ 1843  ls -lsah
+ 1844  cd muscle
+ 1845  muscle 1 -in /data/DNA_sequences.fas -out ~/alignment.afa
+ 1846  maxiters 1 -in /data/DNA_sequences.fas -out ~/alignment.afa
+ 1847  -maxiters 1 -in /data/DNA_sequences.fas -out ~/alignment.afa
+ 1848  muscle -maxiters 1 -in /data/DNA_sequences.fas -out ~/alignment.afa
+ 1849  muscle/Makefile -maxiters 1 -in /data/DNA_sequences.fas -out ~/alignment.afa
+ 1850  muscle/Makefile -in /data/DNA_sequences.fas -out ~/alignment.afa
+ 1851  rm permission_other
+ 1852  wget http://200.144.244.172/files/muscle_src.tar.gz
+ 1853  gunzip -d muscle_src.tar.gz
+ 1854  man gunzip
+ 1855  gunzip -l -f muscle_src.tar.gz
+ 1856  tar xfvz muscle_src.tar
+ 1857  locate muscle
+ 1858  tar Acdrtux muscle_src.tar
+ 1859  ls
+ 1860  gunzip -9 muscle_src.tar
+ 1861  bzip2 muscle_src.tar
+ 1862  tar -xzvf muscle_src.tar
+ 1863  bzip -d muscle_src.tar.bz2
+ 1864  bzip2 -d muscle_src.tar.bz2
+ 1865  tar muscle_src.tar
+ 1866  tar -Acdtrux muscle_src.tar
+ 1867  info tar
+ 1868  tar -c -f muscle_src.tar
+ 1869  ls
+ 1870  wget http://200.144.244.172/files/muscle_src.tar.gz
+ 1871  tar -Acdtrux muscle_src.tar.gz ; ls
+ 1872  tar -xvfz muscle_src.tar.gz ; ls
+ 1873  tar -xvf muscle_src.tar.gz ; ls
+ 1874  exit
+ 1875  cd ~/
+ 1876  awk '/Serg/ {print  $1" "$3" "$12" "$13}' /data/Serg_1_454Scaffolds.faa.emapper.annotations
+ 1877  less -S /data/Serg_1_454Scaffolds.faa.emapper.annotations
+ 1878  less /data/Serg_1_454Scaffolds.faa.emapper.annotations
+ 1879  awk -F "," '/Serg/ {print  $1" "$3" "$12" "$13}' /data/Serg_1_454Scaffolds.faa.emapper.annotations
+ 1880  ~/MK/3.2data << awk -F "," '/Serg/ {print  $1" "$3" "$12" "$13}' /data/Serg_1_454Scaffolds.faa.emapper.annotations
+ 1881  awk -F "," '/Serg/ {print  $1" "$3" "$12" "$13}' /data/Serg_1_454Scaffolds.faa.emapper.annotations > ~/MK/3.2data
+ 1882  grep -c "#" /data/SR01238UB7.annotated.vcf
+ 1883  grep "#" /data/SR01238UB7.annotated.vcf | wc -l
+ 1884  grep "HIGH" /data/SR01238UB7.annotated.vcf
+ 1885  grep -C "HIGH" /data/SR01238UB7.annotated.vcf
+ 1886  grep -c "HIGH" /data/SR01238UB7.annotated.vcf
+ 1887  grep -c "MODERATE" /data/SR01238UB7.annotated.vcf
+ 1888  grep -c "HIGH" /data/SR01238UB7.annotated.vcf
+ 1889  grep -c -e "HIGH" "MODERATE" -f /data/SR01238UB7.annotated.vcf
+ 1890  grep "#" /data/SR01238UB7.annotated.vcf | wc -l
+ 1891  grep -c "MODERATE" /data/SR01238UB7.annotated.vcf
+ 1892  grep -c -e "HIGH" "MODERATE" /data/SR01238UB7.annotated.vcf
+ 1893  grep -c -e "HIGH" -e "MODERATE" /data/SR01238UB7.annotated.vcf
+ 1894  awk -F "," '{print $7}' /data/datasets/github_dataset.csv
+ 1895  awk -F "," '{print $7}' /data/datasets/github_dataset.csv | sort | wc -l
+ 1896  awk -F "," '{print $7}' /data/datasets/github_dataset.csv | sort - u
+ 1897  awk -F "," '{print $7}' /data/datasets/github_dataset.csv | sort -u
+ 1898  awk -F "," '{print $7}' /data/datasets/github_dataset.csv | sort | average
+ 1899  awk -F "," '{print $7}' /data/datasets/github_dataset.csv | wc -l
+ 1900  awk -F "," '{print $7}' /data/datasets/github_dataset.csv | sort -nk
+ 1901  awk -F "," '{print $7}' /data/datasets/github_dataset.csv | sort | uniq -c
+ 1902  less -S /data/SR0
+ 1903  less -S /data/SR01238UB7.annotated.vcf
+ 1904  grep -v "#" /data/SR01238UB7.annotated.vcf | awk '{if $4!=A print $0}' > SNPs_not_from_A ; head SNPs_not_from_A
+ 1905  grep -v "#" /data/SR01238UB7.annotated.vcf | awk 'if $4!=A {print $0}' > SNPs_not_from_A ; head SNPs_not_from_A
+ 1906  grep -v "#" /data/SR01238UB7.annotated.vcf | awk '/[CGT] {print $0}' > SNPs_not_from_A ; head SNPs_not_from_A
+ 1907  grep -v "#" /data/SR01238UB7.annotated.vcf | awk '/G/ {print $0}' > SNPs_not_from_A ; head SNPs_not_from_A
+ 1908  grep -v "#" /data/SR01238UB7.annotated.vcf | awk '$4~/G/ {print $0}' /data/ANI_report_bacteria.txt > SNPs_not_from_A
+ 1909  grep -v "#" /data/SR01238UB7.annotated.vcf | awk '$4~/G/ {print $0}' /data/SR01238UB7.annotated.vcf > SNPs_not_from_A
+ 1910  grep -v "#" /data/SR01238UB7.annotated.vcf | awk '$4!~/A/ {print $0}' /data/SR01238UB7.annotated.vcf > SNPs_not_from_A
+ 1911  bluecloud@userland:/data/stuff#
+ 1912  batch LetterNumber
+ 1913  sbatch LetterNumber
+ 1914  exit
+ 1915  shuf -e A T C G -n 1000 -r -z | fold -w 46 > myDNA ; cat myDNA
+ 1916  shuf -e A T C G -n 10000 -r -z | fold -w 70
+ 1917  shuf -e A T C G -n 10000 -r > paste -z
