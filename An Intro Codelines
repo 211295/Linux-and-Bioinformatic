@@ -7,7 +7,6 @@ touch <text.txt> = create a text with name <text.txt>
 nano <text.txt> = edit the text created with touch command
 [Ctrl] + x = getout ot documemt / Y to save ; N to dont save
 grep <some_word> = show the line with the string meantioned
-sed = substitute every string insiede the ex: "/old one/new one/" (-i) = sobrescreve o arquivo com resultado gerado
 less = show the file just in the limit of the screen, provides the same as more plus extensive enhancements, press / and some pattern, the command show this pattern in the file
         inside less, use crtl B " -> divide the screen in two and you can see the command line and the less window 
 rm <directory/archive> = remove any archive or folder (-r) = remove the directory
@@ -169,8 +168,18 @@ grep -l "<pattern>" <file*> = show the name of files have the pattern | (-l) --f
 grep -L "<pattern>" <file*> = same above but oposite sense | (-L) --files-without-match
 grep -w xaxa <file> | cut -f X | sort -u = take all lines in file with have the pattern "xaxa" (can be a part of a word), cut and show only the X position (column), and finally show unical line
 
-sed is like grep, but allows do in-place editing: you can change the “original file” if you want. Create a 'temporary file' and send output to this file rather than 
-to the standard output
+sed filter and transform text, allows do in-place editing: you can change the “original file” if you want. Create a 'temporary file' and send output to this file rather than to the standard output
+Stream EDitor is a line editor, i.e., it edits contents line by line, independently
+sed '<command>' <file*> = the command most commonly is 's/<pattern>/<replacement>/<flag>/', so substitute the first part for the second following some options
+                                                         /<pattern>/d/ = delete lines containing “pattern” 
+                                                         /<pattern>/p/ = print lines containing “pattern”
+                                                         /<pattern>/<replacmente>/g/ = change all occurrences
+                                                         /<pattern>/<replacement>/I/ or i/ = case insensitive
+                                                         /<pattern>/<replacement>/<INT>/ = substitute the Nth occurrence
+sed '<N>d' <file> = delet Nth first lines for the file
+sed '/<pattern1>/s/<pattern2>/<pattern3>/' <file> =
+sed -n 'x,y!p' <file> = print only  |(-n) --quite, suppress automatic printing of pattern space
+
 awk
 ###################################################################################################################################################################################################################
 find search for files in a directory hierarchy
@@ -269,12 +278,6 @@ mv <file_name> <new_name> = change the name of file in currently directory
   536  cut -f8 /data/assembly_summary_genbank.txt | grep -cw Mus | sort -u
   538  cut -f8 /data/assembly_summary_genbank.txt | grep -w Mus | uniq -c
 
-539  sed 's/banana/kiwi' /data/sed_example
-  541  sed 's/banana/kiwi/' /data/sed_example
-  542  sed 's/banana/kiwi/g/' /data/sed_example
-  543  sed 's/banana/kiwi/g' /data/sed_example
-  544  sed 's/banana/kiwi/i' /data/sed_example
-  545  sed 's/banana/kiwi/gi' /data/sed_example
   546  sed '1d' /data/READ
   547  sed '/sequence/s/NCBI/KIWI/" /data/READ
   548  sed '/sequence/s/NCBI/KIWI/' /data/READ
@@ -286,8 +289,6 @@ mv <file_name> <new_name> = change the name of file in currently directory
   554  sed -n '5,10!' /data/READ
   555  cat /data/file_X
   556  sed 's/TCGSX/ADWP/' /data/file_X
-  557  sed 's/TCGSX/ADWP' /data/file_X
-  558  sed '/s/TCGSX/ADWP/' /data/file_X
   559  sed 's/TCGSX/ADWP/' /data/file_X
   560  sed 's/ADWP/TCGSX/g' /data/file_X
   561  cat /data/expression.diff
@@ -519,16 +520,10 @@ mv <file_name> <new_name> = change the name of file in currently directory
   787  echo -e {a..z}
   788  man echo
   789  echo -e {z..a}
-  790  man noup
-  791  info noup
-  792  man nooup
-  793  man nohup
   794  apropos turn -a off
   795  apropos work -a keep
   796  apropos working -a keep
   797  apropos -e turn off
-  798  info nohup
-  799  apropos log off
   800  apropos work -a turned off
   801  apropos work -a off
   802  apropos shell -a disappear
