@@ -4,15 +4,12 @@ pwd = check you directory, print work directory
 mkdir <PATH/name_directory> = make a directory / (-p) = creat a parent directory does not exist 
 cd <name_directory> = change directory
 touch <text.txt> = create a text with name <text.txt> 
-nano <text.txt> = edit the text created with touch
+nano <text.txt> = edit the text created with touch command
 [Ctrl] + x = getout ot documemt / Y to save ; N to dont save
 grep <some_word> = show the line with the string meantioned
 sed = substitute every string insiede the ex: "/old one/new one/" (-i) = sobrescreve o arquivo com resultado gerado
 less = show the file just in the limit of the screen, provides the same as more plus extensive enhancements, press / and some pattern, the command show this pattern in the file
-        inside less, use crtl B " -> divide the screen in two and you can see the command line and the less window
-echo = writes each given STRING to standard output, with a space between each and a newline after the last one 
-mv <PATH/file> <diretory/new_name> = move the file to the directory you want, (-i) = ask the intention, (-u) = update, move only the missing information, (-n) not alowed to mv overwrite
-mv <text> <new_name> = change the name of file in currently directory
+        inside less, use crtl B " -> divide the screen in two and you can see the command line and the less window 
 rm <directory/archive> = remove any archive or folder (-r) = remove the directory
 wc <file> = word count, print lines and words and bytes from a file (-l) = count lines
 file — determine file type
@@ -88,7 +85,28 @@ ls /abc/defg[hijl]* = shows all files in 'abc' directory with name 'defg' follow
 ls /abc/defg[hijl]? = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'l' and have just one more letter after the string variate, therefore just a file with 6 letters
 ls abc??* = shows all files start with 'abc' following any 2 characteres, and more or equal than 5 letters _ _ _ _ _ ...
 ls -l [a-f] | wc -l > new_file = create a list of files start with a to f, pipe with counter, then count the lines was created by ls -l and finely appeding to a new_file 
+
 file command determine file type
+
+more AND less viewrs, not editors, pagers presentation on scree. Do not read the complete file before. Display the contents of a file in a terminal
+zmore AND zless = variants of more and less, respectively, that deal with compressed data (.gz)
+more +5 <file> = just show the line 5 to the end
+more +/<pattenr_in_file> <file> = start displaying content after a specific piece of text is first found. Filter for  paging  through text one screenful at a time
+less <file> = show the file just in the limit of the screen, press SPACE to roll down, or the 
+          inside less use <crtl B "> = divide the screen in two and you can see the command line and the less window
+                      use /<parttner_in_file> = can find a specific word after press the / and press N to next match
+less +/<pattenr_in_file> <file> = same as more, but the less display, after finding the first match, you can see the next by typing n (next match)
+less -S <file> = do not want the lines to be wrapped ("break") on the screen, but to be chopped instead. Easier to see "tables"
+
+fold wrap each input line to fit in specified width. Wrap input lines in each FILE. have just 3 options
+fold -b -s -w <INT> <file> = (-b) = count bytes rather than columns | (-s) break at spaces | (-w) use WIDTH columns instead of 80
+
+head see just the beginning (10 lines) of the file or the standard output (STDOUT)
+head -n x <file> = shows the first X lines you want | (-n) --lines
+head -c <files> = show the bytes of the files | (-c) --bytes
+head -n -x <file> = print all lines but the last X lines from file.
+tail see just the end (10 lines) of the file or the standard output (STDOUT)
+tail -f <file> = it gets to the end and then waits for new data to arrive, then shows that, and so on. Output appended data as the file grows. | (-f) --follow
 
 ###################################################################################################################################################################################################################
 copy files and directories
@@ -98,9 +116,10 @@ cp -u -i -p <file> <new_file> = (-u) update, copy only missing information to ne
 cp -l <file> <new_name> =  hard link files instead of copying
 cp -f <file> <other_file> = --force
 cp -s <file> <new_name> = --symbolic-link make symbolic links instead of copying, is almost the same ln
-scp - speciall copy, when you would like to 
+scp - speciall copy, when you would like to copy files from one server to other
 
 ###################################################################################################################################################################################################################
+echo writes each given STRING to standard output (STDOUT), with a space between each and a newline after the last one
 echo $((expr)) = STRDIN 0
 echo $((2*30)) OR echo $[2*30] = 60
 echo $((5*90/6)) OR echo $[5*90/6] = 75, because we have 90 divided by 6 and multiply for 5
@@ -113,7 +132,7 @@ echo
 echo
 
 ################################################################################################################################################################################################################### 
-concatenate files and print on the standard output, show the strings in text
+conCATenate files and print on the standard output, show the strings in text
 zcat = variant of cat that deals with compressed data (.gz)
 cat <file1> = just print the standard output in the screen
 cat <file1> <file2> <file3> > new_files = take all the files and concatenate in a new_file in the same other as given
@@ -130,38 +149,32 @@ tac <options> <file> = inverse the lines of the text file
 rev <file> = reverse the intery line, but not the lines each
 
 print world count, newline count, and byte count for each FILE, and a total line count if more than one FILE is specified them. wc will tell you some basic statistics about the text file
-wc <file> =  (e.g fsdf235 is a word because non-zero-length sequence of characters delimited by white space)
-wc -l <file> = how many lines the file have
+wc -w <file> = how many words the file have (e.g fsdf235 is a word because non-zero-length sequence of characters delimited by white space)
+wc -l -L <file> = how many lines the file have and how lentgh is the biggest one | (-L) --max-line-length
+wc -c <file> = how many bytes have
+wc -m <file> = print the character counts
+sort -u <file> | wc -l = how many unique lines there are in file
 
+uniq lines, report or omit repeated lines SORTED FILES
+sort <file> | uniq -c -i <file> <output_file> = see the number of occurrences of each kind of line, doesnt matter differences in case | (-c) --count, show the number of occurrences each line | (-i) --ignore-case
+sort <file> | uniq -d <file> <output_file> = show the lines exit more than 1 time | (-d) --repeated only print duplicate lines, one for each group
+sort <file> | uniq -D <file> <output_file> = | (-D) print all duplicate lines
+sort <file> | uniq -u <file> <output_file> = show unique lines, so with have repeative lines, dont print | (-u) --unique
 
-grep
+grep Global Regular Expression Print prints all lines that contain a certain piece of text (or text pattern) provided
+grep -c "<pattern>" <file> = count the number of lines with pattern
+grep -v -i "<pattern>" <file> = show the lines DONT HAVE the pattern, invert the sense of matching and the case became insensitive | (-v) --invert-match | (-i) --insensitive
+grep -w "<pattern>" <file> = the string or pattern given by the user can be part of a word | (-w) --word-regexp
+grep -l "<pattern>" <file*> = show the name of files have the pattern | (-l) --files-with-matches
+grep -L "<pattern>" <file*> = same above but oposite sense | (-L) --files-without-match
+grep -w xaxa <file> | cut -f X | sort -u = take all lines in file with have the pattern "xaxa" (can be a part of a word), cut and show only the X position (column), and finally show unical line
+
+sed is like grep, but allows do in-place editing: you can change the “original file” if you want. Create a 'temporary file' and send output to this file rather than 
+to the standard output
+awk
 ###################################################################################################################################################################################################################
 find search for files in a directory hierarchy
 find / -name <file> 2> /dev/null
-
-###################################################################################################################################################################################################################
-more AND less viewrs,not editors, pagers presentation on scree. Do not read the complete file before. 
-zmore AND zless = variants of more and less, respectively, that deal with compressed data (.gz)
-more +5 <file> = just show the line 5 to the end
-more +/<pattenr_in_file> <file> = start displaying content after a specific piece of text is first found. Filter for  paging  through text one screenful at a time
-less <file> = show the file just in the limit of the screen, press SPACE to roll down, or the 
-          inside less use <crtl B "> = divide the screen in two and you can see the command line and the less window
-                      use /<parttner_in_file> = can find a specific word after press the / and press N to next match
-less +/<pattenr_in_file> <file> = same as more, but the less display, after finding the first match, you can see the next by typing n (next match)
-less -S <file> = do not want the lines to be wrapped ("break") on the screen, but to be chopped instead. Easier to see "tables"
-
-fold wrap each input line to fit in specified width. Wrap input lines in each FILE. have just 3 options
-fold -b -s -w <INT> <file> = (-b) = count bytes rather than columns | (-s) break at spaces | (-w) use WIDTH columns instead of 80
-
-head = the frist part of a file
-tail = the final part of a file
-
-nano is small, free and friendly editor
-Vim is a text editor that is upwards compatible to Vi. It can be used to edit all kinds of plain text. It is especially useful for editing programs.
-nano -Y <name> <file> = Specify the name of the syntax highlighting (change the colors) to use from among the ones defined in the nanorc files
-nano -L <file> = open the editor and don't automatically add a newline when a file does not end with one | (-L) --nonewlines
-nano -B <file> = When saving a file, back up the previous version of it, using the current filename suffixed with a tilde (~) | (-B) --backup
-nano -H <file> = Save the last hundred search strings and replacement strings and executed commands, so they can be easily  reused  in  later  sessions | (-H) --historylog
 
 ###################################################################################################################################################################################################################
 column utility formats its input into multiple columns, provides a format tabel for data.
@@ -181,7 +194,19 @@ colrm allows to delet columns from the file, specify 2 numbers (started ended), 
 colrm x y < <file> = remove the columns starting x position and finishing in y position
 colrm x < <file> = anything after x position are discarded
 
-uniq, report or omit repeated lines
+split a file into pieces, the default size is 1000 lines. Break files into smaller subsets. Creates new files called fileaa, fileab, fileac
+split -a X <file> = generate suffixes of length X 
+split -n N <file> P = generate N pieces with same size (based on input size) and the output recive the name P... |(-n) = --number
+split -n K/N <file> = output Kth of N to stdout, its means 
+split -n l/N <file> = split into N files without splitting lines/records
+split -n r/N <file> = like 'l' but use round robin distribution
+
+nano is small, free and friendly editor
+Vim is a text editor that is upwards compatible to Vi. It can be used to edit all kinds of plain text. It is especially useful for editing programs.
+nano -Y <name> <file> = Specify the name of the syntax highlighting (change the colors) to use from among the ones defined in the nanorc files
+nano -L <file> = open the editor and don't automatically add a newline when a file does not end with one | (-L) --nonewlines
+nano -B <file> = When saving a file, back up the previous version of it, using the current filename suffixed with a tilde (~) | (-B) --backup
+nano -H <file> = Save the last hundred search strings and replacement strings and executed commands, so they can be easily  reused  in  later  sessions | (-H) --historylog
 
 ###################################################################################################################################################################################################################
 sort lines of text files, ordenate the list of files or directories by differents parameters (numerical, alphabetical, month)
@@ -217,6 +242,7 @@ join lines from two files based on one common column (on a common field) contain
 join j -1 <file1> <file2> = see the column 1 of the “join field” was construct, therefore, print the file1
 join j -2 <file1> <file2> = 
 sort <file*> | join -1 2 -2 1 <file1> <file2> = sort files and create a table with 2 columns using the second column of the first file in first FIELD, and and the first column of the second file in second FIELD
+
 ###################################################################################################################################################################################################################
 translate (i.e. substitute) is the default, squeeze (i.e. eliminates repetitions), and/or delete characters from standard input, writing to standard output
 tr a-z A-Z < <file> = all lower-case letters have been changed to upper-case
@@ -228,59 +254,22 @@ tr -s  replace each sequence of a repeated character that is listed in the last 
 rename files at time
 
 
-
-move files
-
-###################################################################################################################################################################################################################
-
+move files and rename them 
+mv <PATH/file> <PATH/diretory/> = move the file to the directory you want | (-i) ask the intention | (-u) update, move only the missing information | (-n) not alowed to mv overwrite
+mv <file_name> <new_name> = change the name of file in currently directory
 
 ###################################################################################################################################################################################################################
 
-  490  man grep
-  491  grep avo /data/column_exemple
-  492  grep avocado /data/column_exemple
+
+###################################################################################################################################################################################################################
+
   494  find /data/assembly_summary_genbank.txt
-  495  wc /data/assembly_summary_genbank.txt
-  497  grep Nasonia /data/assembly_summary_genbank.txt | wc
-  499  grep Nasonia /data/assembly_summary_genbank.txt | wc -l
-  501  grep Nasonia /data/assembly_summary_genbank.txt | wc -c
-  502  man grep
-  503  grep -wc ">" /data/sequences.fas
-  504  grep -wc > /data/sequences.fas
-  505  man grep
-  506  grep -c ">" /data/sequences.fas
-  507  grep -c > /data/sequences.fas
-  509  grep -c lenghts /data/sequences.fas
-  510  grep -c lenght /data/sequences.fas
-  511  grep -c length /data/sequences.fas
-  512  grep -c numreads /data/sequences.fas
-  513  grep -c K /data/sequences.fas
-  514  grep -c Ksor /data/sequences.fas
-  515  grep -wc Mus /data/sequences.fas
-  516  grep -wc Mus /data/assembly_summary_genbank.txt
-  517  man grep
-  518  grep -F -wc Mus /data/assembly_summary_genbank.txt
-  519  grep -F -wc Musa /data/assembly_summary_genbank.txt
-  520  grep -F -wc Museum /data/assembly_summary_genbank.txt
-  521  grep -F -wc Mu /data/assembly_summary_genbank.txt
-  522  grep -F -wc Mus /data/assembly_summary_genbank.txt
-  523  grep -F -wc Mus /data/assembly_summary_genbank.txt | ls -s | wc -l
-  524  grep -F -wc Mus /data/assembly_summary_genbank.txt | ls -l | wc -l
-  525  man grep
   526  grep -F -wcfe Mus /data/assembly_summary_genbank.txt | wc -l
   527  grep -F -fe Mus /data/assembly_summary_genbank.txt | wc -l
-  528  grep -F -wc Mus /data/assembly_summary_genbank.txt | ls - | wc -l
-  529  grep -F -wc Mus /data/assembly_summary_genbank.txt | wc -l
-  531  grep -F -w Mus /data/assembly_summary_genbank.txt | wc -l
-  532  sort -u -k8,8 /data/assembly_summary_genbank.txt | grep -w "Mus"
-  533  sort -u -k8,8 /data/assembly_summary_genbank.txt | grep -cw "Mus"
-  534  cut -f8 /data/assembly_summary_genbank.txt | grep -w Mus
-  535  cut -f8 /data/assembly_summary_genbank.txt | grep -w Mus | sort -u
   536  cut -f8 /data/assembly_summary_genbank.txt | grep -cw Mus | sort -u
-  537  cut -f8 /data/assembly_summary_genbank.txt | grep -w Mus | uniq
   538  cut -f8 /data/assembly_summary_genbank.txt | grep -w Mus | uniq -c
-  539  sed 's/banana/kiwi' /data/sed_example
-  540  cat /data/sed_example
+
+539  sed 's/banana/kiwi' /data/sed_example
   541  sed 's/banana/kiwi/' /data/sed_example
   542  sed 's/banana/kiwi/g/' /data/sed_example
   543  sed 's/banana/kiwi/g' /data/sed_example
