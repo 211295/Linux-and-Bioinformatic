@@ -171,11 +171,11 @@ grep -w xaxa <file> | cut -f X | sort -u = take all lines in file with have the 
 sed filter and transform text, allows do in-place editing: you can change the “original file” if you want. Create a 'temporary file' and send output to this file rather than to the standard output
 Stream EDitor is a line editor, i.e., it edits contents line by line, independently
 sed '<command>' <file*> = the command most commonly is 's/<pattern>/<replacement>/<flag>/', so substitute the first part for the second following some options
-                                                         /<pattern>/d/ = delete lines containing “pattern” 
-                                                         /<pattern>/p/ = print lines containing “pattern”
-                                                         /<pattern>/<replacmente>/g/ = change all occurrences
-                                                         /<pattern>/<replacement>/I/ or i/ = case insensitive
-                                                         /<pattern>/<replacement>/<INT>/ = substitute the Nth occurrence
+                                                        s/<pattern>/d/ = delete lines containing “pattern” 
+                                                        s/<pattern>/p/ = print lines containing “pattern”
+                                                        s/<pattern>/<replacmente>/g/ = change all occurrences
+                                                        s/<pattern>/<replacement>/I/ or i/ = case insensitive
+                                                        s/<pattern>/<replacement>/<INT>/ = substitute the Nth occurrence
 sed '<N>d' <file> = delet Nth first lines for the file
 sed '/<pattern1>/s/<pattern2>/<pattern3>/' <file> =
 sed -n 'x,y!p' <file> = print only  |(-n) --quite, suppress automatic printing of pattern space
@@ -260,12 +260,19 @@ tr -d -c '[:alnum:]' < <file> = delete everything in file that is not a letter o
 tr -d '[:cntrl:]' < <file> = remove non-printing (invisible) characters from the file | (cntrl) all control characters
 tr -s  replace each sequence of a repeated character that is listed in the last specified | (-s) --squeeze-repeats  with a single occurrence of that character
 
-rename files at time
+rename files at time supplied according to the rule specified as the first argument
+rename -v 's/<pattern>/<replacement>/' <files*> = replace the pattern literaly (like in sed), and verbose that | (-v) --verbose
+rename -d 's/<pattern>/<replacement>/' <files*> = Do not rename directory with the same pattern in files | (-d)
+rename 'y/A-Z/a-z/' <files*> = 
+rename 's/\<pattern>$//' <files*>.<pattern> =  remove the pattern in the end of the name of all files.
+rename 's/$/<replacement>/' <files>* = insert a new piece in the name at the end, with dollar sign $ showing where anchor the replacement
+rename 's/__/<replacemente>/' <files> = insert a new piece in the name at the beggining, with  showing where anchor the replacement
 
 
-move files and rename them 
+move files and rename them
 mv <PATH/file> <PATH/diretory/> = move the file to the directory you want | (-i) ask the intention | (-u) update, move only the missing information | (-n) not alowed to mv overwrite
 mv <file_name> <new_name> = change the name of file in currently directory
+for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in the end of name, as the rename command above
 
 ###################################################################################################################################################################################################################
 
@@ -563,25 +570,17 @@ mv <file_name> <new_name> = change the name of file in currently directory
   836  mv -t /M2.3N
   837  cd ..
   838  mv -t /M2.3 /M2.3n ; ls
-  839  rename /M2.3 /M2.3n ; ls
-  840  man rename
   841  mv -tv /M2.3 /M2.3n ; ls
   842  mv -t -v /M2.3 /M2.3n ; ls
   843  mv /M2.3 /M2.3n
   844  mv /M2.3 /M2.3n ; ls
   845  cd M2.3
-  846  rename - M2.3n ; cd
   847  cd /MT/M2.3
   848  cd MT/M2.3
-  849  apropos rename
-  850  man renameat
   851  apropos -e rename -a directory
   852  apropos -e rename -a directories
   853  apropos -e rename -a files
-  854  man rename.ul
   855  cd ..
-  856  rename.ul M2.3 M2.3n -v
-  857  rename.ul --help
   858  man mv
   859  mv M2.3 M2.3n
   860  ls
