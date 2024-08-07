@@ -179,6 +179,7 @@ sed '<command>' <file*> = the command most commonly is 's/<pattern>/<replacement
 sed '<N>d' <file> = delet Nth first lines for the file
 sed '/<pattern1>/s/<pattern2>/<pattern3>/' <file> =
 sed -n 'x,y!p' <file> = print only  |(-n) --quite, suppress automatic printing of pattern space
+sed -n '$=' <file> = Counts the number of lines, 
 
 awk
 ###################################################################################################################################################################################################################
