@@ -117,6 +117,21 @@ Add a Search Engine:
 
    5. Done
 
+Enter Selection: 3
+### Press 3 and ENTER
+
+The path to the installation of the RMBLAST sequence alignment program
+hmmer: /home/<PATH>/hmmer-3.3.2/src/
+### Press ENTER
+
+Add a Search Engine:
+   1. Crossmatch: [ Un-configured ]
+   2. RMBlast: [ Configured, Default ]
+   3. HMMER3.1 & DFAM: [ Configured, Default ]
+   4. ABBlast: [ Un-configured ]
+
+   5. Done
+
 Enter Selection: 5
 
 ### Press 5 and ENTER, know you have your programm configured 
@@ -140,9 +155,11 @@ Dfam - A database of transposable element (TE) sequence alignments and HMMs.
 ### Start searching which is the real name of those species you have fasta files using the famdb.pl command
 (base) $ famdb.py -h; fambd.py -names -h 
 (base) $ famdb families <familie_name> --format fasta_name --include-class-in-name -ad ### (--format) output format
-### Now you can run the programm with the name specie
-(base) $ ~/<PATH>/RepeatMasker -s -a -species 'name_of_specie' *.fna ### (-s) slow process, more sensitive (-q) Quick and (-qq) Rush job (-a) alignment
-(base) $ 
+### Now you can run the programm with the name species, or the libaries you constructed. MOVE ALL FASTA FILES TO RepeatMasker DIRECTORY
+(base) $ move *.fna ~/<PATH>/RepeatMasker
+(base) $ ./RepeatMasker -s -a -species 'name_of_specie' *.fna ### (-s) slow process, more sensitive (-q) Quick and (-qq) Rush job (-a) alignment
+### OR, USE THE LIBARY YOU CONSTRUCT WITH RepeatModeler
+(base) $ ./RepeatMasker -e rmblast -s -lib ~/<PATH>/consensi.fa -xsmall -pa 15 -a -html -gff -dir <file.out> <file.fna>
 (base) $ 
 (base) $ 
 (base) $ https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.6.h5.gz.md5sum
