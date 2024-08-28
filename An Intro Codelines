@@ -167,7 +167,17 @@ grep -w "<pattern>" <file> = the string or pattern given by the user can be part
 grep -l "<pattern>" <file*> = show the name of files have the pattern | (-l) --files-with-matches
 grep -L "<pattern>" <file*> = same above but oposite sense | (-L) --files-without-match
 grep -w xaxa <file> | cut -f X | sort -u = take all lines in file with have the pattern "xaxa" (can be a part of a word), cut and show only the X position (column), and finally show unical line
-
+grep '^<pattern>' <file> = following the matches lines started with just with those pattern
+grep '<pattern>$' <file> = following the matches lines ended with just whit those pattern
+grep '[^abi]' <file> = match lines that contain at least one character that is different from a, b or i (which could match even if the lines also happen to have one of those characters!)
+grep '^[abi]' <file> = anchor the begging of line, should be a, b OR i. Match lines started with a, b OR i
+grep '[i^g]..aa <file> = match lines that contain i, g or ^ followed by two characters of any kind, followed by aa
+grep -E '<pattern1>|<part2>|<part3>' <file> = Interpret PATTERNS as extended regular expressions | (-E) --extended-regexp
+grep -E '(<pattern>){x}' <file> = match the line pattern with x (INT) repetitions
+grep -E '(<pattern>){,x}' <file> = 
+grep -E '<pattern>{,x}' <file> = without paretheses
+grep -E '(<pattern>){y,x}' <file> =
+ 
 sed filter and transform text, allows do in-place editing: you can change the “original file” if you want. Create a 'temporary file' and send output to this file rather than to the standard output
 Stream EDitor is a line editor, i.e., it edits contents line by line, independently
 sed '<command>' <file*> = the command most commonly is 's/<pattern>/<replacement>/<flag>/', so substitute the first part for the second following some options
@@ -181,7 +191,7 @@ sed '/<pattern1>/s/<pattern2>/<pattern3>/' <file> =
 sed -n 'x,y!p' <file> = print only  |(-n) --quite, suppress automatic printing of pattern space
 sed -n '$=' <file> = Counts the number of lines, 
 
-awk
+awk  
 ###################################################################################################################################################################################################################
 find search for files in a directory hierarchy
 find / -name <file> 2> /dev/null
@@ -199,6 +209,7 @@ cut -f x,y <file> = print only the column number x and column number y
 cut -f <INT> -d <delimiter> <file> = print only the column | (-d) --delimiter=<DELIM> use delimiter instead of TAB for field delimiter 
 cut -s <file> = print the | (-s) = --only-delimited, do not print lines not containing delimiters
 cut -f x,y <file> | sort -n -k 2,2 = get the columns x and y , and after pipe sort results numerically by the second column (originally, column y)
+cut -f x,y <file> | sort -k 2 -nr | uniq | head -n 20 = show the first 20 lines of x and y columns, without repetition, sorted by bigger number to smaller number of second column (originally, column y)
 
 colrm allows to delet columns from the file, specify 2 numbers (started ended), if just 1 number, remove all columns after the number. The TAB counts for 8 columns, and space count 1 column
 colrm x y < <file> = remove the columns starting x position and finishing in y position
@@ -276,8 +287,14 @@ mv <file_name> <new_name> = change the name of file in currently directory
 for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in the end of name, as the rename command above
 
 ###################################################################################################################################################################################################################
-
-
+file 
+file </PATH/file> = show the kinds of file is   | ASCII text = American Standard Code for Information Interchange, is the most common format for text files in computers
+                                                | gzip compressed data = show the name of file without the .gz
+                                                | symbolic link to <open sistem>/<file>
+                                                | ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter <PATH of >, for GNU/Linux <version>, BuildID[sha1]=<cod>, stripped
+                                                | HTML document, ISO-8859 text
+                                                | JPEG image data, JFIF standard 1.01, resolution (DPI), density IxJ, segment length <INT>, baseline, precision <INT>, IxJ, components <INT>
+                                                |
 ###################################################################################################################################################################################################################
 
   494  find /data/assembly_summary_genbank.txt
