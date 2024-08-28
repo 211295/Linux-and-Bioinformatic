@@ -179,19 +179,38 @@ grep -E '<pattern>{,x}' <file> = without paretheses
 grep -E '(<pattern>){y,x}' <file> =
  
 sed filter and transform text, allows do in-place editing: you can change the “original file” if you want. Create a 'temporary file' and send output to this file rather than to the standard output
-Stream EDitor is a line editor, i.e., it edits contents line by line, independently
-sed '<command>' <file*> = the command most commonly is 's/<pattern>/<replacement>/<flag>/', so substitute the first part for the second following some options
-                                                        s/<pattern>/d/ = delete lines containing “pattern” 
-                                                        s/<pattern>/p/ = print lines containing “pattern”
-                                                        s/<pattern>/<replacmente>/g/ = change all occurrences
-                                                        s/<pattern>/<replacement>/I/ or i/ = case insensitive
-                                                        s/<pattern>/<replacement>/<INT>/ = substitute the Nth occurrence
-sed '<N>d' <file> = delet Nth first lines for the file
-sed '/<pattern1>/s/<pattern2>/<pattern3>/' <file> =
-sed -n 'x,y!p' <file> = print only  |(-n) --quite, suppress automatic printing of pattern space
-sed -n '$=' <file> = Counts the number of lines, 
+Stream EDitor is a line editor, i.e., it edits contents line by line, independently {non-interactive editor}
+sed '<command>' <file*> = the commands most commonly are 's/<pattern>/<replacement>/<flag>/', so substitute the first part for the second following some options
+                                                          s/<pattern>/d/ = delete lines containing “pattern” 
+                                                          s/<pattern>/p/ = print lines containing “pattern”
+                                                          s/<pattern>/<replacmente>/g/ = change all occurrences
+                                                          s/<pattern>/<replacement>/I/ or i/ = case insensitive
+                                                          s/<pattern>/<replacement>/<INT>/ = substitute the Nth occurrence
+                                                          s/<pattern>/<replacement>/x,y,z/ = substitute only lines xth , yth and zth
+                                                          s/<pattern>/<replacement>/x,y!/ = subsittute in all lines except xth to yth 
+sed '<N>d' <file> = delet Nth first lines for the file, could be a header
+sed '<N>,<P>d' <file> = delet the Nth to Pth lines
+sed '<N>,<P>!d' <file> = delet all lines except the Nth to Pth
+sed '/^$/d' <file> = delet all blank lines, using the (^) to anchor the begging of the line and ($) the end of the line, so without something between then, means a blanked line
+sed 'g/<pattern>/d' <file> = delet all lines with the pattern
+sed '/<pattern>/,/[x-y]$/d' <file> = delet from the first line that have the pattern through the firt line end with digits between x to y
+sed 'x,/<pattern2>/d' <file> = delet all lines with the pattenr2 from x to the first blank line
+sed 's/<pattern1>/s/<pattern2>/<pattern3>/' <file> = the most commum, substitute (s) the pattern1 by 2 following the lines with matches pattern3
+sed -n 'x,y!p' <file> = print all file except x to y | (-n) --quite, suppress automatic printing of pattern space
+sed -n '$=' <file> = Counts the number of lines,  
 
-awk  
+awk is useful for manipulation of data files, domain-specific language developed to extract data out of text streams. Parses each input line using “blanks” as a delimiter 
+A sequence of “blanks” is one delimiter, therefore empty fields (columns) will get collapsed by default. If the data is delimited using the space bar character, it could solve using a character list ([ ])
+awk is a filter, but it can also get data from one or more files. The structure is very similar to that of sed
+A from Aho, W from Weinberger, K from Kernighan        
+awk [options] '<script>' <file> = the script most commonly are  '-f <script_file>', inside the single quots to specify this is a script 
+                                                                '/<pattern> {print $0}' = print all lines and collumns contain the pattern
+                                                                '/<pattern> {print $x $y $z}' = print all lines with pattern and just the collumns x y z in that order
+                                                                '
+                                                                '
+                                                                '
+                                                                '
+                                                                '
 ###################################################################################################################################################################################################################
 find search for files in a directory hierarchy
 find / -name <file> 2> /dev/null
@@ -203,10 +222,11 @@ column -s '<delimeter>' <file> = use something different from white space as the
 column -t -s $'\t' <file> | less -S = creat the less page of the table format with tab as a delimeter (cod of tab is $'\t')
 column -tn <file> = make more close each other
 
-cut, remove sections from each line of files, uses the TAB character as the default  column delimiter. Print selected parts of lines from each FILE to standard output. 
+cut, remove sections from each line of files, uses the TAB character as the default column delimiter. Print selected parts of lines from each FILE to standard output. 
 cut -f <INT> <file> = print only the column you especify by INT number | (-f) = --fields=LIST, select only these fields
+cut -f x,y,z <file> OR cut -f z,x,y <file> = both are the same thing, doesnt matter the order in input
 cut -f x,y <file> = print only the column number x and column number y
-cut -f <INT> -d <delimiter> <file> = print only the column | (-d) --delimiter=<DELIM> use delimiter instead of TAB for field delimiter 
+cut -f <INT> -d <delimiter> <file> = print only the column number <INT> | (-d) --delimiter=<DELIM> use delimiter instead of TAB for field delimiter 
 cut -s <file> = print the | (-s) = --only-delimited, do not print lines not containing delimiters
 cut -f x,y <file> | sort -n -k 2,2 = get the columns x and y , and after pipe sort results numerically by the second column (originally, column y)
 cut -f x,y <file> | sort -k 2 -nr | uniq | head -n 20 = show the first 20 lines of x and y columns, without repetition, sorted by bigger number to smaller number of second column (originally, column y)
