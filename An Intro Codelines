@@ -275,6 +275,7 @@ nano -H <file> = Save the last hundred search strings and replacement strings an
 sort lines of text files, ordenate the list of files or directories by differents parameters (numerical, alphabetical, month)
 sort -b <file> = sort the lines of files ignoring the leading blanks. Search fields are separated by blank-space (spaces or TAB), but that can be changed using an option
 sort -k <INT> -n <file> = sort according to numerical value and the x position you would like to sort | (-n) --numeric-sort | (-k) --key=KEYDEFF (for start and stop position), gives location and type
+sort -g <file> = sort according the global numerical value, utility for numbers between 1 and 0 (0<x<1) | (-g) --global
 sort -k x,x <file> = just sort by the x position
 sort -k x,y <file> = sort by the x position to y position, like a dictionary 
 sort -k x,xn -k y,yd -k z,zM <file> = sort by x position numerically, y position alphabetically, z position by Months (n , d , M are in KEYDEFF)       
