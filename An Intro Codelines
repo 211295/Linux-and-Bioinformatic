@@ -324,7 +324,6 @@ rename 's/\<pattern>$//' <files*>.<pattern> =  remove the pattern in the end of 
 rename 's/$/<replacement>/' <files>* = insert a new piece in the name at the end, with dollar sign $ showing where anchor the replacement
 rename 's/__/<replacemente>/' <files> = insert a new piece in the name at the beggining, with  showing where anchor the replacement
 
-
 move files and rename them
 mv <PATH/file> <PATH/diretory/> = move the file to the directory you want | (-i) ask the intention | (-u) update, move only the missing information | (-n) not alowed to mv overwrite
 mv <file_name> <new_name> = change the name of file in currently directory
