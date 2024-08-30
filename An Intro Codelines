@@ -1,27 +1,14 @@
 green is the terminal
 ~ is the way to your user terminal
-pwd = check you directory, print work directory 
-mkdir <PATH/name_directory> = make a directory / (-p) = creat a parent directory does not exist 
-cd <name_directory> = change directory
-touch <text.txt> = create a text with name <text.txt> 
-nano <text.txt> = edit the text created with touch command
-[Ctrl] + x = getout ot documemt / Y to save ; N to dont save
-grep <some_word> = show the line with the string meantioned
+touch <nameoffile.txt> = create a text with name <nameoffile.txt> 
 less = show the file just in the limit of the screen, provides the same as more plus extensive enhancements, press / and some pattern, the command show this pattern in the file
         inside less, use crtl B " -> divide the screen in two and you can see the command line and the less window 
 rm <directory/archive> = remove any archive or folder (-r) = remove the directory
-wc <file> = word count, print lines and words and bytes from a file (-l) = count lines
-file — determine file type
 find <file> or <directory> = search for files, the output is a list of files or directories, you can concatenet with others commands (wc, head, less, tail, sort)
 wget www... = download the archive directly on terminal
 . = currently directory
 .. = directory above currently directory
 scp -P <door> -r <archive_directory>/ 'serve'/'username'/'directory'/'folder'> = copy a holy directory to other username, indicate the door (-P) and the kind of archive (-r) Residual 
-man <command_you_wanna_learn> = MANUAL OF THE COMMAND, extremy usable 
-apropos <some_word>= find a word that describre a command, so you can find all commands you wanna with the some_word (-a) = you add more words, concatenete
-info <command> or <documentation> = Read documantion and info of commands
-which -a <filename> = locate a command, returns the pathnames
-help = 
 scontrol =
 [Shift] + [Insert] = Ctrl V
 /home = this is where user data lives
@@ -86,7 +73,32 @@ ls abc??* = shows all files start with 'abc' following any 2 characteres, and mo
 ls -l [a-f] | wc -l > new_file = create a list of files start with a to f, pipe with counter, then count the lines was created by ls -l and finely appeding to a new_file 
 
 file command determine file type
+file </PATH/file> = show the kinds of file is   | ASCII text = American Standard Code for Information Interchange, is the most common format for text files in computers
+                                                | gzip compressed data = show the name of file without the .gz
+                                                | symbolic link to <open sistem>/<file>
+                                                | ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter <PATH of >, for GNU/Linux <version>, BuildID[sha1]=<cod>, stripped
+                                                | HTML document, ISO-8859 text
+                                                | JPEG image data, JFIF standard 1.01, resolution (DPI), density IxJ, segment length <INT>, baseline, precision <INT>, IxJ, components <INT>
+                                                |
 
+man <command_you_wanna_learn> = MANUAL OF THE COMMAND, extremy usable 
+
+info <command_you_wanna_learn> or <documentation> = Read documantion and info of commands
+
+apropos <some_word>= find a word that describre a command, so you can find all commands you wanna with the some_word 
+apropos -e <key_word> = find some describe command that exactly have the word you want | (-e) = exactly
+apropos <pattern> -a <other_key_word>| (-a) = you add more words, concatenete
+
+which -a <filename> = locate a command, returns the pathnames
+
+help = 
+
+###################################################################################################################################################################################################################
+pwd = check you directory, print work directory 
+mkdir <PATH/name_directory> = make a directory / (-p) = creat a parent directory does not exist 
+cd <name_directory> = change directory
+
+###################################################################################################################################################################################################################
 more AND less viewrs, not editors, pagers presentation on scree. Do not read the complete file before. Display the contents of a file in a terminal
 zmore AND zless = variants of more and less, respectively, that deal with compressed data (.gz)
 more +5 <file> = just show the line 5 to the end
@@ -107,30 +119,6 @@ head -n -x <file> = print all lines but the last X lines from file.
 tail see just the end (10 lines) of the file or the standard output (STDOUT)
 tail -f <file> = it gets to the end and then waits for new data to arrive, then shows that, and so on. Output appended data as the file grows. | (-f) --follow
 
-###################################################################################################################################################################################################################
-copy files and directories
-cp <file> ~/<PATH>/<new_name> / 
-cp -r /<directory/ <file1> <file2> <file3> -t ~/<PATH>/<target> = copy the directory you want and all files into directory | (-r) recursively | (-t) target where you would like to copy
-cp -u -i -p <file> <new_file> = (-u) update, copy only missing information to new file | (-i) ask you sure make this copy because cp OVERWIRTE the new copy | (-n) oposite of -i | (-p) preserves the atributes
-cp -l <file> <new_name> =  hard link files instead of copying
-cp -f <file> <other_file> = --force
-cp -s <file> <new_name> = --symbolic-link make symbolic links instead of copying, is almost the same ln
-scp - speciall copy, when you would like to copy files from one server to other
-
-###################################################################################################################################################################################################################
-echo writes each given STRING to standard output (STDOUT), with a space between each and a newline after the last one
-echo $((expr)) = STRDIN 0
-echo $((2*30)) OR echo $[2*30] = 60
-echo $((5*90/6)) OR echo $[5*90/6] = 75, because we have 90 divided by 6 and multiply for 5
-echo $((5+6*8-90/5)) OR echo $[5+6*8-90/5] = 35, 5 + 48 - 18. Remainder 35
-echo $((5+(6*8-90)/5)) OR echo $[5+(6*8-90)/5] = -3, 5 + (48-90)/5 = 5 + (-42)/5 = 5 - 8,4 = -3
-echo $((5+(6*8-90)%5)) OR echo $[5+(6*8-90)%5]= 3, because the % means the remainder of the division, so (-42)/5 remainder -2. 
-echo {x..y} OR {y..x} = will print the range x to y (decresment and incriscment)
-echo {x..y..z} = will print the range x to y with the logical z
-echo 
-echo
-
-################################################################################################################################################################################################################### 
 conCATenate files and print on the standard output, show the strings in text
 zcat = variant of cat that deals with compressed data (.gz)
 cat <file1> = just print the standard output in the screen
@@ -221,6 +209,29 @@ awk [options] '<script>' <file> = the script most commonly are  '-f <script_file
                                                                 '
 awk -F "; " '/<pattern> {print $y '\t' $x}' <file> = print the columns y and x in this order, couting by every ';' as a delimitor of each collumn, and print a blanck space between the x and y by ('\t')
 awk -F "'\t'" '/<pattern> {print $y "" $x}' <file> = the same above but you swith the way to print a blanck sape
+
+###################################################################################################################################################################################################################
+copy files and directories
+cp <file> ~/<PATH>/<new_name> / 
+cp -r /<directory/ <file1> <file2> <file3> -t ~/<PATH>/<target> = copy the directory you want and all files into directory | (-r) recursively | (-t) target where you would like to copy
+cp -u -i -p <file> <new_file> = (-u) update, copy only missing information to new file | (-i) ask you sure make this copy because cp OVERWIRTE the new copy | (-n) oposite of -i | (-p) preserves the atributes
+cp -l <file> <new_name> =  hard link files instead of copying
+cp -f <file> <other_file> = --force
+cp -s <file> <new_name> = --symbolic-link make symbolic links instead of copying, is almost the same ln
+scp - speciall copy, when you would like to copy files from one server to other
+
+###################################################################################################################################################################################################################
+echo writes each given STRING to standard output (STDOUT), with a space between each and a newline after the last one
+echo $((expr)) = STRDIN 0
+echo $((2*30)) OR echo $[2*30] = 60
+echo $((5*90/6)) OR echo $[5*90/6] = 75, because we have 90 divided by 6 and multiply for 5
+echo $((5+6*8-90/5)) OR echo $[5+6*8-90/5] = 35, 5 + 48 - 18. Remainder 35
+echo $((5+(6*8-90)/5)) OR echo $[5+(6*8-90)/5] = -3, 5 + (48-90)/5 = 5 + (-42)/5 = 5 - 8,4 = -3
+echo $((5+(6*8-90)%5)) OR echo $[5+(6*8-90)%5]= 3, because the % means the remainder of the division, so (-42)/5 remainder -2. 
+echo {x..y} OR {y..x} = will print the range x to y (decresment and incriscment)
+echo {x..y..z} = will print the range x to y with the logical z
+echo 
+echo
 
 ###################################################################################################################################################################################################################
 find search for files in a directory hierarchy
@@ -317,15 +328,6 @@ mv <PATH/file> <PATH/diretory/> = move the file to the directory you want | (-i)
 mv <file_name> <new_name> = change the name of file in currently directory
 for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in the end of name, as the rename command above
 
-###################################################################################################################################################################################################################
-file 
-file </PATH/file> = show the kinds of file is   | ASCII text = American Standard Code for Information Interchange, is the most common format for text files in computers
-                                                | gzip compressed data = show the name of file without the .gz
-                                                | symbolic link to <open sistem>/<file>
-                                                | ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter <PATH of >, for GNU/Linux <version>, BuildID[sha1]=<cod>, stripped
-                                                | HTML document, ISO-8859 text
-                                                | JPEG image data, JFIF standard 1.01, resolution (DPI), density IxJ, segment length <INT>, baseline, precision <INT>, IxJ, components <INT>
-                                                |
 ###################################################################################################################################################################################################################
 
   494  find /data/assembly_summary_genbank.txt
