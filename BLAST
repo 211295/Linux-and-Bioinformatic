@@ -1,0 +1,2 @@
+BLAST = Base L Aligment S T 
+blast -query <
