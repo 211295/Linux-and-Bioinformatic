@@ -87,7 +87,7 @@ info <command_you_wanna_learn> or <documentation> = Read documantion and info of
 
 apropos <some_word>= find a word that describre a command, so you can find all commands you wanna with the some_word 
 apropos -e <key_word> = find some describe command that exactly have the word you want | (-e) = exactly
-apropos <pattern> -a <other_key_word>| (-a) = you add more words, concatenete
+apropos <pattern> -a <other_key_word> = you add more words, concatenete | (-a) = --and 
 
 which -a <filename> = locate a command, returns the pathnames
 
@@ -165,7 +165,8 @@ grep -E '(<pattern>){x}' <file> = match the line pattern with x (INT) repetition
 grep -E '(<pattern>){,x}' <file> = 
 grep -E '<pattern>{,x}' <file> = without paretheses
 grep -E '(<pattern>){y,x}' <file> =
- 
+grep -F 
+
 sed filter and transform text, allows do in-place editing: you can change the “original file” if you want. Create a 'temporary file' and send output to this file rather than to the standard output
 PROCESS LINE BY LINE
 Stream EDitor is a line editor, i.e., it edits contents line by line, independently {non-interactive editor}
@@ -208,7 +209,7 @@ awk [options] '<script>' <file> = the script most commonly are  '-f <script_file
                                                                 '
                                                                 '
 awk -F "; " '/<pattern> {print $y '\t' $x}' <file> = print the columns y and x in this order, couting by every ';' as a delimitor of each collumn, and print a blanck space between the x and y by ('\t')
-awk -F "'\t'" '/<pattern> {print $y "" $x}' <file> = the same above but you swith the way to print a blanck sape
+awk -F "'\t'" '/<pattern> {print $y "" $x}' <file> = the same above but you swith the way to print a blanck space
 
 ###################################################################################################################################################################################################################
 copy files and directories
@@ -337,7 +338,6 @@ for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in 
   536  cut -f8 /data/assembly_summary_genbank.txt | grep -cw Mus | sort -u
   538  cut -f8 /data/assembly_summary_genbank.txt | grep -w Mus | uniq -c
 
-  576  man awk
   585  awk '{print $1 ": " $2 + 10}' /data/column_example
   586  awk '{print $1 ": " $2 + "reais"}' /data/column_example
   587  awk '{print $1 ": " $2 + 'reais'}' /data/column_example
@@ -425,10 +425,7 @@ for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in 
   678  awk -F &"\t" '$1~/GCA/ {print &6, &24, &4}' /data/ANI_report_bacteria.txt
   679  awk -F "\t" '$1~/GCA/ {print &6, &24, &4}' /data/ANI_report_bacteria.txt
   680  awk -F &"\t" '$1~/GCA/ {print &6, &24, &4}' /data/ANI_report_bacteria.txt
-  681  CA
   682  head /data/ANI_report_bacteria.txt
-  683  history
-  684  wk '/Idiomarina/ {print $6, $24, $4, $4*$5}' /data/ANI_report_bacteria.txt
   685  awk '/Idiomarina/ {print $6, $24, $4, $4*$5}' /data/ANI_report_bacteria.txt
   686  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | grep -w '[A-H]' | sort | less
   687  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | sort | grep -w '[A-H]' | less
@@ -560,10 +557,6 @@ for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in 
   826  cd MT/M2.1 ; ls
   827  cd .. ; ls
   828  mv /MT/M2.3 /MT/M2.3n ; ls
-  829  apropos rename -a directories
-  830  apropos rename -a directory
-  831  apropos rename
-  832  man mv
   833  cd MT2.3
   834  ls
   835  cd M2.3
@@ -577,21 +570,12 @@ for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in 
   845  cd M2.3
   847  cd /MT/M2.3
   848  cd MT/M2.3
-  851  apropos -e rename -a directory
-  852  apropos -e rename -a directories
-  853  apropos -e rename -a files
-  855  cd ..
-  858  man mv
   859  mv M2.3 M2.3n
   860  ls
   861  mv M2.3n M2.3 ; ls
   862  mv /MT/M2.3n /MT/M2.3 ; cd MT ; ls
   863  cd .. ; ls ; cd data ; ls
   864  find Q2.4
-  865  cd /MT/M2.3n ; ls
-  866  cd MT/M2.3n ; ls
-  867  cd MT
-  868  ls
   869  cd M2.3 ; ls
   870  cd .. ; cd M2.4 ; ls
   871  man scp
@@ -617,67 +601,27 @@ for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in 
   891  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
   892  M3.5_out
   893  ls -l /usr/local/bin/ | cat
-  894  nano
-  895  <<
-  896  >>
-  897  <<
-  898  <<
   899  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
   900  M3.5_out
   901  ls -l /usr/local/bin/ | cat
-  902  nano
-  903  <<
-  904  >>
-  905  <<
-  906  <<
   907  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
   908  M3.5_out
   909  ls -l /usr/local/bin/ | cat
-  910  nano
-  911  <<
-  912  >>
-  913  <<
-  914  <<
   915  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
   916  M3.5_out
   917  ls -l /usr/local/bin/ | cat
-  918  nano
-  919  <<
-  920  >>
-  921  <<
-  922  <<
   923  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
   924  M3.5_out
   925  ls -l /usr/local/bin/ | cat
-  926  nano
-  927  <<
-  928  >>
-  929  <<
-  930  <<
   931  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
   932  M3.5_out
   933  ls -l /usr/local/bin/ | cat
-  934  nano
-  935  <<
-  936  >>
-  937  <<
-  938  <<
   939  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
   940  M3.5_out
   941  ls -l /usr/local/bin/ | cat
-  942  nano
-  943  <<
-  944  >>
-  945  <<
-  946  <<
   947  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
   948  M3.5_out
   949  ls -l /usr/local/bin/ | cat
-  950  nano
-  951  <<
-  952  >>
-  953  <<
-  954  <<
   955  ls -l /usr/local/bin/ | cat >> /MT/M3.5/M3.5_out
   956  clar
   957  clear
@@ -691,15 +635,11 @@ for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in 
   965  cd MT/M3.5M3.5_out ; ls
   966  cd MT/M3.5/M3.5_out ; ls
   967  cd MT/M3.5 ; ls
-  968  touch
-  969  man toucc
   970  man touch
   971  cd ; rm nano ; rm touch ; ls
   972  ls -l /usr/local/bin/ | cat >> nano /MT/M3.5/M3.5_out
   973  nano /MT/M3.5/M3.5_out ; ls -l /usr/local/bin/ | cat >> /MT/M3.5/M3.5_out
   974  cd MT/M3.5 ;l s
-  975  ls
-  976  cd
   977  less /data/DNA_sequences.fas
   978  grep GAATTC /data/DANA_sequences.fas
   979  grep GAATTC /data/DNA_sequences.fas
@@ -790,7 +730,6 @@ for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in 
  1064  awk '/XLOC/ {print &2}' /data/expression.diff | less
  1065  awk '/XLOC/ {print &2}' /data/expression.diff | wc -l
  1066  awk '$2~/XLOC/ {print &2}' /data/expression.diff | wc -l
- 1067  man colmrm
  1068  man colrm
  1069  apropos count -a column
  1070  apropos -e count -a column
