@@ -53,7 +53,18 @@ List of commands dont accept either: mkdir , cd , wget ,
 <command_line> >> <file> 2>&1 = Appending, without overwrite, the STDOUT and STDERR in the previous exist file
 <command_line> &>> <file> = 
 
-Piping = The operator for the pipe is the vertical bar ( | ) concatenet 2 or more commands in one line, redirect STDOUT of one program to STDIN of the next program.
+Metacharacter
+. = 
+^ = 
+$ = 
+grep - i <pattern_line> '^..x.y&' <file> = 
+^ =
+$ = 
+[  ] = 
+ls [XYZ]* = show list files with started X OR Y OR Z
+* =
+\ =
+ | = concatenet 2 or more commands in one line (its a pipe), redirect STDOUT of one program to STDIN of the next program.
 <command1> | <command2> | <command3>  =  STDERR does not get in the pipe, by default, so use |& to have the STDERR go along with STDOUT
 
 ###################################################################################################################################################################################################################
@@ -210,6 +221,8 @@ awk [options] '<script>' <file> = the script most commonly are  '-f <script_file
                                                                 '
 awk -F "; " '/<pattern> {print $y '\t' $x}' <file> = print the columns y and x in this order, couting by every ';' as a delimitor of each collumn, and print a blanck space between the x and y by ('\t')
 awk -F "'\t'" '/<pattern> {print $y "" $x}' <file> = the same above but you swith the way to print a blanck space
+awk '<pattern> {print  $x " + " $y " = " $x+$y} <file> = 
+awk '{print $x + 200 "reais"} <file> = 
 
 ###################################################################################################################################################################################################################
 copy files and directories
