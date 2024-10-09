@@ -54,18 +54,20 @@ List of commands dont accept either: mkdir , cd , wget ,
 <command_line> &>> <file> = 
 
 Metacharacter
-. = 
-^ = 
-$ = 
-grep - i <pattern_line> '^..x.y&' <file> = 
-^ =
-$ = 
-[  ] = 
+. = Any character. You represent a caracther with dot
+^ = anchor the beggin of line 
+$ = anchor the end of line
+[  ] = enclose a character list so its a OR b OR c ... Can be used as a range or a 
+[^ ] = is the same above but negation the content among the brackets
 ls [XYZ]* = show list files with started X OR Y OR Z
-* =
-\ =
+* = quantifier zero or more occurrences
+\ = remove the metacharacter "special power" and belong a normal characher, therefore is the literal value of the character
+\ = in some programms make the normal character change the mean and gives new power for them
  | = concatenet 2 or more commands in one line (its a pipe), redirect STDOUT of one program to STDIN of the next program.
 <command1> | <command2> | <command3>  =  STDERR does not get in the pipe, by default, so use |& to have the STDERR go along with STDOUT
++ = match the preceding element one or more times
+? = match the preceding element zero or one time
+( ) =  group some parts of the regex, and save the match in a special variable
 
 ###################################################################################################################################################################################################################
 make list and viewr the conttents of a directory
@@ -106,9 +108,15 @@ help =
 
 ###################################################################################################################################################################################################################
 pwd = check you directory, print work directory 
+
 mkdir <PATH/name_directory> = make a directory / (-p) = creat a parent directory does not exist 
+
 cd <name_directory> = change directory
 
+screen = Multiplexes a physical terminal between several processes. It creates a single window with a shell in it and then gets out of your way so that you can use the program as you normally would.
+         You can create new (full-screen) windows with other programs in them (including more shells), kill existing windows, view a list of windows, turn output logging on and off, 
+         copy-and-paste text between windows, view the scrollback history.  All windows run their programs completely independent of each other.
+         Programs continue to run when their window is currently not visible and even when the whole screen session is detached from the user's terminal.
 ###################################################################################################################################################################################################################
 more AND less viewrs, not editors, pagers presentation on scree. Do not read the complete file before. Display the contents of a file in a terminal
 zmore AND zless = variants of more and less, respectively, that deal with compressed data (.gz)
@@ -168,9 +176,11 @@ grep -L "<pattern>" <file*> = same above but oposite sense | (-L) --files-withou
 grep -w xaxa <file> | cut -f X | sort -u = take all lines in file with have the pattern "xaxa" (can be a part of a word), cut and show only the X position (column), and finally show unical line
 grep '^<pattern>' <file> = following the matches lines started with just with those pattern
 grep '<pattern>$' <file> = following the matches lines ended with just whit those pattern
-grep '[^abi]' <file> = match lines that contain at least one character that is different from a, b or i (which could match even if the lines also happen to have one of those characters!)
+grep '[^abi]' <file> = match lines that contain at least one character that is different from a, b OR i (which could match even if the lines also happen to have one of those characters!)
 grep '^[abi]' <file> = anchor the begging of line, should be a, b OR i. Match lines started with a, b OR i
-grep '[i^g]..aa <file> = match lines that contain i, g or ^ followed by two characters of any kind, followed by aa
+grep '...[abi]$' <file> = anchor the end of line, the line have 4 characters and end with a OR b OR i
+grep '[i^g]..aa <file> = match lines that contain i, g or ^ followed by two characters of any kind, followed by "aa"
+grep -i '^..j.r$' <file> = show just the lines with the last position "r" and the third "j" (^ anchor the begginig and $ anchor the end)
 grep -E '<pattern1>|<part2>|<part3>' <file> = Interpret PATTERNS as extended regular expressions | (-E) --extended-regexp
 grep -E '(<pattern>){x}' <file> = match the line pattern with x (INT) repetitions
 grep -E '(<pattern>){,x}' <file> = 
@@ -205,7 +215,15 @@ sed -n '$=' <file> = Counts the number of lines,
 sed -n -f <script_file> <file> = use the script as a pattenr or a command to sed use in file
 sed 's/<pattern1>/<pattern2> &/' <file> = replace the pattern1 to 2, but rewrite the pattern1 also | (&) replaced by the entire string matched in the regular expression for pattern
 sed '<N>q' <file> = show all Nth first lines
-
+sed -r 's/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/\3-\1-\2/' <file> = substitute the YYYY-MM-DD to DD-MM--YYYY | (-r) = use the extended regular expression 
+        's#([0-9]{2})/([0-9]{2})/([0-9]{4})#\3-\1-\2#'
+(s#) substitution command with # separator | ([0-9]{2}) match 2 digits, put in \1 space | (/) match a single /, not more a Metacharacter | ([0-9]{4}) match 2 digits, put in \2 | 
+        's*([0-9]{2})/([0-9]{2})/([0-9]{4})*\3-\1-\2*'
+        's%([0-9]{2})/([0-9]{2})/([0-9]{4})%\3-\1-\2%'
+        's|([0-9]{2})/([0-9]{2})/([0-9]{4})|\3-\1-\2|'
+        's.([0-9]{2})/([0-9]{2})/([0-9]{4}).\3-\1-\2.'
+        's ([0-9]{2})/([0-9]{2})/([0-9]{4}) \3-\1-\2 '
+        's(\([0-9]{2})/\([0-9]{2})/\([0-9]{4})(\3-\1-\2('
 awk is useful for manipulation of data files, domain-specific language developed to extract data out of text streams. Parses each input line using “blanks” as a delimiter 
 A sequence of “blanks” is one delimiter, therefore empty fields (columns) will get collapsed by default. If the data is delimited using the space bar character, it could solve using a character list ([ ])
 awk is a filter, but it can also get data from one or more files. The structure is very similar to that of sed
@@ -222,7 +240,7 @@ awk [options] '<script>' <file> = the script most commonly are  '-f <script_file
 awk -F "; " '/<pattern> {print $y '\t' $x}' <file> = print the columns y and x in this order, couting by every ';' as a delimitor of each collumn, and print a blanck space between the x and y by ('\t')
 awk -F "'\t'" '/<pattern> {print $y "" $x}' <file> = the same above but you swith the way to print a blanck space
 awk '<pattern> {print  $x " + " $y " = " $x+$y} <file> = 
-awk '{print $x + 200 "reais"} <file> = 
+awk '{print $x + 200 " reais"} <file> = Print just the x collumn plus 200 , and complete the sentense with word " reais"
 
 ###################################################################################################################################################################################################################
 copy files and directories
