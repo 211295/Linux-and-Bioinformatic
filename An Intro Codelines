@@ -368,12 +368,6 @@ for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in 
   536  cut -f8 /data/assembly_summary_genbank.txt | grep -cw Mus | sort -u
   538  cut -f8 /data/assembly_summary_genbank.txt | grep -w Mus | uniq -c
 
-  585  awk '{print $1 ": " $2 + 10}' /data/column_example
-  586  awk '{print $1 ": " $2 + "reais"}' /data/column_example
-  587  awk '{print $1 ": " $2 + 'reais'}' /data/column_example
-  588  awk '{print $1 ": " $2 "reais"}' /data/column_example
-  589  awk '{print $1 ": " $2 " reais"}' /data/column_example
-  590  awk '{print $3, $14, $13}' /data/expression.diffawk '$13 < 0.05 {print $3, $14, $13}' /data/expression.diff
   591  head /data/expression.diff
   592  awk '$13 < 0.05 {print $3, $14, $13}' /data/expression.diff
   593  awk '0.9 < $13 < 0.05 {print $3, $14, $13}' /data/expression.diff
