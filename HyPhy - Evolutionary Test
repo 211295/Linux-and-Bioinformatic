@@ -1,2 +1,42 @@
 ### HyPhy (Hypothesis Testing using Phylogenies) is an open-source software package for the analysis of genetic sequences.
-### 
+### Its allow the specification and fitting of a broad class of continuous-time discrete-space Markov models of sequence evolution.
+### There is a lot of models in that program, I will work with aBSREL, FUBAR and FEL (- see in https://datamonkey.org/)
+### Once a model is defined, it can be fitted to data (using a fixed topology tree), its parameters can be constrained in user-defined ways to test various hypotheses.
+### Primarily implements maximum likelihood methods, but it can also be used to perform some forms of Bayesian inference (e.g FUBAR method)
+
+###############################################################################################################################################################################################################
+### AS ALWAYS YOU HAVE 2 WAYS TO DOWNLOAD, FIRST IN CONDA AND SECOND IN SERVE
+### 1 OPTION - see ANACONDA, MINICONDA & CONDA file https://anaconda.org/bioconda/hyphy/
+### as the others programms, make a envoirment in conda
+(base)  $ conda create -n hyphy
+(base)  $ conda activate hyphy
+(hyphy) $ conda install bioconda::hyphy
+(hyphy) $ conda install bioconda/label/cf201901::hyphy
+### DOWNLOAD A LOT OF THINGS
+
+### 2 OPTION 
+### Install in default terms https://www.hyphy.org/installation/
+(base) $ wget https://github.com/veg/hyphy/archive/refs/tags/2.5.65.actual.tar.gz
+(base) $ tar xvfz hyphy-2.5.65.tar.gz
+### run the cmake command
+(base) $ cd hyphy-2.5.65
+(base) ~/hyphy-2.5.65$ cmake .
+### if the cmake dont work, or dont have the cmake command, see in https://cmake.org/download/
+   [ ### START CHECKING THE CMAKE VERSION                                                                                        |
+   | (base) $ cmake --version                                                                                                    |
+   | ### And after follow the tutorials in internet                                                                              |
+   | (base) $ wget https://github.com/Kitware/CMake/releases/download/v3.31.3/cmake-3.31.3-linux-x86_64.sh                       |
+   | (base) $ sudo apt remove cmake                                                                                              |
+   | (base) $ cp cmake-3.31.3 /opt/                                                                                              |
+   | (base) $ cd /opt/ ; sudo bash /opt/cmake-3.*your_version*.sh                                                                | 
+   | ### the ansewr would be Yes, and after create a symbolic link to this command                                               |
+   | (base) $ sudo ln -s /opt/cmake-3.*your_version*/bin/* /usr/local/bin                                                        |
+   | (base) $ ll /usr/local/bin/cmake                                                                                            |
+   |          lrwxrwxrwx 1 <user> audit 35 <date> <time> /usr/local/bin/cmake -> cmake-3.31.3-linux-x86_64/bin/cmake             |
+   | ### check the new version                                                                                                   |
+   | (base) $ cmake --version                                                                                                    |
+   | ### OR COULD BE JUST DOWNLOAD, BUT ITS NOT CERTEALY WILL WORK                                                               |
+   | (base) $ wget https://github.com/Kitware/CMake/releases/download/v3.31.3/cmake-3.31.3.tar.gz ; tar xfz cmake-3.31.3.tar.gz  ]
+
+### after the cmake command, move following the tutorial
+(base) $ 
