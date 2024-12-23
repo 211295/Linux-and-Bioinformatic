@@ -18,10 +18,10 @@
 ### Install in default terms https://www.hyphy.org/installation/
 (base) $ wget https://github.com/veg/hyphy/archive/refs/tags/2.5.65.actual.tar.gz
 (base) $ tar xvfz hyphy-2.5.65.tar.gz
-### run the cmake command
+### Run the cmake command
 (base) $ cd hyphy-2.5.65
 (base) ~/hyphy-2.5.65$ cmake .
-### if the cmake dont work, or dont have the cmake command, see in https://cmake.org/download/
+### If the cmake dont work, or dont have the cmake command, see in https://cmake.org/download/
    [ ### START CHECKING THE CMAKE VERSION                                                                                        |
    | (base) $ cmake --version                                                                                                    |
    | ### And after follow the tutorials in internet                                                                              |
@@ -38,5 +38,9 @@
    | ### OR COULD BE JUST DOWNLOAD, BUT ITS NOT CERTEALY WILL WORK                                                               |
    | (base) $ wget https://github.com/Kitware/CMake/releases/download/v3.31.3/cmake-3.31.3.tar.gz ; tar xfz cmake-3.31.3.tar.gz  ]
 
-### after the cmake command, move following the tutorial
-(base) $ 
+### after the cmake command, move following the tutorial, to construct a executable of HYPHYMP and HYPHYMPI
+(base) $ make MP ; make MPI
+### OR
+(base) $ make -j MP ; make MPI
+
+### With those 2 executables, lets prepare the 
