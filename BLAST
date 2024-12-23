@@ -1,2 +1,15 @@
 BLAST = Base L Aligment S T 
 blast -query <
+
+
+
+
+(base) $ cd ~/Ostei/cds.fna/Single_line 
+### Activate in my case
+(base) $ module load Bio/BLAST+/2.15.0 
+
+(base) $ for file in [AS]*;
+        do blastx -query $file -db ~/<directory>/prot.faa/<genes>.fasta -evalue 1e-15 -outfmt 6 -out <direcoty>/$file,genes.out;
+        done
+
+### After that, 
