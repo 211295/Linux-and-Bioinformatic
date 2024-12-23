@@ -12,4 +12,9 @@ blast -query <
         do blastx -query $file -db ~/<directory>/prot.faa/<genes>.fasta -evalue 1e-15 -outfmt 6 -out <direcoty>/$file,genes.out;
         done
 
-### After that, 
+### After that, see the #13 collum (e-value) and separate just the 
+(base) $ for file in Genes_of_*; 
+         do awk '{print $1}' $file | uniq > gene_$file;
+         done
+### Check the list and count how much lines there is each file
+(base) $ wc -l gene_*
