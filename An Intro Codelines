@@ -84,6 +84,8 @@ ls /abc/defg[hijl]* = shows all files in 'abc' directory with name 'defg' follow
 ls /abc/defg[hijl]? = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'l' and have just one more letter after the string variate, therefore just a file with 6 letters
 ls abc??* = shows all files start with 'abc' following any 2 characteres, and more or equal than 5 letters _ _ _ _ _ ...
 ls -l [a-f] | wc -l > new_file = create a list of files start with a to f, pipe with counter, then count the lines was created by ls -l and finely appeding to a new_file 
+ls -R * = show all files with content recursivaly, therefore 
+ls -r * = show all files in reversed sort way
 
 file command determine file type
 file </PATH/file> = show the kinds of file is   | ASCII text = American Standard Code for Information Interchange, is the most common format for text files in computers
@@ -110,6 +112,7 @@ help =
 pwd = check you directory, print work directory 
 
 mkdir <PATH/name_directory> = make a directory / (-p) = creat a parent directory does not exist 
+mkdir -p new_direc{src,doc/{mail,ref},data} = creat "new_direc" with other 3 directories (src , doc and data) and inside doc/ we have 2 more directories (mail and ref)
 
 cd <name_directory> = change directory
 
