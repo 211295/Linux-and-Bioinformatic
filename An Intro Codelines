@@ -48,10 +48,14 @@ List of commands dont accept either: mkdir , cd , wget ,
 <new_file> < <file> = redirect the standard input (STDIN)
  << : redirect STDIN as a here-document,
  <<< : redirect STDIN as a here-string to a program
+ && :
+ & : 
 <command_line> > <file> 2>&1 = It is possible to merge STDOUT and STDERR and send them to the same file
 <command_line> &> <file> = the same above / send the two streams to the same file 
 <command_line> >> <file> 2>&1 = Appending, without overwrite, the STDOUT and STDERR in the previous exist file
 <command_line> &>> <file> = 
+<command> && <command>
+<command> & <command> 
 
 Metacharacter
 . = Any character. You represent a caracther with dot
@@ -267,6 +271,8 @@ echo {x..y} OR {y..x} = will print the range x to y (decresment and incriscment)
 echo {x..y..z} = will print the range x to y with the logical z
 echo 
 echo
+
+tee command read the standardinput and redirect as a standardoutput
 
 ###################################################################################################################################################################################################################
 find search for files in a directory hierarchy
