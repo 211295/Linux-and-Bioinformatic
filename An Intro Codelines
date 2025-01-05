@@ -1,13 +1,9 @@
 green is the terminal
-~ is the way to your user terminal
-touch <nameoffile.txt> = create a text with name <nameoffile.txt> 
+~ is the way to your user terminal 
 less = show the file just in the limit of the screen, provides the same as more plus extensive enhancements, press / and some pattern, the command show this pattern in the file
         inside less, use crtl B " -> divide the screen in two and you can see the command line and the less window 
-rm <directory/archive> = remove any archive or folder (-r) = remove the directory
 find <file> or <directory> = search for files, the output is a list of files or directories, you can concatenet with others commands (wc, head, less, tail, sort)
 wget www... = download the archive directly on terminal
-. = currently directory
-.. = directory above currently directory
 scp -P <door> -r <archive_directory>/ 'serve'/'username'/'directory'/'folder'> = copy a holy directory to other username, indicate the door (-P) and the kind of archive (-r) Residual 
 scontrol =
 [Shift] + [Insert] = Ctrl V
@@ -54,8 +50,10 @@ List of commands dont accept either: mkdir , cd , wget ,
 <command_line> &> <file> = the same above / send the two streams to the same file 
 <command_line> >> <file> 2>&1 = Appending, without overwrite, the STDOUT and STDERR in the previous exist file
 <command_line> &>> <file> = 
-<command> && <command>
-<command> & <command> 
+<command> && <command> = 
+<command> & <command> = 
+. = currently directory
+.. = directory above currently directory
 
 ### Metacharacter
 . = Any character. You represent a caracther with dot
@@ -67,7 +65,7 @@ ls [XYZ]* = show list files with started X OR Y OR Z
 * = quantifier zero or more occurrences
 \ = remove the metacharacter "special power" and belong a normal characher, therefore is the literal value of the character
 \ = in some programms make the normal character change the mean and gives new power for them
- | = concatenet 2 or more commands in one line (its a pipe), redirect STDOUT of one program to STDIN of the next program.
+ | = concatenate 2 or more commands in one line (its a pipe), redirect STDOUT of one program to STDIN of the next program.
 <command1> | <command2> | <command3>  =  STDERR does not get in the pipe, by default, so use |& to have the STDERR go along with STDOUT
 + = match the preceding element one or more times
 ? = match the preceding element zero or one time
@@ -112,6 +110,7 @@ which -a <filename> = locate a command, returns the pathnames
 
 help = 
 
+touch <nameoffile.txt> = create a text with name <nameoffile.txt> 
 ###################################################################################################################################################################################################################
 pwd = check you directory, print work directory 
 
@@ -259,6 +258,29 @@ cp -f <file> <other_file> = --force
 cp -s <file> <new_name> = --symbolic-link make symbolic links instead of copying, is almost the same ln
 scp - speciall copy, when you would like to copy files from one server to other
 
+rm <file> = remove any archive or folder 
+rm -r <directory> = remove the directory, (-r) remove recursively thing
+
+translate (i.e. substitute) is the default, squeeze (i.e. eliminates repetitions), and/or delete characters from standard input, writing to standard output
+tr a-z A-Z < <file> = all lower-case letters have been changed to upper-case
+tr '[:lower:]' '[:upper:]' < <file> = same as above, use [:_____:] and inside "character class" (e.g alnum, alpha, blank, lower, punct, space, upper, xdigit)
+tr -d -c '[:alnum:]' < <file> = delete everything in file that is not a letter or number, so gets the complement of the characters listed | (-d) --delete | (-c) --complement
+tr -d '[:cntrl:]' < <file> = remove non-printing (invisible) characters from the file | (cntrl) all control characters
+tr -s  replace each sequence of a repeated character that is listed in the last specified | (-s) --squeeze-repeats  with a single occurrence of that character
+
+rename files at time supplied according to the rule specified as the first argument
+rename -v 's/<pattern>/<replacement>/' <files*> = replace the pattern literaly (like in sed), and verbose that | (-v) --verbose
+rename -d 's/<pattern>/<replacement>/' <files*> = Do not rename directory with the same pattern in files | (-d)
+rename 'y/A-Z/a-z/' <files*> = 
+rename 's/\<pattern>$//' <files*>.<pattern> =  remove the pattern in the end of the name of all files.
+rename 's/$/<replacement>/' <files>* = insert a new piece in the name at the end, with dollar sign $ showing where anchor the replacement
+rename 's/__/<replacemente>/' <files> = insert a new piece in the name at the beggining, with  showing where anchor the replacement
+
+move files and rename them
+mv <PATH/file> <PATH/diretory/> = move the file to the directory you want | (-i) ask the intention | (-u) update, move only the missing information | (-n) not alowed to mv overwrite
+mv <file_name> <new_name> = change the name of file in currently directory
+for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in the end of name, as the rename command above
+
 ###################################################################################################################################################################################################################
 echo writes each given STRING to standard output (STDOUT), with a space between each and a newline after the last one
 echo $((expr)) = STRDIN 0
@@ -349,25 +371,6 @@ join j -2 <file1> <file2> =
 sort <file*> | join -1 2 -2 1 <file1> <file2> = sort files and create a table with 2 columns using the second column of the first file in first FIELD, and and the first column of the second file in second FIELD
 
 ###################################################################################################################################################################################################################
-translate (i.e. substitute) is the default, squeeze (i.e. eliminates repetitions), and/or delete characters from standard input, writing to standard output
-tr a-z A-Z < <file> = all lower-case letters have been changed to upper-case
-tr '[:lower:]' '[:upper:]' < <file> = same as above, use [:_____:] and inside "character class" (e.g alnum, alpha, blank, lower, punct, space, upper, xdigit)
-tr -d -c '[:alnum:]' < <file> = delete everything in file that is not a letter or number, so gets the complement of the characters listed | (-d) --delete | (-c) --complement
-tr -d '[:cntrl:]' < <file> = remove non-printing (invisible) characters from the file | (cntrl) all control characters
-tr -s  replace each sequence of a repeated character that is listed in the last specified | (-s) --squeeze-repeats  with a single occurrence of that character
-
-rename files at time supplied according to the rule specified as the first argument
-rename -v 's/<pattern>/<replacement>/' <files*> = replace the pattern literaly (like in sed), and verbose that | (-v) --verbose
-rename -d 's/<pattern>/<replacement>/' <files*> = Do not rename directory with the same pattern in files | (-d)
-rename 'y/A-Z/a-z/' <files*> = 
-rename 's/\<pattern>$//' <files*>.<pattern> =  remove the pattern in the end of the name of all files.
-rename 's/$/<replacement>/' <files>* = insert a new piece in the name at the end, with dollar sign $ showing where anchor the replacement
-rename 's/__/<replacemente>/' <files> = insert a new piece in the name at the beggining, with  showing where anchor the replacement
-
-move files and rename them
-mv <PATH/file> <PATH/diretory/> = move the file to the directory you want | (-i) ask the intention | (-u) update, move only the missing information | (-n) not alowed to mv overwrite
-mv <file_name> <new_name> = change the name of file in currently directory
-for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in the end of name, as the rename command above
 
 ###################################################################################################################################################################################################################
 
