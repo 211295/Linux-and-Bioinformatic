@@ -57,7 +57,7 @@ List of commands dont accept either: mkdir , cd , wget ,
 <command> && <command>
 <command> & <command> 
 
-Metacharacter
+### Metacharacter
 . = Any character. You represent a caracther with dot
 ^ = anchor the beggin of line 
 $ = anchor the end of line
