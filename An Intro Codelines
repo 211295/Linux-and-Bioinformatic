@@ -389,7 +389,16 @@ join j -2 <file1> <file2> =
 sort <file*> | join -1 2 -2 1 <file1> <file2> = sort files and create a table with 2 columns using the second column of the first file in first FIELD, and and the first column of the second file in second FIELD
 
 ###################################################################################################################################################################################################################
-
+chmod Change Mode. Changes the file mode bits of each given file according to mode, which can be either a symbolic representation of changes to make, or an octal number representing the bit
+The  format  of a symbolic mode is [ugoa...][[-+=][perms...]...], where perms is either zero or more letters from the set rwxXst, or a single letter from the set ugo. 
+Multiple symbolic modes can be given, separated by commas.
+chmod 
+A combination of the letters ugoa controls which users' access to the file will be changed: the user who owns it (u), other users in the file's group (g), other users not in the file's group (o), or all users (a)
+chmod
+A numeric mode is from one to four octal digits (0-7), derived by adding up the bits with values 4, 2, and 1.
+chmod
+The letters rwxXst select file mode bits for the affected users: read (r), write (w), execute (or search  for  directories)  (x), execute/search  only if the file is a directory or already has execute permission
+for some user (X), set user or group ID on execution (s), restricted deletion flag or sticky bit (t).
 ###################################################################################################################################################################################################################
 
   494  find /data/assembly_summary_genbank.txt
