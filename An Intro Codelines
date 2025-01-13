@@ -1,11 +1,21 @@
-green is the terminal
-~ is the way to your user terminal 
-less = show the file just in the limit of the screen, provides the same as more plus extensive enhancements, press / and some pattern, the command show this pattern in the file
-        inside less, use crtl B " -> divide the screen in two and you can see the command line and the less window 
-find <file> or <directory> = search for files, the output is a list of files or directories, you can concatenet with others commands (wc, head, less, tail, sort)
-wget www... = download the archive directly on terminal
-scp -P <door> -r <archive_directory>/ 'serve'/'username'/'directory'/'folder'> = copy a holy directory to other username, indicate the door (-P) and the kind of archive (-r) Residual 
-scontrol =
+green is the terminal and ~ is the way to your user terminal 
+The kernel (operating system kernel) manages the computer's resources, such as the Central Processing Unit (or "CPU"), the memory, all input/output (I/O), etc., and allows other programs to run and use these resources
+The shell, also known as (aka) a Command Line Interpreter (CLI), is a text-only interface between the user and the kernel. Its main function is to read the commands that are typed in the terminal window by the user and execute them.
+ - examples of shell : sh , csh , tcsh , bash 
+The programs can be drived by to external programs that can be installed on the computer, however UNIX (or UNIX-like) operating systems come with many built-in command-line interface programs and shell utilities:
+File system -> cat, cd, chmod, chown, chgrp, cksum, cmp, cp, dd, du, df, file, fsck, fuser, ln, ls, lsattr, lsof, mkdir, mount, mv, pax, pwd, rm, rmdir, size, split, tee, touch, type, umask 
+Processes -> at, bg, chroot, cron, fg, kill, killall, nice, pgrep, pidof, pkill, ps, pstree, time, top
+User environment -> clear, env, exit, finger, history, id, logname, mesg, passwd, su, sudo, uptime, talk, tput, uname, w, wall, who, whoami, write
+Text processing -> awk, banner, basename, comm, csplit, cut, dirname, ed, ex, fmt, head, iconv, join, less, more, paste, sed, sort, spell, strings, tail, tr, uniq, vi, wc, xargs
+Shell builtins -> alias, echo, expr, printf, sleep, test, true, and, false, unset, wait, yes
+Networking -> dig, host, ifconfig, inetd, netcat, netstat, nslookup, ping, rdate, rlogin, ssh, traceroute
+Searching -> find, grep, locate, whatis, whereis
+Documentation -> apropos, help, man
+Miscellaneous -> bc, dc, cal, date, lp, lpr
+Hardware initialization when The BIOS (Basic Input/Output System) execute (the firts code of software). In other words 'puts in an available state' every piece of hardware, such as the network card, the hard disk, the graphic card, the optical drive, the keyboard, the mouse, etc.
+When every piece of hardware is initialized, the BIOS of the motherboard tries to start the Opening Sistem. The OS is started and takes control, eventually.
+The OS kernel searches for known hardware... It loads the drivers for every computer hardware found... It creates interfaces for applications to communicate with the computer hardware... It starts all system services. Its waiting for user make the command
+
 [Shift] + [Insert] = Ctrl V
 /home = this is where user data lives
 /root = the administrative user's home directory. Mind the difference between /, the root directory and /root, the home directory of the root user
@@ -24,7 +34,6 @@ scontrol =
 /net = standard mount point for entire remote file systems
 /opt = typically contains extra and third party software
 /proc = a virtual file system containing information about system resources
-
 ###################################################################################################################################################################################################################
 Standard input (stdin) is represented by number 0, where data comes from to enter the program
 Standard output (stdout) is represented by number 1, where data goes when it gets out of the program
@@ -141,9 +150,8 @@ more AND less viewrs, not editors, pagers presentation on scree. Do not read the
 zmore AND zless = variants of more and less, respectively, that deal with compressed data (.gz)
 more +5 <file> = just show the line 5 to the end
 more +/<pattenr_in_file> <file> = start displaying content after a specific piece of text is first found. Filter for  paging  through text one screenful at a time
-less <file> = show the file just in the limit of the screen, press SPACE to roll down, or the 
-          inside less use <crtl B "> = divide the screen in two and you can see the command line and the less window
-                      use /<parttner_in_file> = can find a specific word after press the / and press N to next match
+less <file> = show the file just in the limit of the screen, press SPACE to roll down, or the "inside" less use <crtl B "> = divide the screen in two and you can see the command line and the less window
+                     . use /<parttner_in_file> = can find a specific word after press the / and press N to next match
 less +/<pattenr_in_file> <file> = same as more, but the less display, after finding the first match, you can see the next by typing n (next match)
 less -S <file> = do not want the lines to be wrapped ("break") on the screen, but to be chopped instead. Easier to see "tables"
 
@@ -274,7 +282,10 @@ cp -u -i -p <file> <new_file> = (-u) update, copy only missing information to ne
 cp -l <file> <new_name> =  hard link files instead of copying
 cp -f <file> <other_file> = --force
 cp -s <file> <new_name> = --symbolic-link make symbolic links instead of copying, is almost the same ln
+
 scp - speciall copy, when you would like to copy files from one server to other
+scp -P <door> <file> server/usrer/PATH/ 
+scp -P <door> -r <directory> serve/username/directory/folder> = copy a holy directory to other username | (-P) "port" the dor of server | (-r) Recursivally the kind of the file  
 
 rm <file> = remove any archive or folder 
 rm -r <directory> = remove the directory, (-r) remove recursively thing
@@ -294,7 +305,7 @@ rename 's/\<pattern>$//' <files*>.<pattern> =  remove the pattern in the end of 
 rename 's/$/<replacement>/' <files>* = insert a new piece in the name at the end, with dollar sign $ showing where anchor the replacement
 rename 's/__/<replacemente>/' <files> = insert a new piece in the name at the beggining, with  showing where anchor the replacement
 
-move files and rename them
+move files and rename them, ACTUALLY you just move the content of the file with other, with annoter name
 mv <PATH/file> <PATH/diretory/> = move the file to the directory you want | (-i) ask the intention | (-u) update, move only the missing information | (-n) not alowed to mv overwrite
 mv <file_name> <new_name> = change the name of file in currently directory
 for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in the end of name, as the rename command above
@@ -315,7 +326,7 @@ echo
 tee command read the standardinput and redirect as a standardoutput
 
 ###################################################################################################################################################################################################################
-find search for files in a directory hierarchy
+find search for files in a directory hierarchy. search for files, the output is a list of files or directories, you can concatenet with others commands (wc, head, less, tail, sort)
 find / -name <file> 2> /dev/null
 
 ###################################################################################################################################################################################################################
@@ -389,7 +400,7 @@ join j -2 <file1> <file2> =
 sort <file*> | join -1 2 -2 1 <file1> <file2> = sort files and create a table with 2 columns using the second column of the first file in first FIELD, and and the first column of the second file in second FIELD
 
 ###################################################################################################################################################################################################################
-chmod Change Mode. Changes the file mode bits of each given file according to mode, which can be either a symbolic representation of changes to make, or an octal number representing the bit
+chmod Change Mode changes the file mode bits of each given file according to mode, which can be either a symbolic representation of changes to make, or an octal number representing the bit
 The  format  of a symbolic mode is [ugoa...][[-+=][perms...]...], where perms is either zero or more letters from the set rwxXst, or a single letter from the set ugo. 
 Multiple symbolic modes can be given, separated by commas.
 chmod 
@@ -399,7 +410,10 @@ A numeric mode is from one to four octal digits (0-7), derived by adding up the 
 chmod
 The letters rwxXst select file mode bits for the affected users: read (r), write (w), execute (or search  for  directories)  (x), execute/search  only if the file is a directory or already has execute permission
 for some user (X), set user or group ID on execution (s), restricted deletion flag or sticky bit (t).
+
 ###################################################################################################################################################################################################################
+
+wget <httml/:___________________.com> = download the archive directly on terminal
 
   494  find /data/assembly_summary_genbank.txt
   526  grep -F -wcfe Mus /data/assembly_summary_genbank.txt | wc -l
@@ -407,7 +421,6 @@ for some user (X), set user or group ID on execution (s), restricted deletion fl
   536  cut -f8 /data/assembly_summary_genbank.txt | grep -cw Mus | sort -u
   538  cut -f8 /data/assembly_summary_genbank.txt | grep -w Mus | uniq -c
 
-  591  head /data/expression.diff
   592  awk '$13 < 0.05 {print $3, $14, $13}' /data/expression.diff
   593  awk '0.9 < $13 < 0.05 {print $3, $14, $13}' /data/expression.diff
   594  awk '/0.9/ {print $3, $14, $13}' /data/expression.diff
