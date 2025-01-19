@@ -1,5 +1,10 @@
- 
-The kernel (operating system kernel) manages the computer's resources, such as the Central Processing Unit (or "CPU"), the memory, all input/output (I/O), etc., and allows other programs to run and use these resources
+The kernel (operating system kernel) manages the computer's resources, such as the Central Processing Unit (or "CPU"), the memory, all input/output (I/O), etc., and allows other programs to run and use these resources.
+The CPU gets commands and data from the working memory, processes them, and returns the results to working memory.
+A single CPU can have more than one processing core (a “mini-CPU” within), example: dual-core, quad-core, octo-core etc
+The RAM (random access memory) is a set of chips that function as the working memory of the computer.
+The RAM stores commands and data that are being actively used: everything  you see on the screen is in a form of RAM (either the main system memory or a video card’s memory)
+The amount of data that can go into RAM is measured in multiples of bits or bytes (Gb or GB for gigabits or gigabytes, respectively). Data in RAM disappears when the computer is turned off
+
 The shell, also known as (aka) a Command Line Interpreter (CLI), is a text-only interface between the user and the kernel. Its main function is to read the commands that are typed in the terminal window by the user and execute them.
  - examples of shell : sh , csh , tcsh , bash 
 The programs can be drived by to external programs that can be installed on the computer, however UNIX (or UNIX-like) operating systems come with many built-in command-line interface programs and shell utilities:
@@ -15,6 +20,28 @@ Miscellaneous -> bc, dc, cal, date, lp, lpr
 Hardware initialization when The BIOS (Basic Input/Output System) execute (the firts code of software). In other words 'puts in an available state' every piece of hardware, such as the network card, the hard disk, the graphic card, the optical drive, the keyboard, the mouse, etc.
 When every piece of hardware is initialized, the BIOS of the motherboard tries to start the Opening Sistem. The OS is started and takes control, eventually.
 The OS kernel searches for known hardware... It loads the drivers for every computer hardware found... It creates interfaces for applications to communicate with the computer hardware... It starts all system services. Its waiting for user make the command
+
+The binary code: base 2, digits only 0 and 1 
+"There are only 10 kinds of people: the people how knows the binary code, and the people how doesnt know the binary code"
+nth position of the number is the power of base 2, and the number (0 or 1) mutiply the 2^n
+1 x 2^n or 0 x 2^n 
+       0 = 0   (0x2^0)
+       1 = 1   (1x2^0)
+      10 = 2   (1x2^1 + 0x2^0)
+      11 = 3   (1x2^1 + 1x2^0)
+     101 = 5   (1x2^2 + 0x2^1 + 1x2^0)
+     111 = 7   (1x2^2 + 1x2^1 + 1x2^0)
+   10001 = 17  (1x2^4 + 0x2^3 + 0x2^2 + 0x2^1 + 1x2^0)
+   11111 = 31  (1x2^4 + 1x2^3 + 1x2^2 + 1x2^1 + 1x2^0)
+ 1001010 = 74  (1x2^6 + 0x2^5 + 0x2^4 + 1x2^3 + 0x2^2 + 1x2^1 + 0x2^0)
+11111111 = 255 (1x2^8 + 1x2^7 + 1x2^6 + 1x2^5 + 1x2^4 + 1x2^3 + 1x2^2 + 1x2^1 + 1x2^0)
+A byte is a set of 8 bits (and a bit is a binary code, 0 and 1): 
+2^0 = 1 = 1 bit                                    10^0 = 1 = 1 bit
+2^3 = 8 = 8 bits = 1 byte
+2^10 = 1,024 b = 1 KIBIbit                         10^3 = 1,000 kb = 1 KILObit
+2^20 = 1,048,576 Kib =  1 MEGIbit                  10^6 = 1,000,000 Mb = 1 MEGAbit
+2^30 = 1,073,741,824 Gib =  1 GIBIbit              10^9 = 1,000,000,000 Gb = 1 GIGAbit
+2^40 = 1,099,511,627,776 Tib = 1 TEBIbit           10^12 = 1,000,000,000,000 Tb = 1 TERAbit
 
 [Shift] + [Insert] = Ctrl V
 green is the terminal and. ~ is the way to your user terminal. / is the root, and below that, we have a top-down tree
@@ -142,6 +169,10 @@ help =
 touch <nameoffile.txt> = create a text with name <nameoffile.txt> 
 ###################################################################################################################################################################################################################
 pwd = check you directory, print work directory 
+
+df check the disk free, i.e. system resource
+df ./ = see the disk space in the disk in the curently directory
+df -h ./ = see the numbers used and available disk in "human-redable", print the size of powers of 1024 (e.g 
 
 mkdir <PATH/name_directory> = make a directory / (-p) = creat a parent directory does not exist 
 mkdir -p new_direc{src,doc/{mail,ref},data} = creat "new_direc" with other 3 directories (src , doc and data) and inside doc/ we have 2 more directories (mail and ref)
@@ -411,15 +442,21 @@ sort <file*> | join -1 2 -2 1 <file1> <file2> = sort files and create a table wi
 ###################################################################################################################################################################################################################
 chmod Change Mode changes the file mode bits of each given file according to mode, which can be either a symbolic representation of changes to make, or an octal number representing the bit
 The  format  of a symbolic mode is [ugoa...][[-+=][perms...]...], where perms is either zero or more letters from the set rwxXst, or a single letter from the set ugo. 
-Multiple symbolic modes can be given, separated by commas.
-chmod 
-A combination of the letters ugoa controls which users' access to the file will be changed: the user who owns it (u), other users in the file's group (g), other users not in the file's group (o), or all users (a)
-chmod
-A numeric mode is from one to four octal digits (0-7), derived by adding up the bits with values 4, 2, and 1.
-chmod
 The letters rwxXst select file mode bits for the affected users: read (r), write (w), execute (or search  for  directories)  (x), execute/search  only if the file is a directory or already has execute permission
 for some user (X), set user or group ID on execution (s), restricted deletion flag or sticky bit (t).
-
+A combination of the letters "ugoa" controls which users' access to the file will be changed: u = users, g = other users inside the group, o = other users NOT in the file's group, a = all users
+(+) plus add the permission, (-) minus remove the permission
+chmod o-rx <file> = remove the permission of others of read and write
+chmod a+rwx <file> = give the permission of all to write, read and execute
+chmod ug+rw o-xw <file> = give the mermission only to group and user to read and write, and remove the execute and write permission of others 
+A numeric mode is from one to four octal digits (0-7), derived by adding up the bits with values 4, 2, and 1.
+read (r) recive value 4, write (w) recieve value 2, execute (x) recive value 1. And the itereation of them recieve the sum
+r and x = 4 + 1 = 5 / r and w  = 4 + 2 = 6 / r, w and x = 4 + 2 + 1 = 7
+chmod 750 <file> = remove the permission of others of read and write
+chmod 777 <file> = give the permission of all to write, read and execute
+chmod 664 <file> =  give the mermission only to group and user to read and write, and remove the execute and write permission of others
+Multiple symbolic modes can be given, separated by commas.
+chmod u=rwx,g=rx,o=rx <file> = user can read, write and execute/ group and others can only read and execute
 ###################################################################################################################################################################################################################
 
 wget <httml/:___________________.com> = download the archive directly on terminal
