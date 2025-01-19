@@ -1,8 +1,9 @@
 The kernel (operating system kernel) manages the computer's resources, such as the Central Processing Unit (or "CPU"), the memory, all input/output (I/O), etc., and allows other programs to run and use these resources.
 The CPU gets commands and data from the working memory, processes them, and returns the results to working memory.
 A single CPU can have more than one processing core (a “mini-CPU” within), example: dual-core, quad-core, octo-core etc
-The RAM (random access memory) is a set of chips that function as the working memory of the computer.
-The RAM stores commands and data that are being actively used: everything  you see on the screen is in a form of RAM (either the main system memory or a video card’s memory)
+The RAM (random access memory) is a set of chips that function as the working memory of the computer. RAM is usually the system component that is most crucial to computer speed.
+The RAM stores commands and data that are being actively used: everything  you see on the screen is in a form of RAM (either the main system memory or a video card’s memory).
+If your RAM gets full, a part of the hard-disk drive (or SSD, solid state drive) is used as auxiliary working memory.
 The amount of data that can go into RAM is measured in multiples of bits or bytes (Gb or GB for gigabits or gigabytes, respectively). Data in RAM disappears when the computer is turned off
 
 The shell, also known as (aka) a Command Line Interpreter (CLI), is a text-only interface between the user and the kernel. Its main function is to read the commands that are typed in the terminal window by the user and execute them.
@@ -66,6 +67,7 @@ Hierarchical filesystem structure: many sub directories which organize the files
 
 ABSOLUTE PATH - starts at the root '/'       vs  RELATIVE PATH - starts at the current directory
 /home/user/<directory>/<folder>/<file>.txt       <file>.txt
+         ~/<directory>/<folder>/<file>.txt       ./<file>.txt
 CURRENT DIRECTORY                            vs  PARENT DIRECTORY
 
 ###################################################################################################################################################################################################################
@@ -167,12 +169,52 @@ which -a <filename> = locate a command, returns the pathnames
 help = 
 
 touch <nameoffile.txt> = create a text with name <nameoffile.txt> 
+
+alias is a buitl programm that allow manage aliases. Create shortcut of programms
+alias <shortcut>='<programm with options>'
+nano .profile
+nano .bashrc
 ###################################################################################################################################################################################################################
 pwd = check you directory, print work directory 
 
 df check the disk free, i.e. system resource
+in this order : Filesystem     1K-blocks   Used    Available    Use%     Mounted on
 df ./ = see the disk space in the disk in the curently directory
-df -h ./ = see the numbers used and available disk in "human-redable", print the size of powers of 1024 (e.g 
+df -h ./ = see the numbers used and available disk in "huma`n-redable", print the size of powers of 1024 (e.g 
+
+du see how much space each directory is taking 
+du ./ = see how much space it
+du -sh = look the number of memory used | (-s) total space | (-h) human redable
+du -b = look the number in BYTES | (-b) --bytes or --apparent-size 
+
+free Display amount of free and used memory in the system in kibibytes (as default)
+free = you can see : total        used        free      shared  buff/cache   available
+free -h = look a human readable numbers
+
+lscpu Display information about the CPU architecture. 
+Architecture: CPU op-mode(s); Address sizes; Byte Order
+CPU(s): On-line CPU(s) list
+Vendor ID: CPU family;  Model; Thread(s) per core; Core(s) per socket; Socket(s); Stepping; BogoMIPS; Flags. 
+
+top - display Linux processes
+htop - similar to top but is a interactive process viewe - Percentage of CPU cores and memory being used by each program
+
+who Show a list of who is currently in the system, logged on, in which terminal, and from which original address (IP number or not)
+w Show who is logged on and WHAT they are doing, i.e. what program each user is running 
+
+env run a program in a modified environment. Set each NAME to VALUE in the environment and run COMMAND. 
+
+printenv print all or part of environment
+
+export [biult programm] and define the PATH (absolute and relative) or change the PATH. Each directory in the list is separated from the next by a colon (:)
+There is set of environmental variables whose names start with LC {LC_NUMERIC, LC_TIME, LC_MONETARY} the locale of the systemm, which defines aspects related to language, time/date format, currency, numbers. 
+The code en_US.UTF-8 define American English, pt_BR.UTF-8 define Brasilian features.
+export PATH=$PATH:~/<directories> = 
+export LC_TIME=pt_BR.UTF-8 = define the time of brasilian locate
+export LC_MONETARY=pt_BR.UTF-8 = define the currency Real (R$)
+
+date - print or set the system date and time
+date = <day_week> <month> <day> <hour> <  > <year>
 
 mkdir <PATH/name_directory> = make a directory / (-p) = creat a parent directory does not exist 
 mkdir -p new_direc{src,doc/{mail,ref},data} = creat "new_direc" with other 3 directories (src , doc and data) and inside doc/ we have 2 more directories (mail and ref)
@@ -321,9 +363,12 @@ cp -l <file> <new_name> =  hard link files instead of copying
 cp -f <file> <other_file> = --force
 cp -s <file> <new_name> = --symbolic-link make symbolic links instead of copying, is almost the same ln
 
-scp - speciall copy, when you would like to copy files from one server to other
-scp -P <door> <file> server/usrer/PATH/ 
-scp -P <door> -r <directory> serve/username/directory/folder> = copy a holy directory to other username | (-P) "port" the dor of server | (-r) Recursivally the kind of the file  
+scp - speciall copy, when you would like to copy files from one server to other. Bidirectional.
+scp <user>@<remote_computer>:</PATH/file> <local_desired> = take the file of remote compupter of user copy to the local desired
+scp -P <door> <file> <server>/<usrer>/<PATH>/ 
+scp -P <door> -r ./<directory> <serve/username/directory/folder> = copy a holy directory to other username | (-P) "port" the dor of server | (-r) Recursivally the kind of the file  
+
+rysnc is a fast, versatile, remote (and local) file-copying tool
 
 rm <file> = remove any archive or folder 
 rm -r <directory> = remove the directory, (-r) remove recursively thing
@@ -457,9 +502,13 @@ chmod 777 <file> = give the permission of all to write, read and execute
 chmod 664 <file> =  give the mermission only to group and user to read and write, and remove the execute and write permission of others
 Multiple symbolic modes can be given, separated by commas.
 chmod u=rwx,g=rx,o=rx <file> = user can read, write and execute/ group and others can only read and execute
-###################################################################################################################################################################################################################
 
+###################################################################################################################################################################################################################
+wget is a non-interactive download of files from the Web (HTTP, HTTPS, FTP formats; htmml, xhtml, ccs pages). Can work in the background, while the user is not logged on. Create local versions of remote web sites
 wget <httml/:___________________.com> = download the archive directly on terminal
+wget -drc <httml/:____.com> OR wget -d -r -c <hhtml/:_____.com>
+wget -l 1 -r -e robots=off -A "*.gz" = 
+wget -R <httml/:_______.com> = limit what kinds of file names you will reject while downloading
 
   494  find /data/assembly_summary_genbank.txt
   526  grep -F -wcfe Mus /data/assembly_summary_genbank.txt | wc -l
@@ -536,7 +585,6 @@ wget <httml/:___________________.com> = download the archive directly on termina
   667  cat cat_out
   668  cat cat_out | sort
   669  cat cat_out | sort | ls -lha
-  670  man echo
   671  man bash
   672  man bashrc
   673  info bashrc
