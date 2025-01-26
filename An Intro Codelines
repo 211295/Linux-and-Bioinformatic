@@ -156,6 +156,8 @@ file <directory> = print that is a directory
 file -d <file> = show some debug inside the file
 file -apple <file> = 
 
+groups prinnt the groups that a user is in.
+
 man <command_you_wanna_learn> = MANUAL OF THE COMMAND, extremy usable 
 
 info <command_you_wanna_learn> or <documentation> = Read documantion and info of commands
@@ -183,7 +185,7 @@ df ./ = see the disk space in the disk in the curently directory
 df -h ./ = see the numbers used and available disk in "huma`n-redable", print the size of powers of 1024 (e.g 
 
 du see how much space each directory is taking 
-du ./ = see how much space it
+du ./ = see how much space it in the currently directory
 du -sh = look the number of memory used | (-s) total space | (-h) human redable
 du -b = look the number in BYTES | (-b) --bytes or --apparent-size 
 
@@ -282,7 +284,8 @@ grep Global Regular Expression Print prints all lines that contain a certain pie
 grep -c "<pattern>" <file> = count the number of lines with pattern
 grep -v -i "<pattern>" <file> = show the lines DONT HAVE the pattern, invert the sense of matching and the case became insensitive | (-v) --invert-match | (-i) --insensitive
 grep -w "<pattern>" <file> = the string or pattern given by the user can be part of a word | (-w) --word-regexp
-grep -l "<pattern>" <file*> = show the name of files have the pattern | (-l) --files-with-matches
+grep -e "<patter1>" -e "<pattern2> -e "<pattern3>" -i <file> = show the lines with those patterns, and ignoring the case distinctions | (-e) --regexp=PATTERN
+grep -l "<pattern>" <file*> = show the name of files have the pattern | (-l) --files-with-matches 
 grep -L "<pattern>" <file*> = same above but oposite sense | (-L) --files-without-match
 grep -w xaxa <file> | cut -f X | sort -u = take all lines in file with have the pattern "xaxa" (can be a part of a word), cut and show only the X position (column), and finally show unical line
 grep '^<pattern>' <file> = following the matches lines started with just with those pattern
@@ -378,7 +381,7 @@ tr a-z A-Z < <file> = all lower-case letters have been changed to upper-case
 tr '[:lower:]' '[:upper:]' < <file> = same as above, use [:_____:] and inside "character class" (e.g alnum, alpha, blank, lower, punct, space, upper, xdigit)
 tr -d -c '[:alnum:]' < <file> = delete everything in file that is not a letter or number, so gets the complement of the characters listed | (-d) --delete | (-c) --complement
 tr -d '[:cntrl:]' < <file> = remove non-printing (invisible) characters from the file | (cntrl) all control characters
-tr -s  replace each sequence of a repeated character that is listed in the last specified | (-s) --squeeze-repeats  with a single occurrence of that character
+tr -s <file> = replace each sequence of a repeated character that is listed in the last specified | (-s) --squeeze-repeats  with a single occurrence of that character
 tr " " "\\n" < <file>.csv | grep "<pattern>" | sort -u | wc -l = transform the space in a new line 
 tr " " "\\n" < <file>.csv | grep "<pattern>" | sort | uniq -c | sort -nr | head -n <x> = 
 
@@ -394,6 +397,9 @@ move files and rename them, ACTUALLY you just move the content of the file with 
 mv <PATH/file> <PATH/diretory/> = move the file to the directory you want | (-i) ask the intention | (-u) update, move only the missing information | (-n) not alowed to mv overwrite
 mv <file_name> <new_name> = change the name of file in currently directory
 for file in <files_name*>; do mv $file $file.<pattern>; done = add a pattern in the end of name, as the rename command above
+mv -r <directory> <PATH/directory/> = move the entier directory to other plance 
+mv <file1> <file2> <file3> -t <PATH/directory/> = move all those files to a directory targeted | (-t) --target-directory=<PATH/DIRECTORY>
+mv -v <file> </PATH> = saying what happen | (-v) --verbose
 
 ###################################################################################################################################################################################################################
 echo writes each given STRING to standard output (STDOUT), with a space between each and a newline after the last one
@@ -433,7 +439,7 @@ cut -f x,y <file> | sort -k 2 -nr | uniq | head -n 20 = show the first 20 lines 
 colrm allows to delet columns from the file, specify 2 numbers (started ended), if just 1 number, remove all columns after the number. The TAB counts for 8 columns, and space count 1 column
 colrm x y < <file> = remove the columns starting x position and finishing in y position
 colrm x < <file> = anything after x position are discarded
-
+colrm x y < <file1> > <file2> = send the content of file1 in colrm, which remove the columns starting x position and finishing at y position, and redirect to file2
 split a file into pieces, the default size is 1000 lines. Break files into smaller subsets. Creates new files called fileaa, fileab, fileac
 split -a X <file> = generate suffixes of length X 
 split -n N <file> P = generate N pieces with same size (based on input size) and the output recive the name P... |(-n) = --number
@@ -513,7 +519,7 @@ chmod u=rwx,g=rx,o=rx <file> = user can read, write and execute/ group and other
 wget is a non-interactive download of files from the Web (HTTP, HTTPS, FTP formats; htmml, xhtml, ccs pages). Can work in the background, while the user is not logged on. Create local versions of remote web sites
 wget <httml/:___________________.com> = download the archive directly on terminal
 wget -drc <httml/:____.com> OR wget -d -r -c <hhtml/:_____.com>
-wget -l 1 -r -e robots=off -A "*.gz" = 
+wget -l 1 -r -e robots=off -A "*.gz" <htmml/:_____.com> = 
 wget -R <httml/:_______.com> = limit what kinds of file names you will reject while downloading
 
   494  find /data/assembly_summary_genbank.txt
@@ -562,8 +568,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
   629  awk -F $"\t" '$1~/GCA/ {print $6, $24, $4}' /data/ANI_report_bacteria.txt | grep -w '[A-H]' | sort | less
   630  awk -F $"\S" '$6~/Idiomarina / {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt
   631  awk -F $"\s" '$6~/Idiomarina / {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt
-  632  grep /usr/share/dict/american-english
-  633  man grep
   634  grep -F **j*r /usr/share/dict/american-english
   635  grep -F ..j.r /usr/share/dict/american-english
   636  grep -F a* /usr/share/dict/american-english
@@ -580,22 +584,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
   647  grep '\*r' -i /usr/share/dict/american-english
   648  grep '..j.r' -i /usr/share/dict/american-english
   649  grep '^..j.r$' -i /usr/share/dict/american-english
-  658  wc -l /usr/share/dict/american-english
-  660  man info
-  661  man which
-  662  bash
-  663  man bash
-  664  ls ; cd my_new_dir2/ ; ls ; cd subdir2 ; ls
-  665  cd ../..
-  666  rm -r my_new_dir2
-  667  cat cat_out
-  668  cat cat_out | sort
-  669  cat cat_out | sort | ls -lha
-  671  man bash
-  672  man bashrc
-  673  info bashrc
-  674  ls -lha
-  675  man ls
   676  awk -F &"\t" '$1~/GCA/ {print &6, &24, &4}' /data/ANI_report_bacteria.txt | sort | grep -w '[A-H]' | less
   677  awk -F &"\t" '$1~/GCA/ {print &6, &24, &4}' /data/ANI_report_bacteria.txt | sort | less
   678  awk -F &"\t" '$1~/GCA/ {print &6, &24, &4}' /data/ANI_report_bacteria.txt
@@ -605,20 +593,7 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
   685  awk '/Idiomarina/ {print $6, $24, $4, $4*$5}' /data/ANI_report_bacteria.txt
   686  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | grep -w '[A-H]' | sort | less
   687  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | sort | grep -w '[A-H]' | less
-  688  man tail
-  689  man less
-  690  man more
-  691  ls /bin/q*
-  692  ls /bin/q?
-  693  ls -l /bin/usr | wc -l
-  694  man wc
-  702  more /usr/bin/laptop-detect
-  703  less /usr/bin/laptop-detect
-  704  man more
-  705  more +5 /usr/bin/laptop-detect
-  706  less /usr/bin/laptop-detect /echo
-  707  less -S /usr/bin/laptop-detect
-  708  info echo
+
   709  echo $((expr))
   710  echo $((2*30))
   711  echo $(5*90)
@@ -628,10 +603,7 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
   715  echo $((5+(6*8-90)/5))
   716  echo $((5+(6*8-90)%5))
   717  echo $[5+(6*8-90)%5]
-  718  ls -l /usr/share /usr/blah
-  719  ls -l /usr/share
-  720  ls -l /usr/share | wc -l
-  721  ls -l /usr/share /usr/blah | wc -l
+
   722  man find
   723  find systemd
   724  find tools
@@ -655,27 +627,9 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
   742  find /?*/?*/file3
   743  find /?*/?*/?*/file3
   744  find /?*/?*/?*/?*/file3
-  745  cd usr/local/bin | less
-  746  cd /usr/local/bin | less
-  747  cd /usr/local/bin ; ls
-  748  cat file1 - file3 > all_data ; ls
-  749  cat average
-  750  cd ../../../
-  751  cat /data/cat_example
-  752  find /cat_example
-  753  find /data/cat_example
-  754  cat -A /data/cat_example
-  755  man cat
-  756  exit
-  757  apropos -e clean -a screen
-  758  apropos -e screen
-  759  apropos -e clear -a screen
-  760  man info
-  761  man whatis
-  762  man man
-  763  man grep
+
   764  grep -w z?*a
-  765  man find
+
   766  echo [z-a]
   767  echo $((z-a))
   768  echo $[z-a]
@@ -698,235 +652,32 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
   785  echo $((a..z))
   786  echo -e $((a..z))
   787  echo -e {a..z}
-  788  man echo
-  789  echo -e {z..a}
-  794  apropos turn -a off
-  795  apropos work -a keep
-  796  apropos working -a keep
-  797  apropos -e turn off
-  800  apropos work -a turned off
-  801  apropos work -a off
-  802  apropos shell -a disappear
-  803  apropos shell -a turn off
-  804  apropos shell -a turn
-  805  apropos shell -a log off
-  806  apropos shell
-  807  ls
-  808  cd MT ; ls
-  809  cd ..
-  810  mkdir /MT/M2.1 ; cd MT ; ls
-  811  mkdir /MT/M2.1/ ; cd MT ; ls
-  812  mkdir home/felipess/MT/M2.1/ ; cd MT ; ls
-  813  cd ..
-  814  mkdir /home/felipess/MT/M2.1 ; cd MT ; ls
-  815  rm -r M2.1
-  816  cd..
-  817  cd ..
-  818  mkdir /home/felipess/MT/M2.1 ; cd MT ; ls
-  819  rm -r M2.1 ; LS
-  820  rm -r M2.1 ; ls
-  821  mkdir /home/felipess/MT/M2.1 ; cd MT ; ls ; cd M2.1
-  822  touch file_M2.2
-  823  ls
-  824  cd ../..
-  825  touch /home/felipess/MT/M2.1/file_M2.21 ; ls
-  826  cd MT/M2.1 ; ls
-  827  cd .. ; ls
-  828  mv /MT/M2.3 /MT/M2.3n ; ls
-  833  cd MT2.3
-  834  ls
-  835  cd M2.3
-  836  mv -t /M2.3N
-  837  cd ..
-  838  mv -t /M2.3 /M2.3n ; ls
-  841  mv -tv /M2.3 /M2.3n ; ls
-  842  mv -t -v /M2.3 /M2.3n ; ls
-  843  mv /M2.3 /M2.3n
-  844  mv /M2.3 /M2.3n ; ls
-  845  cd M2.3
-  847  cd /MT/M2.3
-  848  cd MT/M2.3
-  859  mv M2.3 M2.3n
-  860  ls
-  861  mv M2.3n M2.3 ; ls
-  862  mv /MT/M2.3n /MT/M2.3 ; cd MT ; ls
-  863  cd .. ; ls ; cd data ; ls
-  864  find Q2.4
-  869  cd M2.3 ; ls
-  870  cd .. ; cd M2.4 ; ls
+
   871  man scp
-  872  ls -l /usr/local/bin > /MT/M3.5/M3.5_out
-  873  ls -l /usr/local/bin | cp /MT/M3.5/M3.5_out
-  874  ls -l /usr/local/bin
-  875  ls -l /usr/local/bin/
-  876  cd
-  877  ls -l /usr/local/bin/
-  878  ls -l /usr/local/bin/ > mv /MT/M3.5/M3.5_out
-  879  ls /usr/local/bin/
-  880  ls /usr/local/bin/ > nano > mv average /MT/M3.5/M3.5_out
-  881  ls /usr/local/bin/ | cat
-  882  ls -l /usr/local/bin/ | cat | mv /MT/M3.5/M3.5_out
-  883  cd MT/M3.5 ; ls
-  884  ls -l /usr/local/bin/ | cat > /MT/M3.5/M3.5_out
-  885  cd
-  886  ls -l /usr/local/bin/ | cat > /MT/M3.5/M3.5_out
-  887  ls -l /usr/local/bin/ | cat > touch /MT/M3.5/M3.5_out
-  888  ls -l /usr/local/bin/ | cat > nano /MT/M3.5/M3.5_out
-  889  ls -l /usr/local/bin/ | cat
-  890  ls -l /usr/local/bin/ | cat >> /MT/M3.5/M3.5_out
-  891  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
-  892  M3.5_out
-  893  ls -l /usr/local/bin/ | cat
-  899  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
-  900  M3.5_out
-  901  ls -l /usr/local/bin/ | cat
-  907  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
-  908  M3.5_out
-  909  ls -l /usr/local/bin/ | cat
-  915  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
-  916  M3.5_out
-  917  ls -l /usr/local/bin/ | cat
-  923  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
-  924  M3.5_out
-  925  ls -l /usr/local/bin/ | cat
-  931  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
-  932  M3.5_out
-  933  ls -l /usr/local/bin/ | cat
-  939  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
-  940  M3.5_out
-  941  ls -l /usr/local/bin/ | cat
-  947  /MT/M3.5/M3.5_out << ls -l /usr/local/bin/ | cat
-  948  M3.5_out
-  949  ls -l /usr/local/bin/ | cat
-  955  ls -l /usr/local/bin/ | cat >> /MT/M3.5/M3.5_out
-  956  clar
-  957  clear
-  958  cd
-  959  ls -l /usr/local/bin/ | cat > /MT/M3.5/M3.5_out
-  960  ls -l /usr/local/bin/ | cat >> /MT/M3.5/M3.5_out
-  961  ls -l /usr/local/bin/ | cat >> touch /MT/M3.5/M3.5_out
-  962  apropos create -a file
-  963  apropos -ea create file
-  964  nano /MT/M3.5/M3.5_out
-  965  cd MT/M3.5M3.5_out ; ls
-  966  cd MT/M3.5/M3.5_out ; ls
-  967  cd MT/M3.5 ; ls
-  970  man touch
-  971  cd ; rm nano ; rm touch ; ls
-  972  ls -l /usr/local/bin/ | cat >> nano /MT/M3.5/M3.5_out
-  973  nano /MT/M3.5/M3.5_out ; ls -l /usr/local/bin/ | cat >> /MT/M3.5/M3.5_out
-  974  cd MT/M3.5 ;l s
-  977  less /data/DNA_sequences.fas
-  978  grep GAATTC /data/DANA_sequences.fas
-  979  grep GAATTC /data/DNA_sequences.fas
-  980  grep GAATTC /data/DNA_sequences.fas | wc -l
-  981  grep -e GAATTC /data/DNA_sequences.fas | wc -l
-  982  man grep
-  983  grep -e GAATTC -w /data/DNA_sequences.fas | wc -l
-  984  grep -ew GAATTC /data/DNA_sequences.fas | wc -l
-  985  grep -w GAATTC /data/DNA_sequences.fas | wc -l
-  986  grep -w GAATTC /data/DNA_sequences.fas
-  987  man grep
-  988  grep -ex GAATTC /data/DNA_sequences.fas | wc -l
-  989  grep -x GAATTC /data/DNA_sequences.fas | wc -l
-  990  man grep
-  991  grep -e -n GAATTC /data/DNA_sequences.fas
-  992  grep -n GAATTC /data/DNA_sequences.fas
-  993  grep -n GAATTC /data/DNA_sequences.fas | wc -l
-  994  nano
-  995  grep {GA,$CATG,CT} /data/DNA_sequencies.fas
-  996  grep ((GA,$CATG,CT)) /data/DNA_sequencies.fas
-  997  grep ((GA$C$A$T$GCT)) /data/DNA_sequencies.fas
-  998  touch IUPAC CODE
-  999  cat IUPAC Code
- 1000  cat IUPAC CODE
- 1001  ls
- 1002  cat 'IUPAC CODE'
- 1003  cat 'IUPAC code'
- 1004  grep -e ACATGC -e ACATGT -e GCATGC -e GCATGT /data/DNA_sequencies.fas
- 1005  grep -e ACATGC -e ACATGT -e GCATGC -e GCATGT /data/DNA_sequences.fas
- 1006  grep {GA,$CATG,CT} /data/DNA_sequences.fas
- 1007  grep {GA,$C$A$T$G,CT} /data/DNA_sequences.fas
- 1008  grep {GA,$CATG,CT} /data/DNA_sequences.fas | wc -l
- 1009  grep { /data/DNA_sequences.fas | wc -l
- 1010  grep -e ACATGC -e ACATGT -e GCATGC -e GCATGT /data/DNA_sequences.fas | wc -l
- 1011  man grep
- 1012  grep -e ACATGC -e ACATGT -e GCATGC -e GCATGT /data/DNA_sequences.fas -i | wc -l
- 1013  man grep
- 1014  nano 'IUPAC'
- 1015  ls
- 1016  nano IUPAC
- 1017  RM IUPAC
- 1018  rm IUPAC
- 1019  nano 'IUPAC code'
- 1020  cat 'IUPAC code'
- 1021  grep -e CACCGGCG -e CGCCGGCG -e CACCGGTG -e CGCCGGTG /data/DNA_sequences.fas -i | wc -l
- 1022  grep -e [C,GA,C,C,G,G,TC,G] /data/DNA_sequences.fas -i | wc -l
- 1023  man grep
- 1024  grep -f -e CACCGGCG -e CGCCGGCG -e CACCGGTG -e CGCCGGTG /data/DNA_sequences.fas -i | wc -l
- 1025  grep -f CACCGGCG -f CGCCGGCG -f CACCGGTG -f CGCCGGTG /data/DNA_sequences.fas -i | wc -l
- 1026  less /data/prot_sequences.fas
- 1027  nano protein
- 1028  cat protein
- 1029  head /data/prot_sequences.fas
+
  1030  grep [KRHQSA],[DENQ],E,L$ /data/prot_sequences.fas | wc -l
  1031  grep '[KRHQSA],[DENQ],E,L$' /data/prot_sequences.fas | wc -l
  1032  grep '[KRHQSA][DENQ]EL$' /data/prot_sequences.fas | wc -l
- 1033  man grep
- 1034  grep -c 'MR[DE][IL]' /data/prot_sequences.fas |
- 1035  grep -c 'MR[DE][IL]' /data/prot_sequences.fas
- 1036  wc -l /data/prot_sequences.fas
  1037  grep -c '[STA]?????G?[QKRN]??[LIVMQ][KRQT]??[KR]?[GS]??[KQ]?[LIVM][LIVM][LIVM]' /data/prot_sequences.fas
  1038  grep '[STA]?????G?[QKRN]??[LIVMQ][KRQT]??[KR]?[GS]??[KQ]?[LIVM][LIVM][LIVM]' /data/prot_sequences.fas
  1039  grep -e '[STA]?????G?[QKRN]??[LIVMQ][KRQT]??[KR]?[GS]??[KQ]?[LIVM][LIVM][LIVM]' /data/prot_sequences.fas
  1040  grep -e '[STA]?????G?[QKRN]??[LIVMQ][KRQT]??[KR]?[GS]??[KQ]?[LIVM][LIVM][LIVM]' /data/prot_sequences.fas | wc -l
- 1041  ls -lc /usr/bin
- 1042  ls -lc /usr/bin | wc -l
- 1043  ls -c /usr/bin
- 1044  man ls
- 1045  ls -lah | wc -l
- 1046  ls -lah
- 1047  ls -lah /usr/bin | wc -l
- 1048  ls -lah /usr/bin
- 1049  man ls
- 1050  ls -g /usr/bin
- 1051  ls -g /usr/bin | wc -l
- 1052  head /data/expression.diff
- 1053  cat /data/expression.diff | wc -l
- 1054  man column
- 1055  man columrm
+
  1056  cut -f 1,[3-50] /data/expression.diff | touch
  1057  cut -f 1,[3-50] /data/expression.diff
  1058  cut -f 1,3* /data/expression.diff
  1059  cut -d -f 1 /data/expression.diff
- 1060  head /data/expression.diff
  1061  awk -F &"\t" '$2~/XLOC/ {print &2}' /data/expression.diff | less
  1062  awk '{print &2}' /data/expression.diff | less
  1063  awk -F " " '{print &2}' /data/expression.diff | less
  1064  awk '/XLOC/ {print &2}' /data/expression.diff | less
  1065  awk '/XLOC/ {print &2}' /data/expression.diff | wc -l
  1066  awk '$2~/XLOC/ {print &2}' /data/expression.diff | wc -l
- 1068  man colrm
- 1069  apropos count -a column
- 1070  apropos -e count -a column
- 1071  apropos -e count columns
- 1072  apropos columns
  1073  colrm 3* /data/expression.diff | print
  1074  colrm 3 * /data/expression.diff | print
  1075  colrm 3 * /data/expression.diff
  1076  colrm [3,*] /data/expression.diff
- 1077  man wc
- 1078  apropos remove -a copies
- 1079  apropos delete -a copies
- 1080  apropos delete -a copy
- 1081  apropos remove -a copy
- 1082  apropos cut -a copy
- 1083  man cut
- 1084  man colrm
- 1085  colrm [1,1] /data/expression.diff
- 1086  history
- 1087  cat /data/assembly_summary
- 1088  less /data/assembly_summary
+
  1089  awk '{print $3, $14, $13}' /data/expression.diff
  1090  awk '{print $3, $14, $13}' /data/expression.diff | less
  1091  awk '{print $2}' /data/expression.diff | less
@@ -935,12 +686,10 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1094  awk '/sample_1/ /sample_2 {print $3 $4}' /data/expression.diff | ls -c
  1095  awk '/sample_1/ /sample_2/ {print sample_1 sample_2}' /data/expression.diff |
  1096  awk '/sample_1/ /sample_2/ {print sample_1 sample_2}' /data/expression.diff
- 1097  man awk
  1098  awk '/sample_1/ /sample_2 {print $2}' /data/expression.diff | less
  1099  awk '/sample_1/ /sample_2 {print $2}' /data/expression.diff | wc -l
  1100  awk '/sample_1/ /sample_2 {print $2}' /data/expression.diff | unic -c | wc -l
  1101  awk '/sample_1/ /sample_2 {print $2}' /data/expression.diff | uniq -c | wc -l
- 1102  man uniq
  1103  awk '/sample_1/ /sample_2 {print $2}' /data/expression.diff | uniq | wc -l
  1104  awk '/log2(fold_change) {print}' /data/expression.diff | head
  1105  awk '/log2(fold_change)/ {print}' /data/expression.diff | head
@@ -987,118 +736,27 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1146  awk '$13 > 0.99999 $14 == /yes/ {print $13, $14, $3}' /data/expression.diff | sort -nr | less
  1147  awk '$14 == "yes" {print $13, $14, $3}' /data/expression.diff | sort -nr | less
  1148  awk '$14 == "yes" {print $13, $14, $3}' /data/expression.diff | sort -nr | head
- 1149  cat /data/assembly_summary
- 1150  bash
- 1151  history
+
  1152  echo[70000/180]
  1153  echo((70000/180))
  1154  echo[(70000/180)]
- 1155  ls -l
- 1156  man groups
- 1157  groups
- 1158  cd /data/PE21/
- 1159  ls - l
- 1160  ls -l
- 1161  less my_file_a
- 1162  more my_file_a
- 1163  head my_file_a
- 1164  tail my_file_a
- 1165  nano my_file_a
- 1166  cd another_dir/ ; ls
- 1167  ls -l
- 1168  cd ..
- 1169  more my_file_b
- 1170  group
- 1171  groups
- 1172  more felipess
- 1173  less felipess
- 1174  less /felipess
- 1175  more /felipess
- 1176  more /felipess/
- 1177  more my_file_42
- 1178  ls -l | grep felipess
- 1179  ls also_a_dir/
- 1180  cd also_a_dir/ ; ls -l
- 1181  ls another_dir/
- 1182  cd some_dir/
- 1183  ls -l
- 1184  cd .. ; ls -l some_dir
- 1185  ls -l some_dir
- 1186  man ls
+
  1187  ls -lashd
- 1188  cd some_dir/
- 1189  more just_a_file
- 1190  less just_a_file
- 1191  nano just_a_file
- 1192  cd ..
- 1193  cd third_dir/
- 1194  ls third_dir/
- 1195  ls -l third_dir/
- 1196  cd third_dir/
- 1197  nano third_dir/another_file
- 1198  less third_dir/3rd_file
- 1199  nano third_dir/3rd_file
- 1200  man chmod
- 1201  man df
- 1202  df
- 1203  df .
- 1204  du .
- 1205  cd
- 1206  df .
- 1207  du .
- 1208  df .
- 1209  df /usr/bin/
- 1210  df -h /usr/bin/
- 1211  du -h /usr/bin/
- 1212  du /usr/bin/
- 1213  du -b /usr/bin/
- 1214  du -B /usr/bin/
- 1215  du -B=1 /usr/bin/
- 1216  du -B 1K /usr/bin/
- 1217  df -h .
- 1218  df -h ~
+
  1219  man free
  1220  free
- 1221  cd ..
- 1222  free
- 1223  cd felipess
- 1224  man free
- 1225  info free
- 1226  less /proc/meminfo ; ls
- 1227  less /proc/meminfo
- 1228  man htop
  1229  top
  1230  htop
- 1231  htop
  1232  lscpu
- 1233  ls
  1234  df -h
  1235  free -h
- 1236  eco
- 1237  echo
  1238  printenv
- 1239  env
- 1240  wget 200.144.244.172/average
- 1241  ls
- 1242  less average
- 1243  ./ average
- 1244  ./average
- 1245  chmod +x average ; ls -l average
- 1246  ./ average
- 1247  ./average
- 1248  ./average
- 1249  ./average -h
- 1250  mkdir newbin ; ls
+
  1251  echo $PATH
  1252  echo $PATH newbin
  1253  man export
  1254  info export
  1255  export PATH=$felipess:~/bin
- 1256  ls
- 1257  cd newbin/
- 1258  ls
- 1259  cd ../
- 1260  ls -lash
  1261  export PATH=~/bin
  1262  ls -lash
  1263  env
@@ -1111,9 +769,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1270  echo &PATH
  1271  echo &USER
  1272  echo PATH
- 1273  mv average /newbin ; cd newbin ; ls
- 1274  cd ..
- 1275  ls
  1276  mv average newbin
  1277  cd newbin
  1278  ls
@@ -1125,41 +780,14 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1284  locale
  1285  man wget
  1286  time rsync -av /data/JC JC
- 1287  ls JC
- 1288  cd JC
- 1289  LS
- 1290  ls
- 1291  cd JC
- 1292  ls
  1293  cd ../../ ; rm -r JC ; time rsync -av /data/JC . ; ls
- 1294  cd JC ; ls
- 1295  ls library/
  1296  apropos jar -a extract
  1297  time rsync -av /data/JC .
- 1298  ls
- 1299  cd JC ; ls
- 1300  cd .. ; rm -r JC ; ls
- 1301  cd ..
  1302  time rsync -av /data/JC .
  1303  time rsync -avz /data/JC JC2
- 1304  ll
- 1305  alias ll='ls -l'
- 1306  ll
- 1307  alias lla='ls -la'
- 1308  lla
- 1309  alias llash='ls -lash'
- 1310  llash
- 1311  ll
- 1312  alias llash
- 1313  alias
  1314  less .bashrc
  1315  nano .bashrc
  1316  ll
- 1317  grep ">" 'IUPAC code'
- 1318  less "IUPAC code"
- 1319  grep "G" 'IUPAC code'
- 1320  grep -l "G" 'IUPAC code'
- 1321  grep -l "G"
  1322  man ln
  1323  ln -s /etc/passwd my_first_link
  1324  ll
@@ -1206,23 +834,13 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1365  echo Hello >> manifest_2016b
  1366  cat manifest_2016b
  1367  more ~/PE24/manifest_2016
- 1368  exit
- 1369  ls PE25
- 1370  ll PE25
- 1371  ls -lR PE25
  1372  rm ~/PE25/subdir1/subsub1.1/blue
  1373  ls -lR PE25
  1374  rm -r PE25
  1375  ls -lR PE25
  1376  man mk
- 1377  rmdir dir1
  1378  man grid
  1379  man bzip2
- 1380  cp data/exemple_gzip1 ./
- 1381  cp data/exemple_gzip* .
- 1382  cp /data/exemple_gzip* .
- 1383  cp /data/example_gzip* .
- 1384  ll example_gzip*
  1385  gzip -9 example_gzip* ; ll example_gzip*
  1386  gzip -d *.gz ; ll example_gzip*
  1387  man gzip
@@ -1238,12 +856,7 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1397  gzip example_gzip[12].bz2
  1398  ll example_gzip*
  1399  rm example_gzip* ; ls
- 1400  cp data/exemple_gzip* . ; ll example_gzip*
- 1401  cp data/exemple_gzip* .
- 1402  cp data/example_gzip* .
  1403  gzip -9k example_gzip* ; ls
- 1404  cp data/example_gzip* . ; ls
- 1405  cp /data/example_gzip* . ; ls
  1406  bzip2 /data/example_gzip* ; ll example_gzip*
  1407  gzip -9k example_gzip* ; ls
  1408  tar -xvrf /data/example_1.tgz ; ls
@@ -1258,8 +871,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1417  tar -xvf /data/example_2.tar.bz2
  1418  man comm
  1419  comm -3 /data/file_comA /data/file_comB
- 1420  head /data/file_comA
- 1421  head /data/file_comB
  1422  diff /data/Darwin_1 /data/Darwin_2
  1423  man comm
  1424  man diff
@@ -1275,19 +886,7 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1434  diff -q /data/diff1us /data/diff2us
  1435  diff -c /data/diff1us /data/diff2us
  1436  diff -u /data/diff1us /data/diff2us
- 1437  nano
- 1438  chmod +x FILA ; ll FILA
  1439  echo $PATH
- 1440  ./FILA
- 1441  nano
- 1442  nano FILA
- 1443  ./FILA
- 1444  nano FILA
- 1445  ./FILA
- 1446  ./exercise
- 1447  chmde +x exercise
- 1448  chmode +x exercise
- 1449  chmod +x exercise
  1450  ./exercise
  1451  ./FILA
  1452  nano FILA
