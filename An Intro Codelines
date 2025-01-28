@@ -9,7 +9,7 @@ The amount of data that can go into RAM is measured in multiples of bits or byte
 The shell, also known as (aka) a Command Line Interpreter (CLI), is a text-only interface between the user and the kernel. Its main function is to read the commands that are typed in the terminal window by the user and execute them.
  - examples of shell : sh , csh , tcsh , bash 
 The programs can be drived by to external programs that can be installed on the computer, however UNIX (or UNIX-like) operating systems come with many built-in command-line interface programs and shell utilities:
-File system -> cat, cd, chmod, chown, chgrp, cksum, cmp, cp, dd, du, df, file, fsck, fuser, ln, ls, lsattr, lsof, mkdir, mount, mv, pax, pwd, rm, rmdir, size, split, tee, touch, type, umask 
+File system -> cat, cd, chmod, chown, chgrp, cksum, cmp, cp, dd, du, df, file, fsck, fuser, ln, ls, lsattr, lsof, mkdir, mount, mv, pax, pwd, rm, rmdir, size, split, tee, touch, type, umask
 Processes -> at, bg, chroot, cron, fg, kill, killall, nice, pgrep, pidof, pkill, ps, pstree, time, top
 User environment -> clear, env, exit, finger, history, id, logname, mesg, passwd, su, sudo, uptime, talk, tput, uname, w, wall, who, whoami, write
 Text processing -> awk, banner, basename, comm, csplit, cut, dirname, ed, ex, fmt, head, iconv, join, less, more, paste, sed, sort, spell, strings, tail, tr, uniq, vi, wc, xargs
@@ -46,6 +46,10 @@ A byte is a set of 8 bits (and a bit is a binary code, 0 and 1):
 
 [Shift] + [Insert] = Ctrl V
 green is the terminal and. ~ is the way to your user terminal. / is the root, and below that, we have a top-down tree
+The prompt display tree things in the screen: the name of computer/server
+                                              the name of currently directory ~ 
+                                              the user name
+<server> :~ <user_name> $
 Hierarchical filesystem structure: many sub directories which organize the files and sub directories of the system.
 /home = this is where user data lives, users home
 /bin = common programs, shared by the system, the system administrator and the users, executable files available to all users
@@ -64,6 +68,14 @@ Hierarchical filesystem structure: many sub directories which organize the files
 /tmp = temporary space for use by the system, cleaned upon reboot, used by many programs as a temporary file storage place
 /usr = programs, libraries, documentation etc. for all user-related programs. Originally intended to keep all user-related commands
 /var = storage for all variable files and temporary files created by users, such as  log files, the mail queue, the print spooler area, space for temporary storage of  files downloaded from the Internet, etc.
+
+Under UNIX, file extensions are arbitrary and do not have a particular meaning (Windows have tree letter extensions). So convencionaly in Linux have some cods to reference a kind of files
+<file>.sh = shell scripts, text files containing a series of shell commands
+<file>.pl = perl scripts, text files containing PERL commands
+<file>.py = python scripts, text files containing PYTHON commands
+<file>.txt = text files with no particular format
+<file>.csv = text files with Comma-Separated Values, generally used in tables
+<file>.fasta = text files containing sequences in FASTA format
 
 ABSOLUTE PATH - starts at the root '/'       vs  RELATIVE PATH - starts at the current directory
 /home/user/<directory>/<folder>/<file>.txt       <file>.txt
@@ -117,6 +129,11 @@ ls [XYZ]* = show list files with started X OR Y OR Z
 ( ) =  group some parts of the regex, and save the match in a special variable
 
 ################################################################# Securities ###################################################################################################################
+Access rights in Linux are defined by WHO can take the acess and WHAT KIND of acess (see chmod command)
+user: the user who owns the file                                    | read: permission to display the content of the file
+group: other users in the same group as the user who owns the file  | write: permission to modify the content of the file - add or remove some content
+others: all the other users in the system                           | execute: permission to run a file - scripts or compiled programs
+
 ~$ ll <file>
 <type_of_file><permissions> <number_of_> <owner_of_the_file> <gruop> <size_file> <modification_time> <file_name>
 -             rwx rwx rwx   62          fssalles             LDG                 Month Day Hour      file
@@ -156,16 +173,16 @@ file <directory> = print that is a directory
 file -d <file> = show some debug inside the file
 file -apple <file> = 
 
-groups prinnt the groups that a user is in.
+mkdir <PATH/name_directory> = make a directory / (-p) = creat a parent directory does not exist 
+mkdir -p new_direc{src,doc/{mail,ref},data} = creat "new_direc" with other 3 directories (src , doc and data) and inside doc/ we have 2 more directories (mail and ref)
 
-man <command_you_wanna_learn> = MANUAL OF THE COMMAND, extremy usable 
-
-info <command_you_wanna_learn> or <documentation> = Read documantion and info of commands
+cd <name_directory> = change directory
 
 apropos <some_word>= find a word that describre a command, so you can find all commands you wanna with the some_word 
 apropos -e <key_word> = find some describe command that exactly have the word you want | (-e) = exactly
 apropos <pattern> -a <other_key_word> = you add more words, concatenete | (-a) = --and 
 
+kill literely kill the programm, or command 
 which -a <filename> = locate a command, returns the pathnames
 
 help = 
@@ -204,10 +221,24 @@ htop - similar to top but is a interactive process viewe - Percentage of CPU cor
 who Show a list of who is currently in the system, logged on, in which terminal, and from which original address (IP number or not)
 w Show who is logged on and WHAT they are doing, i.e. what program each user is running 
 
+whoami prints our username
+
+id command prints our userid, username, primary groupid, primary group name and secondary group(s) id
+
 env run a program in a modified environment. Set each NAME to VALUE in the environment and run COMMAND. 
 
 printenv print all or part of environment
 
+groups prinnt the groups that a user is in.
+
+man <command_you_wanna_learn> = MANUAL OF THE COMMAND, extremy usable 
+
+history shows a list of all previusly command by the shell, can acess by [UP ARROW] and with start with blank space, the command or line wont be save
+Another way is to use the [Ctrl+r] combination. The prompt will wait for us to type some characters and it will find the matching command by searching in reverse order through the history list.
+history = show a list of previusly command 
+!534 = plays the 534th command in the list
+
+info <command_you_wanna_learn> or <documentation> = Read documantion and info of commands
 export [biult programm] and define the PATH (absolute and relative) or change the PATH. Each directory in the list is separated from the next by a colon (:)
 There is set of environmental variables whose names start with LC {LC_NUMERIC, LC_TIME, LC_MONETARY} the locale of the systemm, which defines aspects related to language, time/date format, currency, numbers. 
 The code en_US.UTF-8 define American English, pt_BR.UTF-8 define Brasilian features.
@@ -218,15 +249,17 @@ export LC_MONETARY=pt_BR.UTF-8 = define the currency Real (R$)
 date - print or set the system date and time
 date = <day_week> <month> <day> <hour> <  > <year>
 
-mkdir <PATH/name_directory> = make a directory / (-p) = creat a parent directory does not exist 
-mkdir -p new_direc{src,doc/{mail,ref},data} = creat "new_direc" with other 3 directories (src , doc and data) and inside doc/ we have 2 more directories (mail and ref)
-
-cd <name_directory> = change directory
-
 screen = Multiplexes a physical terminal between several processes. It creates a single window with a shell in it and then gets out of your way so that you can use the program as you normally would.
          You can create new (full-screen) windows with other programs in them (including more shells), kill existing windows, view a list of windows, turn output logging on and off, 
          copy-and-paste text between windows, view the scrollback history.  All windows run their programs completely independent of each other.
          Programs continue to run when their window is currently not visible and even when the whole screen session is detached from the user's terminal.
+
+uname print system information
+uname -s -p OR uname -sp = print the kernel name (nucleus of the PC) | (-s) = default --kernel-name 
+
+cal display a calendar (december 9999 is the boundery)
+
+bg 
 ###################################################################################################################################################################################################################
 more AND less viewrs, not editors, pagers presentation on scree. Do not read the complete file before. Display the contents of a file in a terminal
 zmore AND zless = variants of more and less, respectively, that deal with compressed data (.gz)
