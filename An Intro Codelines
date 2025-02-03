@@ -145,7 +145,7 @@ file type d = Directory
 file type l = Link
 ###################################################################################################################################################################################################################
 make list and viewr the conttents of a directory
-ls = list show ; -l = in list way | -a = show hidden files in the shell | -h = print size with parameters | -s = size | -t = sort by time, newest first | -r = reverse the list
+ls = list show ; -l = in list way | -a = show hidden files in the shell that start the name with dots "." | -h = print size with parameters | -s = size | -r = reverse the list
 [work with a list, similar in python and there is a commands to work as a strings]
 ls - l [abcdef] OR ls - l [a-f] = make a list of all files start with 'a' to 'f' exist
 ls abc[defghi] OR ls abc[d-i] = make a list of all files have the letters d to i after 'abc', so the files are abcd , abce , abcf , abcg , abch , abci PAY ATENTION DONT WORKS FOR NUMBERS just 1-9
@@ -160,6 +160,7 @@ ls abc??* = shows all files start with 'abc' following any 2 characteres, and mo
 ls -l [a-f] | wc -l > new_file = create a list of files start with a to f, pipe with counter, then count the lines was created by ls -l and finely appeding to a new_file 
 ls -R * = show all files with content recursivaly, therefore 
 ls -r * = show all files in reversed sort way
+ls -t * = show all files with sorted by modification time, newest in the top| (-t) --time
 
 file command determine file type. It tests each argument in an attempt to classify it.
 file </PATH/file> = show the kinds of file is   | ASCII text = American Standard Code for Information Interchange, is the most common format for text files in computers
@@ -537,7 +538,7 @@ for some user (X), set user or group ID on execution (s), restricted deletion fl
 A combination of the letters "ugoa" controls which users' access to the file will be changed: u = users, g = other users inside the group, o = other users NOT in the file's group, a = all users
 (+) plus add the permission, (-) minus remove the permission
 chmod o-rx <file> = remove the permission of others of read and write
-chmod a+rwx <file> = give the permission of all to write, read and execute
+chmod a+rwx <file> OR chmod ugo+rwx= give the permission of all to write, read and execute
 chmod ug+rw o-xw <file> = give the mermission only to group and user to read and write, and remove the execute and write permission of others 
 A numeric mode is from one to four octal digits (0-7), derived by adding up the bits with values 4, 2, and 1.
 read (r) recive value 4, write (w) recieve value 2, execute (x) recive value 1. And the itereation of them recieve the sum
