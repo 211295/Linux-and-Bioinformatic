@@ -389,7 +389,10 @@ awk [options] '<script>' <file> = the script most commonly are  '-f <script_file
 awk -F "; " '/<pattern> {print $y '\t' $x}' <file> = print the columns y and x in this order, couting by every ';' as a delimitor of each collumn, and print a blanck space between the x and y by ('\t')
 awk -F "'\t'" '/<pattern> {print $y "" $x}' <file> = the same above but you swith the way to print a blanck space
 awk '<pattern> {print  $x " + " $y " = " $x+$y} <file> = 
-awk '{print $x + 200 " reais"} <file> = Print just the x collumn plus 200 , and complete the sentense with word " reais"
+    '{print $x + 200 " reais"} <file> = Print just the x collumn plus 200 , and complete the sentense with word " reais"
+    '$x < p {print $0}' <file> = Print all collumns and just the lines with the 'xth' collumn lower than 'p' value
+    'p < $x < n {print $3 $2 $1}' <file> = Print the collumns 3,2 and 1 in that order, with the value of 'xth' collumn among 'p' value and 'n' value
+    '/^>/ {if (seqlen){print seqlen}; print ;seqlen=0;next; } { seqlen += length($0)}END{print seqlen}' <file>.fasta = print lentgh of FASTA files with 
 
 ###################################################################################################################################################################################################################
 copy files and directories
@@ -562,12 +565,8 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
   536  cut -f8 /data/assembly_summary_genbank.txt | grep -cw Mus | sort -u
   538  cut -f8 /data/assembly_summary_genbank.txt | grep -w Mus | uniq -c
 
-  592  awk '$13 < 0.05 {print $3, $14, $13}' /data/expression.diff
-  593  awk '0.9 < $13 < 0.05 {print $3, $14, $13}' /data/expression.diff
   594  awk '/0.9/ {print $3, $14, $13}' /data/expression.diff
   595  awk '/0.99/ {print $3, $14, $13}' /data/expression.diff
-  596  cat /data/ANI_report_bacteria.txt
-  597  head /data/ANI_report_bacteria.txt
   598  awk '/Idiomarina/ {print $6, $24, $4, $4*$5}' /data/ANI_report_bacteria.txt
   599  awk '/Idiomarina/ {print $6, $24, $4}' /data/ANI_report_bacteria.txt
   600  awk '/Idiomarina/ {print $6, $24, $4, $5}' /data/ANI_report_bacteria.txt
@@ -627,16 +626,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
   685  awk '/Idiomarina/ {print $6, $24, $4, $4*$5}' /data/ANI_report_bacteria.txt
   686  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | grep -w '[A-H]' | sort | less
   687  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | sort | grep -w '[A-H]' | less
-
-  709  echo $((expr))
-  710  echo $((2*30))
-  711  echo $(5*90)
-  712  echo $((5*90%6))
-  713  echo $((5*90/6))
-  714  echo $((5+6*8-90/5))
-  715  echo $((5+(6*8-90)/5))
-  716  echo $((5+(6*8-90)%5))
-  717  echo $[5+(6*8-90)%5]
 
   722  man find
   723  find systemd
@@ -796,22 +785,14 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1263  env
  1264  printenv
  1265  echo $PATH
- 1266  exit
- 1267  ls
  1268  echo &PATH
  1269  printenv
  1270  echo &PATH
  1271  echo &USER
  1272  echo PATH
- 1276  mv average newbin
- 1277  cd newbin
- 1278  ls
- 1279  cd ..
- 1280  LC_NUMERIC
  1281  local
  1282  locale
  1283  export LC_TIME=pt_BR.UTF-8
- 1284  locale
  1285  man wget
  1286  time rsync -av /data/JC JC
  1293  cd ../../ ; rm -r JC ; time rsync -av /data/JC . ; ls
@@ -821,39 +802,24 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1303  time rsync -avz /data/JC JC2
  1314  less .bashrc
  1315  nano .bashrc
- 1316  ll
  1322  man ln
  1323  ln -s /etc/passwd my_first_link
- 1324  ll
- 1325  lla
- 1326  llash
- 1327  nano nano
- 1328  rm nano
  1329  ln -s /etc/blah my_second_link ; lla
  1330  ln /ect/passwd hard_link_1 ; llash
  1331  ln /data/shaw hard_link_1 ; lls
- 1332  llash
  1333  mkdir link_tests ; cd link_tests ; ln -s ../../dummy/PE24/2007/manifest_2007
- 1334  llash
  1335  ln -s ~dummy/PE24/2008/manifest_2008 ; llash
  1336  rm manifest_2007 manifest_2008
- 1337  ll
  1338  ln -s ../../dummy/PE24/2007/manifest_2007 ; ln -s ~dummy/PE24/manifest_2008 ; llash
  1339  rm manifest_2007
  1340  ln -s ../../PE24/2008/manifest_2007 ; llash
  1341  rm manifest_2007 ; ln -s ../../PE24/manifest_2007 ; llash
  1342  rm manifest_2007 ; ln -s ../../dummy/PE24/manifest_2007 ; llash
- 1343  touch manifest_2007
- 1344  nano manifest_2007
- 1345  history
  1346  nano .bachrc
  1347  nano .bashrc
- 1348  ll
  1349  history
- 1350  cd .. ; nano .bashrc
  1351  history
  1352  man stat
- 1353  ll
  1354  ln /tmp
  1355  cd link_tests/ ; ln ~/PE24/manifest_2016 manifest_2016b
  1356  llash
@@ -870,7 +836,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1367  more ~/PE24/manifest_2016
  1372  rm ~/PE25/subdir1/subsub1.1/blue
  1373  ls -lR PE25
- 1374  rm -r PE25
  1375  ls -lR PE25
  1376  man mk
  1378  man grid
@@ -883,7 +848,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1390  tar -xzvf /data/mrbayes-3.2.6.tar.gz
  1391  man tar
  1392  ll example_gzip*
- 1393  ls
  1394  gzip -9k example_gzip* ; ls
  1395  ll example_gzip*
  1396  bzip2 example_gzip* ; ll example_gzip*
@@ -899,9 +863,7 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1411  tar /data/example_2.tar.bz2
  1412  btar /data/example_2.tar.bz2
  1413  tar -b /data/example_2.tar.bz2
- 1414  ll /data/example_2.tar.bz2
  1415  bzip2 /data/example_2.tar.bz2 | tar -xrvf
- 1416  ll /data/example_2.tar.bz2
  1417  tar -xvf /data/example_2.tar.bz2
  1418  man comm
  1419  comm -3 /data/file_comA /data/file_comB
@@ -921,10 +883,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1435  diff -c /data/diff1us /data/diff2us
  1436  diff -u /data/diff1us /data/diff2us
  1439  echo $PATH
- 1450  ./exercise
- 1451  ./FILA
- 1452  nano FILA
- 1453  ./MP
  1454  x=10
  1455  x=$(( x + 5))
  1456  echo x
