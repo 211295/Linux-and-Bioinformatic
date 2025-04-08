@@ -12,6 +12,15 @@
 
 ### DOWNLOAD A LOT OF THINGS
 (BRAKER2) $ conda info --envs
+### 
+(BRAKER2) $ cd ~/<PATH>/BRAKER2 ; wget https://github.com/gatech-genemark/ProtHint/archive/refs/tags/v2.6.0.tar.gz ; tar xvf v2.6.0.tar.gz
+### DOWNLOAD A LOF OF THINGS and now you have a 
+(BRAKER2) $ cd ProHint-2.6.0 ; wget https://github.com/ogotoh/spaln/archive/refs/tags/ver.3.0.6d.tar.gz ; tar xvf ver.3.0.6d.tar.gz
+### Enter inside the new directory and goes to src
+(BRAKER2) $ cd spaln-veer.2.4.9b/src ; ls 
+(BRAKER2) $ make
+(BRAKER2) $ makefile
+
 
 ### 2 OPTION
 ### Install in default terms 
