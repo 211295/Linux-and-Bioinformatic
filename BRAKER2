@@ -6,23 +6,43 @@
 ### AS ALWAYS YOU HAVE 2 WAYS TO DOWNLOAD, FIRST IN CONDA AND SECOND IN SERVE
 ### 1 OPTION - see ANACONDA, MINICONDA & CONDA file
 ### as the others programms, make a envoirment in conda
-(base)  $ conda create -n BRAKER2
+(base)  $ conda create -y -n BRAKER2
 (base)  $ conda activate BRAKER2
-(BRAKER2) $ conda install bioconda::braker2
+(BRAKER2) $ conda install -c bioconda -c conda-forge braker2==2.1.6
 
 ### DOWNLOAD A LOT OF THINGS
 (BRAKER2) $ conda info --envs
-### 
+
+### Enter inside the direcotry of braker (ex: /home/user/miniconda3/envs/BRAKER2) and donwload the first module
+### In that website is shown more packages BRAKER2 needs (https://www.hikunpeng.com/document/detail/en/kunpenghpcs/prtg-osc/kunpengbraker_02_0005.html)
 (BRAKER2) $ cd ~/<PATH>/BRAKER2 ; wget https://github.com/gatech-genemark/ProtHint/archive/refs/tags/v2.6.0.tar.gz ; tar xvf v2.6.0.tar.gz
-### DOWNLOAD A LOF OF THINGS and now you have a 
-(BRAKER2) $ cd ProHint-2.6.0 ; wget https://github.com/ogotoh/spaln/archive/refs/tags/ver.3.0.6d.tar.gz ; tar xvf ver.3.0.6d.tar.gz
+### DOWNLOAD A LOF OF THINGS and now you have the Prohint package
+(BRAKER2) $ cd ~/<PATH>/ProHint-2.6.0 ; wget https://github.com/ogotoh/spaln/archive/refs/tags/ver.3.0.6d.tar.gz ; tar xvf ver.3.0.6d.tar.gz
 ### Enter inside the new directory and goes to src
-(BRAKER2) $ cd spaln-veer.2.4.9b/src ; ls 
+(BRAKER2) $ cd ~/<PATH>/spaln-veer.2.4.9b/src ; ls 
+(BRAKER2) ~/<PATH>/spaln-veer.X.X.X/$ make
+(BRAKER2) ~/<PATH>/spaln-veer.X.X.X/$ makefile
+
+### if necessery use '$ export PATH=/path/to/BRAKER/ProHint-2.6.0/spaln-veer.2.4.9b/bin:$PATH'
+### Move to ProtHint direcotry and clone the github of https://github.com/gatech-genemark/spaln-boundary-scorer.git
+(BRAKER2) $ git clone https://github.com/gatech-genemark/spaln-boundary-scorer.git ; tar xvf spaln-boundary-scorer.git ; cd spaln-boundary-scorer
 (BRAKER2) $ make
-(BRAKER2) $ makefile
+### If necessery use '$ export PATH=/path/to/BRAKER/ProHint-2.6.0/spaln-boundary-scorer:$PATH'
+(BRAKER2) $ cd /<PATH>/BRAKER2/ProHint-2.6.0/dependencies ; rm -r spaln_table spaln spaln_boundary_scorer diamond
+(BRAKER2) ~/<PATH>/BRAKER2/ProHint-X.X.X/dependences$ cp -r /<PATH>/BRAKER2/ProHint-X.X.X/spaln-veer.X.X.X/table ./spaln_table
+(BRAKER2) ~/<PATH>/BRAKER2/ProHint-X.X.X/dependences$ cp /<PATH>/BRAKER2/ProHint-X.X.X/spaln-veer.X.X.X/bin/spaln ./
+(BRAKER2) ~/<PATH>/BRAKER2/ProHint-X.X.X/dependences$ cp /<PATH>/BRAKER2/ProtHint-X.X.X/spaln-boundary-scorer/spaln_boundary_scorer ./
+(BRAKER2) ~/<PATH>/BRAKER2/ProHint-X.X.X/dependences$ cp /<PATH>/BRAKER2/bin/diamond ./
+(BRAKER2) ~/<PATH>/BRAKER2/ProHint-X.X.X/dependences$ ls
+blosum62.csv  diamond  GeneMarkES  log_reg_prothints.pl  probuild  spaln  spaln_boundary_scorer  spaln_table
+
 
 
 ### 2 OPTION
 ### Install in default terms 
 ### There is more componets to install BRAKER and run that
 (base) $ 
+
+
+### TO USE THE BRAKER
+### fasta 
