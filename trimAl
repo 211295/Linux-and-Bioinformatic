@@ -9,7 +9,31 @@
 (base) $ wget https://github.com/inab/trimal/releases/download/v1.5.0/trimAl_Linux_x86-64.zip ; gunzip * ; cd 
 
 ### follow the instructions.
-(base) $ cd source ; make ; ls
-### now use the command
-(base) $ cd ../ ; source/trimal -in <PATH>/<directory>/*.fasta
+(base) ~/trimAl/trimal-1.5.0$ cd source ; make ; ls
+### now use the command, start using -h and choce the best options.
+(base) ~/trimAl/trimal-1.5.0/source$ cd ../ ; source/trimal -h
 
+### <command> -in <input> -out <output> -htmlout <outputHTML> -mega <outputmega> -splitbystopcodon
+(base) ~/trimAl/trimal-1.5.0$ source/trimal -in *.fasta -out trimmed_*.fasta -mega -keepheader -noallgaps -sgc
+### splitbystopcodon can be only set up together backtranslation functionality (-backtrans <aminoacid_inputfile>)
+
+### Examples
+### Removes all positions in the alignment with gaps in 5% or more of the sequences, unless this leaves less than 80% of original alignment
+### print the 80% best (with less gaps) positions.
+(base) $ source/trimal -in *.fasta -out -trimmed_*.fasta -cons 80 -gt 0.05 -keepheader -sgc
+### Use an automatic method to decide optimal thresholds, based in the gap scores from input alignment
+(base) $ source/trimal -in *.fasta -out -trimmed_*.fasta -gappyout
+### Use an heuristic to decide the optimal method for trimming the alignment
+(base) $ source/trimal -in *.fasta -out -trimmed_*.fasta -automated1
+
+### Use residues and sequences overlap thresholds to delete some sequences from the alignment.
+### Both overlap thresholds (-resoverlap and -seqoverlap) must be provided jointly.
+### Remove the sequencies possess 80% of positions which have 90% of overlaping (having a gap in both positions)
+(base) $ source/trimal -in *.fasta -out -trimmed_*.fasta -resoverlap 0.9 -seqoverlap 80 -noallgaps
+
+### Selection of columns to be deleted from the alignment. The selection can be a column number or a column number interval. Start from 0
+(base) $ source/trimal -in *.fasta -out -trimmed_*.fasta -selectcols { 0,2,3,10,45-60,68,70-78 }
+### Selection of sequences to be deleted from the alignment. Start from 0
+(base) $ source/trimal -in *.fasta -out -trimmed_*.fasta -selectseqs { 2,4,8-12 }
+
+# (base) $ source/trimal -in *.fasta -out -trimmed_*.fasta -cons 80 -st 0.8 -keepheader -noallgaps -sgc
