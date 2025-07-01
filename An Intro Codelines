@@ -194,6 +194,17 @@ touch <nameoffile.txt> = create a text with name <nameoffile.txt>
 
 alias is a buitl programm that allow manage aliases. Create shortcut of programms
 alias <shortcut>='<programm with options>'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias gc='grep -c'
+alias gv='grep -v'
+alias wl='wc -l'
+alias usort='sort -u'
+alias hn='head -n'
+alias tn='tail -n'
+alias cAt='cat -A'
+
 nano .profile
 nano .bashrc
 ###################################################################################################################################################################################################################
