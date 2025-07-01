@@ -1,0 +1,15 @@
+### CONDA
+
+
+
+### Download in https://trimal.readthedocs.io/en/latest/installation.html
+### enter in github and take the link of source or the executable
+(base) $ wget https://github.com/inab/trimal/archive/refs/tags/v1.5.0.tar.gz ; tar -xf * ; cd trimal*/ ; ls
+###### OR #######
+(base) $ wget https://github.com/inab/trimal/releases/download/v1.5.0/trimAl_Linux_x86-64.zip ; gunzip * ; cd 
+
+### follow the instructions.
+(base) $ cd source ; make ; ls
+### now use the command
+(base) $ cd ../ ; source/trimal -in <PATH>/<directory>/*.fasta
+
