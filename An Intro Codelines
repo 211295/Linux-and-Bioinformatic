@@ -408,6 +408,7 @@ awk '<pattern> {print  $x " + " $y " = " $x+$y} <file> =
     '/^>/ {if (seqlen){print seqlen}; print ;seqlen=0;next; } { seqlen += length($0)}END{print seqlen}' <file>.fasta = print lentgh of FASTA files with 
 
 awk -F "\s" '{sum+=$x} END {print sum}' <file>.xlsx = summ all the lines of Xth position in a "table"
+
 ###################################################################################################################################################################################################################
 copy files and directories
 cp <file> ~/<PATH>/<new_name> / 
