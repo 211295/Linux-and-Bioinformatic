@@ -8,6 +8,9 @@ $ wget https://github.com/davidemms/OrthoFinder/releases/download/2.5.5/OrthoFin
 $ tar xfzv OrthoFinder.tar.gz
 $ cd OrthoFinder
 $ make
+### Check option -h 
+$ ./orthofinder -h 
+$ 
 
 
 ### 2 OPTION - see ANACONDA, MINICONDA & CONDA file
