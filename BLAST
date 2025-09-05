@@ -8,6 +8,10 @@ blast -query <
 ### Activate in my case
 (base) $ module load Bio/BLAST+/2.15.0 
 
+### Start constructing the own DataBase
+(base) $ cd <dir>/genes/prot.faa/
+(base) $ makeblastdb -in protein.fasta -db 'prot'
+### Now its work
 (base) $ for file in [AS]*;
         do blastx -query $file -db ~/<directory>/prot.faa/<genes>.fasta -evalue 1e-15 -outfmt 6 -out <direcoty>/$file,genes.out;
         done
