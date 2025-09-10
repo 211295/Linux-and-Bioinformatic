@@ -620,11 +620,7 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
   635  grep -F ..j.r /usr/share/dict/american-english
   636  grep -F a* /usr/share/dict/american-english
   637  grep a* /usr/share/dict/american-english
-  638  head /usr/share/dict/american-english c
-  639  less /usr/share/dict/american-english c
-  640  man grep
   641  grep -f **j*r /usr/share/dict/american-english
-  642  man grep
   643  grep -f **j*r -i /usr/share/dict/american-english
   644  grep -f ..j.r -i /usr/share/dict/american-english
   645  grep -f '\*r' -i /usr/share/dict/american-english
@@ -637,7 +633,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
   678  awk -F &"\t" '$1~/GCA/ {print &6, &24, &4}' /data/ANI_report_bacteria.txt
   679  awk -F "\t" '$1~/GCA/ {print &6, &24, &4}' /data/ANI_report_bacteria.txt
   680  awk -F &"\t" '$1~/GCA/ {print &6, &24, &4}' /data/ANI_report_bacteria.txt
-  682  head /data/ANI_report_bacteria.txt
   685  awk '/Idiomarina/ {print $6, $24, $4, $4*$5}' /data/ANI_report_bacteria.txt
   686  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | grep -w '[A-H]' | sort | less
   687  awk -F $"\t" '$1~/G/ {print $6, $24, $4, $4*5}' /data/ANI_report_bacteria.txt | sort | grep -w '[A-H]' | less
@@ -658,7 +653,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
   735  find ?/bin | less
   736  find /?*/bin | less
   737  find /?*/bin | zless
-  738  cat file1 - file3
   739  find file1
   740  find /?*/file1
   741  find /?*/?*/file1
@@ -672,7 +666,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
   767  echo $((z-a))
   768  echo $[z-a]
   769  ls $[z-a]
-  770  man echo
   771  echo z-a
   772  echo z,a
   773  echo $z,a
@@ -733,11 +726,9 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1105  awk '/log2(fold_change)/ {print}' /data/expression.diff | head
  1106  awk '/log2(fold_change)/ {print "log2"}' /data/expression.diff | head
  1107  awk '/log2/ {print "log2"}' /data/expression.diff | head
- 1108  head /data/expression.diff
  1109  awk '/sample_1/ /sample_2 {print $9}' /data/expression.diff
  1110  awk '/log2(fold_change) {print $9}' /data/expression.diff | sort | head
  1111  awk '/log2(fold_change)/ {print $9}' /data/expression.diff | sort | head
- 1112  head /data/expression.diff
  1113  awk '/gene_id/ {print $3 $9}' /data/expression.diff | sort | head
  1114  awk '/gene_id/ {print $3 $9}' /data/expression.diff
  1115  awk '{print $3 $9}' /data/expression.diff
@@ -810,7 +801,7 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1283  export LC_TIME=pt_BR.UTF-8
  1285  man wget
  1286  time rsync -av /data/JC JC
- 1293  cd ../../ ; rm -r JC ; time rsync -av /data/JC . ; ls
+ 1293  time rsync -av /data/JC . ; ls
  1296  apropos jar -a extract
  1297  time rsync -av /data/JC .
  1302  time rsync -av /data/JC .
@@ -972,7 +963,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1525  zcat blastres_PROKKA_06232017.faa.gz | cut -f 1 | sort | uniq | wc -l
  1526  zcat blastres_PROKKA_06232017.faa.gz | cut -f 3 | grep "100.000" | wc -l
  1527  man avarage
- 1528  man average
  1529  zcat blastres_PROKKA_06232017.faa.gz | cut -f 3 | average
  1530  zcat blastres_PROKKA_06232017.faa.gz | average -c 3
  1531  zcat blastres_PROKKA_06232017.faa.gz | wc -l
@@ -986,7 +976,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1539  zcat blastres_PROKKA_06232017.faa.gz | cut -f [1-3] | sort -n | head
  1540  zcat blastres_PROKKA_06232017.faa.gz | cut -f [1,3] | sort -n | head
  1541  zcat blastres_PROKKA_06232017.faa.gz | cut -f 1,3 | sort -n | head
- 1542   z
  1543  zcat blastres_PROKKA_06232017.faa.gz | head
  1544  zcat blastres_PROKKA_06232017.faa.gz | grep " | sort -n | head
  1545  zcat blastres_PROKKA_06232017.faa.gz | grep "20.397" | head
@@ -1012,12 +1001,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1565  man cut
  1566  cut -d='#' culicidae2.log
  1567  grep -v '#' culicidae2.log > newculicidae2.log
- 1568  grep -v '#' culicidae2.log >> newculicidae2.log
- 1569  grep -v '#' /data/week_14/culicidae2.log > /EPE/culicidae_clean.log
- 1570  grep -v '#' /data/week_14/culicidae2.log > /EPE/culicidae_clean.log/
- 1571  mkdir EPE ; grep -v '#' /data/week_14/culicidae2.log > /EPE/culicidae_clean.log/
- 1572  grep -v '#' /data/week_14/culicidae2.log > /EPE/culicidae_clean.log
- 1573  grep -v '#' /data/week_14/culicidae2.log > EPE/culicidae_clean.log
  1574  sed "/#/d" /data/week_14/culicidae2.log > EPE/culicidae_clean_sed.log
  1575  less EPE/culicidae_clean.log
  1576  nano EPE/culicidae_clean.log
@@ -1067,10 +1050,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1620  cut -d ',' -f 1,5 /data/datasets/daily_eletricity_generation_by_source_brazil.csv | sort -nr -k 2 | head
  1621  cut -d ',' -f 1,5 /data/datasets/daily_eletricity_generation_by_source_brazil.csv | sort -nr -k 2 -t ','| head
  1622  cut -d ',' -f 1,5 --output-delimiter $'t\' /data/datasets/daily_eletricity_generation_by_source_brazil.csv | sort -nr -k 2 | head
- 1623  less
- 1624  less  -S
- 1625  cat
- 1626  cat
  1627  cut -d ',' -f 5 /data/datasets/daily_eletricity_generation_by_source_brazil.csv | average
  1628  ls -lsah data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz
  1629  zcat data/week_14/CEU.low_coverage.2010_07.sites.vcf.gz
@@ -1116,29 +1095,21 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1669  scp selectseq -P 2112 gabrielsg@200.144.244.172:/~
  1670  selectseq -l EPE/gene_list_new -o EPE/200seq.fas -s /data/week_14/PROKKA_06232017.ffn
  1671  cat EPE/200seq.fas | grep -c ">"
- 1672  ,
  1673  df -h /data/assembly_summary
  1674  more /vmlinuz
  1675  more /data/assembly_summary
  1676  ln /data/Q1.5/ A1.5
  1677  ls -lash /data/Q1.5/
- 1678  ls /data/Q1.5/
  1679  ls -lash /data/Q1.5/
  1680  ls -lash /data/Q1.5/A1.5
  1681  ln -d -s /data/Q1.5/ A1.5
  1682  ls -lash /data/Q1.5/A1.5
- 1683  ls -lash /data/A1.5
- 1684  ls -lash A1.5
- 1685  ls -lash ~/FE/f2.2/file_F2.2
- 1686  ls -lash ~/FE/F2.2/file_F2.2
  1687  cgroups
- 1688  cd ..
  1689  echo (2+2)
  1690  echo (('2+2'))
  1691  sum 2+2
  1692  sum (2+2)
  1693  chmod 777 FE6.1.bash
- 1694  FE6.1.bash
  1695  cat FE6.1.bash
  1696  bash FE6.1.bash
  1697  nano FE6.1.bash
@@ -1161,7 +1132,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1714  for x in {1..10} ; echo $x
  1715  for x in {1..10} ; echo $[x]
  1716  for x in {1..10} ; echo {$x}
- 1717  man echo
  1718  echo {1..10}
  1719  nano FE6.1.bash
  1720  bash FE6.
@@ -1206,7 +1176,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1759  df -h /usr/bin/
  1760  du -h /usr/bin/
  1761  df -h /data/
- 1762  htop
  1763  df .
  1764  df -h .
  1765  du -h *
@@ -1214,14 +1183,8 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1767  cd ~/usr/bin/
  1768  cd /usr/bin/
  1769  du -sh .
- 1770  htop
- 1771  top
- 1772  grep MemTotal ./
- 1773  cd ..
- 1774  grep MemTotal
  1775  top -h
  1776  htop -h
- 1777  htop
  1778  free -h -s
  1779  cd ..
  1780  htop
@@ -1234,21 +1197,12 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1787  ls -lash /data/
  1788  ls -lash /data/ | grep "????rwx???"
  1789  ls -l /data/ | grep "????rwx???"
- 1790  ls -l /data
  1791  ls -l /data/ > permission_other ; grep "#???????rwx" permission_other
- 1792  ls
- 1793  cd ..
- 1794  cd ../..
- 1795  cd ~/
  1796  ls -l /data/ > permission_other ; grep "#???????rwx" permission_other
- 1797  cat permission_other
  1798  tree -f /data/
  1799  ls -l *
  1800  ls -l * > permission_other ; grep "#???????rwx" permission_other
  1801  ls -l * > other ; grep "#???????rwx" permission_other
- 1802  touch other
- 1803  chmod 777 ./
- 1804  cd ..
  1805  chmod -w /data/
  1806  chmod -777 /data/
  1807  ls -l /data/* > others ; cat others
@@ -1273,7 +1227,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1826  locate -b blast
  1827  locate -b ^blast
  1828  locate -b blast*
- 1829  man locate
  1830  locate -i f*a /data/
  1831  locate -e -b -i f*a /data/
  1832  ls -l /data/* > others
@@ -1286,12 +1239,9 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1839  tar -xvsf muscle_src.tar.gz
  1840  ls
  1841  apropos maxiters
- 1842  ls
  1843  ls -lsah
  1844  cd muscle
  1845  muscle 1 -in /data/DNA_sequences.fas -out ~/alignment.afa
- 1846  maxiters 1 -in /data/DNA_sequences.fas -out ~/alignment.afa
- 1847  -maxiters 1 -in /data/DNA_sequences.fas -out ~/alignment.afa
  1848  muscle -maxiters 1 -in /data/DNA_sequences.fas -out ~/alignment.afa
  1849  muscle/Makefile -maxiters 1 -in /data/DNA_sequences.fas -out ~/alignment.afa
  1850  muscle/Makefile -in /data/DNA_sequences.fas -out ~/alignment.afa
@@ -1303,7 +1253,6 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1856  tar xfvz muscle_src.tar
  1857  locate muscle
  1858  tar Acdrtux muscle_src.tar
- 1859  ls
  1860  gunzip -9 muscle_src.tar
  1861  bzip2 muscle_src.tar
  1862  tar -xzvf muscle_src.tar
@@ -1311,15 +1260,12 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1864  bzip2 -d muscle_src.tar.bz2
  1865  tar muscle_src.tar
  1866  tar -Acdtrux muscle_src.tar
- 1867  info tar
  1868  tar -c -f muscle_src.tar
- 1869  ls
  1870  wget http://200.144.244.172/files/muscle_src.tar.gz
  1871  tar -Acdtrux muscle_src.tar.gz ; ls
  1872  tar -xvfz muscle_src.tar.gz ; ls
  1873  tar -xvf muscle_src.tar.gz ; ls
  1874  exit
- 1875  cd ~/
  1876  awk '/Serg/ {print  $1" "$3" "$12" "$13}' /data/Serg_1_454Scaffolds.faa.emapper.annotations
  1877  less -S /data/Serg_1_454Scaffolds.faa.emapper.annotations
  1878  less /data/Serg_1_454Scaffolds.faa.emapper.annotations
@@ -1330,9 +1276,7 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1883  grep "#" /data/SR01238UB7.annotated.vcf | wc -l
  1884  grep "HIGH" /data/SR01238UB7.annotated.vcf
  1885  grep -C "HIGH" /data/SR01238UB7.annotated.vcf
- 1886  grep -c "HIGH" /data/SR01238UB7.annotated.vcf
  1887  grep -c "MODERATE" /data/SR01238UB7.annotated.vcf
- 1888  grep -c "HIGH" /data/SR01238UB7.annotated.vcf
  1889  grep -c -e "HIGH" "MODERATE" -f /data/SR01238UB7.annotated.vcf
  1890  grep "#" /data/SR01238UB7.annotated.vcf | wc -l
  1891  grep -c "MODERATE" /data/SR01238UB7.annotated.vcf
@@ -1355,10 +1299,8 @@ wget -R <httml/:_______.com> = limit what kinds of file names you will reject wh
  1908  grep -v "#" /data/SR01238UB7.annotated.vcf | awk '$4~/G/ {print $0}' /data/ANI_report_bacteria.txt > SNPs_not_from_A
  1909  grep -v "#" /data/SR01238UB7.annotated.vcf | awk '$4~/G/ {print $0}' /data/SR01238UB7.annotated.vcf > SNPs_not_from_A
  1910  grep -v "#" /data/SR01238UB7.annotated.vcf | awk '$4!~/A/ {print $0}' /data/SR01238UB7.annotated.vcf > SNPs_not_from_A
- 1911  bluecloud@userland:/data/stuff#
  1912  batch LetterNumber
  1913  sbatch LetterNumber
- 1914  exit
  1915  shuf -e A T C G -n 1000 -r -z | fold -w 46 > myDNA ; cat myDNA
  1916  shuf -e A T C G -n 10000 -r -z | fold -w 70
  1917  shuf -e A T C G -n 10000 -r > paste -z
