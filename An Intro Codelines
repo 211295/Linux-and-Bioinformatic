@@ -463,7 +463,7 @@ echo $((5+(6*8-90)/5)) OR echo $[5+(6*8-90)/5] = -3, 5 + (48-90)/5 = 5 + (-42)/5
 echo $((5+(6*8-90)%5)) OR echo $[5+(6*8-90)%5]= 3, because the % means the remainder of the division, so (-42)/5 remainder -2. 
 echo {x..y} OR {y..x} = will print the range x to y (decresment and incriscment)
 echo {x..y..z} = will print the range x to y with the logical z
-echo 
+echo -n "<count_strings_in_a_text>" | wc -c
 echo
 
 tee command read the standardinput and redirect as a standardoutput
