@@ -1,0 +1,89 @@
+### Tutorial https://phyluce.readthedocs.io/en/latest/tutorials/tutorial-4.html
+### Start downloading or installing the programms
+### 1) ART Mount Rainer (https://www.niehs.nih.gov/research/resources/software/biostatistics/art)
+### 2) Minimap2 
+### 3) Astral 
+### 4) samtools 
+### 5) bedtools
+### 6) phyluce 
+
+### Start downloading the genomes
+(base) $ mkdir genomes/ reads/
+(base) $ cd genomes/ ; wget <https://www.ncbi.nlm.nih.gov/datasets/genome/> ; gunzip *.gz
+
+# Create a script to simule reads and align with a genome
+(base) $ nano art_programm.sh 
+#!/bin/bash/
+for file in *.fasta
+do
+./home/art_bin_MountRainier/art_illumina --paired --in $file --out ~/reads/reads_$file \
+  --len 100 --fcov 2 --mflen 200 --sdev 150 -ir 0.0 -ir2 0.0 -dr 0.0 -dr2 0.0 -qs 100 -qs2 100 -na;
+done
+
+# run the script art_programm.sh
+(base) $ ./art_programm.sh
+
+### Join all reads 1 and 2 in just one file
+(base) $ for abreviating_name in critter in <names> ; do echo "working on $abreviating_name" ;
+touch $abreviating_name-pe100-reads.fq ; cat $abreviating_name-pe100-reads1.fq > $abreviating_name-pe100-reads.fq; 
+at $abreviating_name-pe100-reads2.fq >> $abreviating_name-pe100-reads.fq; done
+
+# Choose 1 of the genome to be the base
+(base) $ mkdir base/ ; cd base/ ; cp ~/genome/<base>.fasta
+
+# Active samtools and after transform the 'sam' alignment file in 'bam' using the script
+(base) $ micromamba activate samtools
+(samtools) $ nano activate_minimap2.sh ; chmod +x activate_minimap2.sh 
+#!/bin/bash
+cd ~/reads/ ; for file in reads_[names] ; do ../minimap2/minimap2 -ax -sr ~/genome/base/*.fasta ~/genome/reads/$file-pe100-reads.fq > $file-to-base.sam;
+samtools view -bS $file-to-base.sam > $file-to-base.bam; done
+
+# run the script 
+(samtools) $ ./activate_minimap2.sh
+
+# Active bedtools and transform 'bam' file in 'bed' file
+(samtools) $ micromamba activate bedtools
+### Read the help and the commands of bedtools
+(bedtools) $ bedtools --help
+(bedtools) $ for file in *.bam; do bedtools bamtobed -i $file -bed12 > ${file%.bam}.bed ; done
+
+### Sort the 'bed' file for cromossome/contig/scaffold
+(bedtools) $ for file in *.bed ;  do echo $file; bedtools sort -i $file > ${file%.bed}.sort.bed ; done
+### Merge the , join the conserved regions
+(bedtools) $ for file in *.sort.bed ; do echo $file ; bedtools merge -i $file > ${file%.sort.bed}.merge.bed ; done
+### Remove the repetitives regions by phyluce
+(bedtools) $ micromamba activate phyluce
+(phyluce) $ phyluce --help
+(phyluce) $ for file in *.merge.bed ; do phyluce_probe_strip_masked_loci_from_set --bed $file --twobit ~/genomes/base/*.2bit --output ${file%.merge.bed}.strip.bed --filter-mask 0.25 --min-lenght 80 ; done
+
+### Check the result and count how much numbers of sequence has each file
+(phyluce) $ wc -l *.strip.bed *.merge.bed
+
+### Determine the presence of loci in genomes. See how much is the loci are shared at all
+(phyluce) $ nano bed-files.conf
+[beds]
+<abreviation>:<abreviation>.strip.bed
+<abreviation>:<abreviation>.strip.bed
+<abreviation>:<abreviation>.strip.bed
+[...]
+<abreviation>:<abreviation>.strip.bed
+
+### Run phyluce to find the shared alingment with taxons
+(phyluce) $ phyluce_probe_get_multi_merge_table --conf bed-files.conf --base-taxon <base> --output alingment_general-base.sqlite
+
+### Find how much loci are shared among species by the genom base-taxon
+(phyluce) $ phyluce_probe_query_multi_merge_table --db alingment_general-base.sqlite --base-taxon <base>
+
+### Extract the shared loci in --specific option at phyluce_probe_query_multi_merge_tabel in Number of species (N) should have the the loci shared
+(phyluce) phyluce_probe_query_multi_merge_table --db alingment_general-base.sqlite --base-taxon <base> --output <base><N>.bed --specific-counts <N>
+
+### Get the sequencies of genome base to initial probeset
+(phyluce) $ mkdir probeste_temp 
+(phyluce) $ phyluce_probe_get_genome_sequences_from_bed --bed ~/genomes/reads/<base><N>.bed --twobit ~/genomes/base/*.2bit --buffer-to 160 --output probeset_temp/<base><N>.fasta
+
+### Draw the probeset 
+(phyluce) $ phyluce_probe_get_tiled_probes --input probeset_temp/<base><N>.fasta --probe-prefix "uce-" --design <clade> --designer <user> --tiling-density <N> --two-probes --overlap middle --masking 0.25 --remove-gc --output probeset_temp/<base><N>.temp.probes
+### Indentify and remove the duplicate loci
+(phyluce) $ phyluce_probe_easy_lastz --target probeset_temp/*.temp.probes --query probeset_temp/*.temp.probes --identify 50 --coverage 50 --output probeset_temp/<base><N>_self-probes.lastz
+(phyluce) $ phyluce_probe_remove_duplicate_hits_from_probes_using_lastz --fasta probeset_temp/*.temp.probes --lastz 
+(phyluce) $ 
