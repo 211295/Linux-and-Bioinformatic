@@ -262,6 +262,7 @@ export LC_MONETARY=pt_BR.UTF-8 = define the currency Real (R$)
 
 date - print or set the system date and time
 date = <day_week> <month> <day> <hour> <  > <year>
+echo "This is the $date of the CPU"
 
 screen = Multiplexes a physical terminal between several processes. It creates a single window with a shell in it and then gets out of your way so that you can use the program as you normally would.
          You can create new (full-screen) windows with other programs in them (including more shells), kill existing windows, view a list of windows, turn output logging on and off, 
@@ -467,6 +468,16 @@ echo -n "<count_strings_in_a_text>" | wc -c
 echo
 
 tee command read the standardinput and redirect as a standardoutput
+
+expr evaluate the arithimetic and ____ expressions
+expr <arg> & <arg>
+expr <arg> < <arg>
+expr <arg> <= <arg>
+expr <arg> = <arg> 
+expr <arg> != <arg>
+expr <arg> >= <arg>
+expr <arg> > <arg>
+expr (<INT>*<INT> + <FLOAT> - <INT>)/<INT> 
 
 ###################################################################################################################################################################################################################
 find search for files in a directory hierarchy. search for files, the output is a list of files or directories, you can concatenet with others commands (wc, head, less, tail, sort)
