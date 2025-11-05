@@ -479,6 +479,15 @@ expr <arg> >= <arg>
 expr <arg> > <arg>
 expr (<INT>*<INT> + <FLOAT> - <INT>)/<INT> 
 
+bc an arbitrary precision calculator language, rigth 'quit' to exit the 
+bc  = print the version, copyright and move to a 'new terminal'
+bc -l   = (-l) = --mathlib, create a math library
+bc -i  = (-i) = --interactive, force the interactive mode 
+echo "(5+7.5)3" | bc = print the arithimatic to bc 'terminal' and print the calculate
+echo "10/3" | bc = print just the integral number division, example = 3
+echo "scale=100, 10/3" | bc = now print 100 numbers after the cout ',', show the decimals number
+
+
 ###################################################################################################################################################################################################################
 find search for files in a directory hierarchy. search for files, the output is a list of files or directories, you can concatenet with others commands (wc, head, less, tail, sort)
 find / -name <file> 2> /dev/null
