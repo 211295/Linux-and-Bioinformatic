@@ -485,7 +485,7 @@ bc -l   = (-l) = --mathlib, create a math library
 bc -i  = (-i) = --interactive, force the interactive mode 
 echo "(5+7.5)3" | bc = print the arithimatic to bc 'terminal' and print the calculate
 echo "10/3" | bc = print just the integral number division, example = 3
-echo "scale=100, 10/3" | bc = now print 100 numbers after the cout ',', show the decimals number
+echo "scale=100, 10/3" | bc = now print 100 numbers after the cout ',', show the decimals places
 
 
 ###################################################################################################################################################################################################################
