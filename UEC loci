@@ -11,6 +11,27 @@
 (base) $ mkdir genomes/ reads/
 (base) $ cd genomes/ ; wget <https://www.ncbi.nlm.nih.gov/datasets/genome/> ; gunzip *.gz
 
+### Change the names of fasta files to make a pattern by a python script or by a rename command
+(base) $ nano clean_name_by_phyton.py ; chmod +x clean_name_by_phyton.py
+#!/usr/bin/env python3
+from Bio import SeqIO
+
+with open("example.fna", "r") as infile:
+    with open("outfile_example.fasta", "w") as outf:
+        for seq in SeqIO.parse(infile, 'fasta'):
+            seq.name = ""
+            seq.description = ""
+            outf.write(seq.format('fasta'))
+print("Conversion complete!")
+
+### Using rename command
+(base) $ rename 's/<parttern>/<new_parttern>/' *.fasta
+
+### Creating a directory for each fasta file, move the fasta for the new directory and transform fasta in twobit format
+(base) $ for critter in *.fasta;
+do mkdir ${critter%.fasta}; faToTwoBit $critter ${critter%.fasta}.2bit ; mv ${critter%.fasta}.[f2][ab][si]* -t ${critter%.fasta}; 
+done
+
 # Create a script to simule reads and align with a genome
 (base) $ nano art_programm.sh 
 #!/bin/bash/
@@ -26,9 +47,9 @@ done
 ### Join all reads 1 and 2 in just one file
 (base) $ for abreviating_name in critter in <names> ; do echo "working on $abreviating_name" ;
 touch $abreviating_name-pe100-reads.fq ; cat $abreviating_name-pe100-reads1.fq > $abreviating_name-pe100-reads.fq; 
-at $abreviating_name-pe100-reads2.fq >> $abreviating_name-pe100-reads.fq; done
+cat $abreviating_name-pe100-reads2.fq >> $abreviating_name-pe100-reads.fq; done
 
-# Choose 1 of the genome to be the base
+# Choose 1 of the genome to be the base to compare with the others
 (base) $ mkdir base/ ; cd base/ ; cp ~/genome/<base>.fasta
 
 # Active samtools and after transform the 'sam' alignment file in 'bam' using the script
@@ -59,7 +80,7 @@ samtools view -bS $file-to-base.sam > $file-to-base.bam; done
 ### Check the result and count how much numbers of sequence has each file
 (phyluce) $ wc -l *.strip.bed *.merge.bed
 
-### Determine the presence of loci in genomes. See how much is the loci are shared at all
+### Determine the presence of loci in genomes. See how much is the loci are shared at all. First 
 (phyluce) $ nano bed-files.conf
 [beds]
 <abreviation>:<abreviation>.strip.bed
@@ -69,6 +90,7 @@ samtools view -bS $file-to-base.sam > $file-to-base.bam; done
 <abreviation>:<abreviation>.strip.bed
 
 ### Run phyluce to find the shared alingment with taxons
+### --conf is a kind of password to the programm
 (phyluce) $ phyluce_probe_get_multi_merge_table --conf bed-files.conf --base-taxon <base> --output alingment_general-base.sqlite
 
 ### Find how much loci are shared among species by the genom base-taxon
@@ -78,12 +100,20 @@ samtools view -bS $file-to-base.sam > $file-to-base.bam; done
 (phyluce) phyluce_probe_query_multi_merge_table --db alingment_general-base.sqlite --base-taxon <base> --output <base><N>.bed --specific-counts <N>
 
 ### Get the sequencies of genome base to initial probeset
-(phyluce) $ mkdir probeste_temp 
+(phyluce) $ mkdir probeset_temp 
 (phyluce) $ phyluce_probe_get_genome_sequences_from_bed --bed ~/genomes/reads/<base><N>.bed --twobit ~/genomes/base/*.2bit --buffer-to 160 --output probeset_temp/<base><N>.fasta
 
 ### Draw the probeset 
 (phyluce) $ phyluce_probe_get_tiled_probes --input probeset_temp/<base><N>.fasta --probe-prefix "uce-" --design <clade> --designer <user> --tiling-density <N> --two-probes --overlap middle --masking 0.25 --remove-gc --output probeset_temp/<base><N>.temp.probes
 ### Indentify and remove the duplicate loci
 (phyluce) $ phyluce_probe_easy_lastz --target probeset_temp/*.temp.probes --query probeset_temp/*.temp.probes --identify 50 --coverage 50 --output probeset_temp/<base><N>_self-probes.lastz
-(phyluce) $ phyluce_probe_remove_duplicate_hits_from_probes_using_lastz --fasta probeset_temp/*.temp.probes --lastz 
+(phyluce) $ phyluce_probe_remove_duplicate_hits_from_probes_using_lastz --fasta probeset_temp/*.temp.probes --lastz ~/probeste_temp/<base><N>_self-probes.lastz --probe-prefix=uce-
 (phyluce) $ 
+
+### Check with the probeset are working with others genomes
+(phyluce) mkdir probeset_temp/test_probeset/ 
+(phyluce) phyluce_probe_run_multiple_lastzs_sqlite --probefile probeset_temp/<abreviation>.temp-DUPE-SCREENED.probes --scaffoldlist agrPla1 <list or abreviations> --genome-base-path ~/genomas/ \
+    --identity 50 --cores 16 --db ~/tammy/probeset_design/test_probeset/<abreviation>_<abreviation_teste_specie>.sqlite --output probeset_temp/test_probeset/my_genomes_lastz
+
+### Extract the sequencies with commum loci
+(phyluce) 
