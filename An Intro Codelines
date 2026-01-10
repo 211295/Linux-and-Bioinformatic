@@ -154,6 +154,7 @@ ls abc[defghi] OR ls abc[d-i] = make a list of all files have the letters d to i
 ls abc? = wild-card character to represent exactly one of any kind of character after 'abc'
 ls abc{d,e,f,g,h,i} or ls abc{d..i} = PAY ATENTION ON DOTS BETWEEN 'd' AND 'i' MEANS YOU WANNA GET A RANGE LIKE IN [ ] and the resutl is te same as "ls abc[d-i]"
 ls abc{$((10*5)),$[2**5]} = show list (literaly) of "abc50" and "abc32". the coma ( , ) separate the lists
+ls {*.jpg,*.jpeg,*.png} = show all files with respectives ending
 ls /abc/d*f = takes all files in 'abc' directory start to 'd' and finish with 'f' (litteraly) doesn't matter the length name, therefore the * menas zero or more characters 
 ls /abc/defg[h-o]* = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'o' and doesn't matter the  length name | SAME OF ls /abc/defg{h..o}*
 ls /abc/defg[hijl]* = shows all files in 'abc' directory with name 'defg' follow with letter 'h' to 'l' and doesn't matter the legnt name
@@ -163,7 +164,9 @@ ls -l [a-f] | wc -l > new_file = create a list of files start with a to f, pipe 
 ls -R * = show all files with content recursivaly, therefore 
 ls -r * = show all files in reversed sort way
 ls -t * = show all files with sorted by modification time, newest in the top| (-t) --time
-
+ls -l *[!txt] = show all files in a list except files ending with 'txt'
+ls A*[!4-9].txt = show all files started with 'A' and DONT HAVE the numberes 4,5,6,7,8,9, and ending with txt
+ 
 file command determine file type. It tests each argument in an attempt to classify it.
 file </PATH/file> = show the kinds of file is   | ASCII text = American Standard Code for Information Interchange, is the most common format for text files in computers
                                                 | gzip compressed data = show the name of file without the .gz
@@ -491,7 +494,9 @@ echo "scale=100, 10/3" | bc = now print 100 numbers after the cout ',', show the
 ###################################################################################################################################################################################################################
 find search for files in a directory hierarchy. search for files, the output is a list of files or directories, you can concatenet with others commands (wc, head, less, tail, sort)
 find / -name <file> 2> /dev/null
-
+find ~ -name '*x.*' -size +5M
+find ~ -name '*.sh' -size -50k
+find ~ -name 'O*' -type d 
 ###################################################################################################################################################################################################################
 column utility formats its input into multiple columns, provides a format tabel for data.
 column -t <file> = display columns data (with fields separated by “white space”, such as tabs or spaces) in a table
