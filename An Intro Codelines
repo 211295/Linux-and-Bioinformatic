@@ -592,6 +592,11 @@ chmod 664 <file> =  give the mermission only to group and user to read and write
 Multiple symbolic modes can be given, separated by commas.
 chmod u=rwx,g=rx,o=rx <file> = user can read, write and execute/ group and others can only read and execute
 
+chgrp 
+chgrp -r <file> = change the group recursively down a directory | (-r) recursively
+ 
+chown Generally can only be used by users with admin rights so you are unlikely to use this command
+
 ###################################################################################################################################################################################################################
 wget is a non-interactive download of files from the Web (HTTP, HTTPS, FTP formats; htmml, xhtml, ccs pages). Can work in the background, while the user is not logged on. Create local versions of remote web sites
 wget <httml/:___________________.com> = download the archive directly on terminal
