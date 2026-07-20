@@ -1,0 +1,4 @@
+### Trimmomatic is a flexible read trimming tool for Ilumina NGS data
+### http://www.usadellab.org/cms/?page=trimmomatic 
+### The preprocessing of next-generation sequencing (NGS) data to remove adapter sequences and low-quality regions is a necessary first step
+### Trimmomatic can become a significant computational bottleneck process
