@@ -1,19 +1,19 @@
 # Tutorial Linux and Bash Language 
 ### Central Processing Unit and Memomry
-The kernel (operating system kernel) manages the computer's resources, such as the Central Processing Unit (or "CPU"), the memory, all input/output (I/O), etc., and allows other programs to run and use these resources.
-The CPU gets commands and data from the working memory, processes them, and returns the results to working memory.
-A single CPU can have more than one processing core (a “mini-CPU” within), example: dual-core, quad-core, octo-core etc
-The RAM (random access memory) is a set of chips that function as the working memory of the computer. RAM is usually the system component that is most crucial to computer speed.
-The RAM stores commands and data that are being actively used: everything  you see on the screen is in a form of RAM (either the main system memory or a video card’s memory).
-If your RAM gets full, a part of the hard-disk drive (or SSD, solid state drive) is used as auxiliary working memory.
-The amount of data that can go into RAM is measured in multiples of bits or bytes (Gb or GB for gigabits or gigabytes, respectively). Data in RAM disappears when the computer is turned off
+ The kernel (operating system kernel) manages the computer's resources, such as the Central Processing Unit (or "CPU"), the memory, all input/output (I/O), etc., and allows other programs to run and use these resources.
+ The CPU gets commands and data from the working memory, processes them, and returns the results to working memory.
+ A single CPU can have more than one processing core (a “mini-CPU” within), example: dual-core, quad-core, octo-core etc
+ The RAM (random access memory) is a set of chips that function as the working memory of the computer. RAM is usually the system component that is most crucial to computer speed.
+ The RAM stores commands and data that are being actively used: everything  you see on the screen is in a form of RAM (either the main system memory or a video card’s memory).
+ If your RAM gets full, a part of the hard-disk drive (or SSD, solid state drive) is used as auxiliary working memory.
+ The amount of data that can go into RAM is measured in multiples of bits or bytes (Gb or GB for gigabits or gigabytes, respectively). Data in RAM disappears when the computer is turned off
 
 
-The Linux command line is a text interface, and called shell, terminal, console, prompt... The shell, also known as (aka) a Command Line Interpreter (CLI), is a text-only interface between the user and the kernel.
-Its main function is to read the commands that are typed in the terminal window by the user and execute them. Just a keyboard and screen, with no power to run programs locally. There was no mouse, no fancy graphics, not even any choice of colour. Everything was sent as text, and received as text.
+ The Linux command line is a text interface, and called shell, terminal, console, prompt... The shell, also known as (aka) a Command Line Interpreter (CLI), is a text-only interface between the user and the kernel.
+ Its main function is to read the commands that are typed in the terminal window by the user and execute them. Just a keyboard and screen, with no power to run programs locally. There was no mouse, no fancy graphics, not even any choice of colour. Everything was sent as text, and received as text.
 - **examples of shell** : sh , csh , tcsh , bash  
 
-The programs can be drived by to external programs that can be installed on the computer, however UNIX (or UNIX-like) operating systems come with many built-in command-line interface programs and shell utilities:
+ The programs can be drived by to external programs that can be installed on the computer, however UNIX (or UNIX-like) operating systems come with many built-in command-line interface programs and shell utilities:
 
 - **File system** -> cat, cd, chmod, chown, chgrp, cksum, cmp, cp, dd, du, df, file, fsck, fuser, ln, ls, lsattr, lsof, mkdir, mount, mv, pax, pwd, rm, rmdir, size, split, tee, touch, type, umask
 - **Processes** -> at, bg, chroot, cron, fg, kill, killall, nice, pgrep, pidof, pkill, ps, pstree, time, top
@@ -25,9 +25,9 @@ The programs can be drived by to external programs that can be installed on the 
 - **Documentation** -> apropos, help, man
 - **Miscellaneous** -> bc, dc, cal, date, lp, lpr
 
-Hardware initialization when The BIOS (Basic Input/Output System) execute (the firts code of software). In other words 'puts in an available state' every piece of hardware, such as the network card, the hard disk, the graphic card, the optical drive, the keyboard, the mouse, etc.
-When every piece of hardware is initialized, the BIOS of the motherboard tries to start the Opening Sistem. The OS is started and takes control, eventually.
-The OS kernel searches for known hardware... It loads the drivers for every computer hardware found... It creates interfaces for applications to communicate with the computer hardware... It starts all system services. Its waiting for user make the command
+ Hardware initialization when The BIOS (Basic Input/Output System) execute (the firts code of software). In other words 'puts in an available state' every piece of hardware, such as the network card, the hard disk, the graphic card, the optical drive, the keyboard, the mouse, etc.
+ When every piece of hardware is initialized, the BIOS of the motherboard tries to start the Opening Sistem. The OS is started and takes control, eventually.
+ The OS kernel searches for known hardware... It loads the drivers for every computer hardware found... It creates interfaces for applications to communicate with the computer hardware... It starts all system services. Its waiting for user make the command
 
 # The binary code: base 2, digits only 0 and 1 
 ## "*There are only 10 kinds of people: the people how knows the binary code, and the people how doesnt know the binary code*"
@@ -61,7 +61,7 @@ The prompt display tree things in the screen: the name of computer/server
                                               the user name
 <server> :~ <user_name> $
 ## Hierarchical structure
-    Many sub directories which organize the files and sub directories of the system.
+ Many sub directories which organize the files and sub directories of the system.
 | Hierarchical filesystem structure | Whats means&Content | 
 |:----------------------:|:---------------------------------------------------------------------------------------------------------------------------|
 | /home | where user data lives, users home |
