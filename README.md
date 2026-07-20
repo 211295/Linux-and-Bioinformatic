@@ -72,38 +72,38 @@ The prompt display tree things in the screen: the name of computer/server
 ## Hierarchical structure
  Many sub directories which organize the files and sub directories of the system.
 | Hierarchical filesystem structure | Whats means&Content | 
-|:----------------------:|:---------------------------------------------------------------------------------------------------------------------------|
-| /home | where user data lives, users home |
-| /bin | - common programs - shared by the system - the system administrator and the users - executable files available to all users |
-| /sbin | programs for use by the system and the system administrator |
-| /boot | the startup files and the kernel. In some recent distributions also grub data. Grub is the GRand Unified Boot loader |
-| /dev | contains references to all the CPU and peripheral hardware, which are represented as files with special properties, device drivers - screen, keyboard, disks, etc. |
-| /etc | important system configuration files; administrative and information files | 
-| /initrd | on some distributions, information for booting | 
-| /lib | library files, includes files for all kinds of programs needed by the system  and the users, shared library files |
-| /lost+found | every partition has a lost+found in its upper directory; files that were saved during failures are here |
-| /mnt | standard mount point for external file systems, e.g. a CD-ROM or a digital camera; common place to mount external media |
-| /net | standard mount point for entire remote file systems |
-| /opt | typically contains extra and third party software |
-| /proc | a virtual file system containing information about system resources |
-| /root | the administrative user's home directory. Mind the difference between /, the root directory and /root, the home directory of the root user | 
-| /tmp | temporary space for use by the system, cleaned upon reboot, used by many programs as a temporary file storage place | 
-| /usr | programs, libraries, documentation etc. for all user-related programs. Originally intended to keep all user-related commands |
-| /var | storage for all variable files and temporary files created by users, such as  log files, the mail queue, the print spooler area, space for temporary storage of  files downloaded from the Internet, etc. | 
+|:-----------:|:-----------------------------------------------------------------------------------------------------------------------------------------|
+| /*home* | where user data lives, users home |
+| /*bin* | - common programs - shared by the system - the system administrator and the users - executable files available to all users |
+| /*sbin* | programs for use by the system and the system administrator |
+| /*boot* | the startup files and the kernel. In some recent distributions also grub data. Grub is the GRand Unified Boot loader |
+| /*dev* | contains references to all the CPU and peripheral hardware, which are represented as files with special properties, device drivers - screen, keyboard, disks, etc. |
+| /*etc* | important system configuration files; administrative and information files | 
+| /*initrd* | on some distributions, information for booting | 
+| /*lib* | library files, includes files for all kinds of programs needed by the system  and the users, shared library files |
+| /*lost+found* | every partition has a lost+found in its upper directory; files that were saved during failures are here |
+| /*mnt* | standard mount point for external file systems, e.g. a CD-ROM or a digital camera; common place to mount external media |
+| /*net* | standard mount point for entire remote file systems |
+| /*opt* | typically contains extra and third party software |
+| /*proc* | a virtual file system containing information about system resources |
+| /*root* | the administrative user's home directory. Mind the difference between /, the root directory and /root, the home directory of the root user | 
+| /*tmp* | temporary space for use by the system, cleaned upon reboot, used by many programs as a temporary file storage place | 
+| /*usr* | programs, libraries, documentation etc. for all user-related programs. Originally intended to keep all user-related commands |
+| /*var* | storage for all variable files and temporary files created by users, such as  log files, the mail queue, the print spooler area, space for temporary storage of  files downloaded from the Internet, etc. | 
 
 ## Files
 &emsp;Under UNIX, file extensions are arbitrary and do not have a particular meaning (Windows have tree letter extensions). So convencionaly in Linux have some cods to reference a kind of files
-- <file>.sh = shell scripts, text files containing a series of shell commands
-- <file>.pl = perl scripts, text files containing PERL commands
-- <file>.py = python scripts, text files containing PYTHON commands
-- <file>.txt = text files with no particular format
-- <file>.csv = text files with Comma-Separated Values, generally used in tables
-- <file>.fasta = text files containing sequences in FASTA format
+- *script*.sh = shell scripts, text files containing a series of shell commands
+- *script*.pl = perl scripts, text files containing PERL commands
+- *script*.py = python scripts, text files containing PYTHON commands (use command **python3** before those files)
+- *table*.csv = text files with Comma-Separated Values, generally used in tables
+- *file*.txt = text files with no particular format
+- *file*.fasta = text files containing sequences in FASTA format
 
 | ABSOLUTE PATH - starts at the root '/' | RELATIVE PATH - starts at the current directory |
 |:----------------------------------------|------------------------------------------------:|
-|/home/user/<directory>/<folder>/<file>.txt | <file>.txt |
-| ~/<directory>/<folder>/<file>.txt | ./<file>.txt | 
+|/*home*/*user*/*main_directory*/*folder*/*file*.txt | *file*.txt |
+| ~/*main_directory*/*folder*/*file*.txt | ./*file*.txt | 
 
 | CURRENT DIRECTORY | PARENT DIRECTORY |
 |:---------------------------|---------------------------:|
