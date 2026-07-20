@@ -1,6 +1,7 @@
 ### The same 2 options to download, 1 in the servidor, and other in Conda Envoirment
 ### 1 OPTION
 ### Install the OrthoFinder
+### https://github.com/davidemms/OrthoFinder
 $ wget https://github.com/davidemms/OrthoFinder/releases/download/2.5.5/OrthoFinder.tar.gz
 ### OR
 $ wget https://github.com/davidemms/OrthoFinder/releases/download/2.5.5/OrthoFinder_source.tar.gz
