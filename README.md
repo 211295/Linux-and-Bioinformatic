@@ -1,12 +1,12 @@
 # Tutorial Linux and Bash Language 
 ### Central Processing Unit and Memomry
-    The kernel (operating system kernel) manages the computer's resources, such as the Central Processing Unit (or "CPU"), the memory, all input/output (I/O), etc., and allows other programs to run and use these resources.
-     The CPU gets commands and data from the working memory, processes them, and returns the results to working memory.
-     A single CPU can have more than one processing core (a “mini-CPU” within), example: dual-core, quad-core, octo-core etc
-     The RAM (random access memory) is a set of chips that function as the working memory of the computer. RAM is usually the system component that is most crucial to computer speed.
-     The RAM stores commands and data that are being actively used: everything  you see on the screen is in a form of RAM (either the main system memory or a video card’s memory).
-    If your RAM gets full, a part of the hard-disk drive (or SSD, solid state drive) is used as auxiliary working memory.
-    The amount of data that can go into RAM is measured in multiples of bits or bytes (Gb or GB for gigabits or gigabytes, respectively). Data in RAM disappears when the computer is turned off
+  The kernel (operating system kernel) manages the computer's resources, such as the Central Processing Unit (or "CPU"), the memory, all input/output (I/O), etc., and allows other programs to run and use these resources.
+  The CPU gets commands and data from the working memory, processes them, and returns the results to working memory.
+  A single CPU can have more than one processing core (a “mini-CPU” within), example: dual-core, quad-core, octo-core etc
+  The RAM (random access memory) is a set of chips that function as the working memory of the computer. RAM is usually the system component that is most crucial to computer speed.
+  The RAM stores commands and data that are being actively used: everything  you see on the screen is in a form of RAM (either the main system memory or a video card’s memory).
+  If your RAM gets full, a part of the hard-disk drive (or SSD, solid state drive) is used as auxiliary working memory.
+  The amount of data that can go into RAM is measured in multiples of bits or bytes (Gb or GB for gigabits or gigabytes, respectively). Data in RAM disappears when the computer is turned off
 
 
     The Linux command line is a text interface, and called shell, terminal, console, prompt... The shell, also known as (aka) a Command Line Interpreter (CLI), is a text-only interface between the user and the kernel.
