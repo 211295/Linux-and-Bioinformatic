@@ -1,7 +1,7 @@
 ### ORTHOMCL (all-vs-all BLAST -> indentify the best hits -> formation of groups with related proteins -> refine groups using Markov Clustering algorithm)
 ### Computational method used to identify orthologous gene groups across multiple species, leveraging sequence similarity and Markov clustering to distinguish orthologs from paralogs
 ### He process involves all-vs-all BLAST searches, score normalization, and MCL clustering to group proteins into orthologous families
-### 
+### https://bioinformaticsworkbook.org/phylogenetics/00-finding-orthologs-uisng-orthoMCL.html#gsc.tab=0
 
 ### DOWNLOAD in 
 $ wget  ; gunzip *.gz
