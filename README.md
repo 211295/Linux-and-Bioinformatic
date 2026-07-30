@@ -126,38 +126,67 @@ The prompt display tree things in the screen: the name of computer/server
 | **Usados para redirecionar a Saída (stdout)** | `>` *(sobrescreve arquivo)*, `>>` *(anexa ao arquivo)*, `\|` *(pipe)* |
 
  `>` : redirect STDOUT to the file named after the sign / can create new files OR OVERWRITE AN EXIST FILE, so be carefull
-<command> <file> > <other_file> = make a direction of the archive to save in "other_file"
+ 
+ `<command> <file> > <other_file>` = make a direction of the archive to save in "other_file"
+ 
  `2>` : redirect STDERR to the file / only the erro will and redirect to the file / can create new files OR OVERWRITE AN EXIST FILE
+ 
  `>>` : redirect, appending STDOUT to the file
+ 
  `2>>` : redirect, appending STDERR to the file (Redirect standard error from program to file, appending)
-`<file> 2>> <other_file>` : redirect JUST A STARDAR ERROR (STDERR), appending to a existing file
+ 
+ `<file> 2>> <other_file>` : redirect JUST A STARDAR ERROR (STDERR), appending to a existing file
+ 
  `<` : redirect STDIN from a file to a programm
-`<new_file> < <file>` : redirect the standard input (STDIN)
+ 
+ `<new_file> < <file>` : redirect the standard input (STDIN)
+ 
  `<<` : redirect STDIN as a here-document,
+ 
  `<<<` : redirect STDIN as a here-string to a program
+ 
  `&&` :
+ 
  `&` : 
-`<command_line> > <file> 2>&1` = It is possible to merge STDOUT and STDERR and send them to the same file
-`<command_line> &> <file>` = the same above / send the two streams to the same file 
-`<command_line> >> <file> 2>&1` = Appending, without overwrite, the STDOUT and STDERR in the previous exist file
-`<command_line> &>> <file>` = 
-`<command> && <command>` = 
-`<command> & <command>` = 
+ 
+ `<command_line> > <file> 2>&1` = It is possible to merge STDOUT and STDERR and send them to the same file
+ 
+ `<command_line> &> <file>` = the same above / send the two streams to the same file 
+ 
+ `<command_line> >> <file> 2>&1` = Appending, without overwrite, the STDOUT and STDERR in the previous exist file
+ 
+ `<command_line> &>> <file>` = 
+ 
+ `<command> && <command>` = 
+ 
+ `<command> & <command>` = 
 
 # Metacharacter
 `.` = Any character. You represent a caracther with dot
+
 `^` = anchor the beggin of line 
+
 `$` = anchor the end of line
+
 `[  ]` = enclose a character list so its a OR b OR c ... Can be used as a range or a 
+
 `[^ ]` = is the same above but negation the content among the brackets
+
 `*` = quantifier zero or more occurrences
+
 `\` = remove the metacharacter "special power" and belong a normal characher, therefore is the literal value of the character
+
 `\` = in some programms make the normal character change the mean and gives new power for them
+
  `|` = concatenate 2 or more commands in one line (its a pipe), redirect STDOUT of one program to STDIN of the next program.
-`<command1> | <command2> | <command3>`  =  STDERR does not get in the pipe, by default, so use |& to have the STDERR go along with STDOUT
-`+` = match the preceding element one or more times
-`?` = match the preceding element zero or one time
-`( )` =  group some parts of the regex, and save the match in a special variable
+ 
+ `<command1> | <command2> | <command3>`  =  STDERR does not get in the pipe, by default, so use |& to have the STDERR go along with STDOUT
+
+ `+` = match the preceding element one or more times
+
+ `?` = match the preceding element zero or one time
+ 
+ `( )` =  group some parts of the regex, and save the match in a special variable
 
 # Securities and Acess
 Access rights in Linux are defined by WHO can take the acess and WHAT KIND of acess (see chmod command)
