@@ -1,36 +1,25 @@
 # Tutorial Linux and Bash Language 
 ### Central Processing Unit and Memomry
-&emsp;The kernel (operating system kernel) manages the computer's resources, such as the Central Processing Unit (or "CPU"), the memory, all input/output (I/O), etc., and allows other programs to run and use these resources.
+&emsp;The kernel (operating system kernel) manages the computer's resources, such as the Central Processing Unit (or "CPU"), the memory, all input/output (I/O), etc., and allows other programs to run and use these resources. The CPU gets commands and data from the working memory, processes them, and returns the results to working memory. A single CPU can have more than one processing core (a “mini-CPU” within), example: dual-core, quad-core, octo-core etc
 
-&emsp;The CPU gets commands and data from the working memory, processes them, and returns the results to working memory.
-
-&emsp;A single CPU can have more than one processing core (a “mini-CPU” within), example: dual-core, quad-core, octo-core etc
-
-&emsp;The RAM (random access memory) is a set of chips that function as the working memory of the computer. RAM is usually the system component that is most crucial to computer speed.
-
-&emsp;The RAM stores commands and data that are being actively used: everything  you see on the screen is in a form of RAM (either the main system memory or a video card’s memory).
-
-&emsp;If your RAM gets full, a part of the hard-disk drive (or SSD, solid state drive) is used as auxiliary working memory.
+&emsp;The RAM (random access memory) is a set of chips that function as the working memory of the computer. RAM is usually the system component that is most crucial to computer speed. The RAM stores commands and data that are being actively used: everything  you see on the screen is in a form of RAM (either the main system memory or a video card’s memory). If your RAM gets full, a part of the hard-disk drive (or SSD, solid state drive) is used as auxiliary working memory.
 
 &emsp;The amount of data that can go into RAM is measured in multiples of bits or bytes (Gb or GB for gigabits or gigabytes, respectively). Data in RAM disappears when the computer is turned off
 
-&emsp;The Linux command line is a text interface, and called shell, terminal, console, prompt... The shell, also known as (aka) a Command Line Interpreter (CLI), is a text-only interface between the user and the kernel.
-
-&emsp;Its main function is to read the commands that are typed in the terminal window by the user and execute them. Just a keyboard and screen, with no power to run programs locally. There was no mouse, no fancy graphics, not even any choice of colour. Everything was sent as text, and received as text.
-
-- **examples of shell** : sh , csh , tcsh , bash
+&emsp;The Linux command line is a text interface, and called shell, terminal, console, prompt... The shell, also known as (aka) a Command Line Interpreter (CLI), is a text-only interface between the user and the kernel. Its main function is to read the commands that are typed in the terminal window by the user and execute them. Just a keyboard and screen, with no power to run programs locally. There was no mouse, no fancy graphics, not even any choice of colour. Everything was sent as text, and received as text.
 
 &emsp;The programs can be drived by to external programs that can be installed on the computer, however UNIX (or UNIX-like) operating systems come with many built-in command-line interface programs and shell utilities:
 
-- **File system** -> cat, cd, chmod, chown, chgrp, cksum, cmp, cp, dd, du, df, file, fsck, fuser, ln, ls, lsattr, lsof, mkdir, mount, mv, pax, pwd, rm, rmdir, size, split, tee, touch, type, umask
-- **Processes** -> at, bg, chroot, cron, fg, kill, killall, nice, pgrep, pidof, pkill, ps, pstree, time, top
-- **User environment** -> clear, env, exit, finger, history, id, logname, mesg, passwd, su, sudo, uptime, talk, tput, uname, w, wall, who, whoami, write
-- **Text processing** -> awk, banner, basename, comm, csplit, cut, dirname, ed, ex, fmt, head, iconv, join, less, more, paste, sed, sort, spell, strings, tail, tr, uniq, vi, wc, xargs
-- **Shell builtins** -> alias, echo, expr, printf, sleep, test, true, and, false, unset, wait, yes
-- **Networking** -> dig, host, ifconfig, inetd, netcat, netstat, nslookup, ping, rdate, rlogin, ssh, traceroute
-- **Searching** -> find, grep, locate, whatis, whereis
-- **Documentation** -> apropos, help, man
-- **Miscellaneous** -> bc, dc, cal, date, lp, lpr
+- **Shell** : `sh `,`csh `,`tcsh `,`bash`;
+- **File system** : `cat`,`cd`,`chmod`,`chown`,`chgrp`,`cksum`,`cmp`,`cp`,`dd`,`du`,`df`,`file`,`fsck`,`fuser`,`ln`,`ls`,`lsattr`,`lsof`,`mkdir`,`mount`,`mv`,`pax`,`pwd`,`rm`,`rmdir`,`size`,`split`,`tee`,`touch`,`type`,`umask`;
+- **Processes** : `at`,`bg`,`chroot`,`cron`,`fg`,`kill`,`killall`,`nice`,`pgrep`,`pidof`,`pkill`,`ps`,`pstree`,`time`,`top`;
+- **User environment** : `clear`,`env`,`exit`,`finger`,`history`,`id`,`logname`,`mesg`,`passwd`,`su`,`sudo`,`uptime`,`talk`,`tput`,`uname`,`w`,`wall`,`who`,`whoami`,`write`;
+- **Text processing** : `awk`,`banner`,`basename`,`comm`,`csplit`,`cut`,`dirname`,`ed`,`ex`,`fmt`,`head`,`iconv`,`join`,`less`,`more`,`paste`,`sed`,`sort`,`spell`,`strings`,`tail`,`tr`,`uniq`,`vi`,`wc`,`xargs`;
+- **Shell builtins** : `alias`,`echo`,`expr`,`printf`,`sleep`,`test`,`true`,`and`,`false`,`unset`,`wait`,`yes`;
+- **Networking** : `dig`,`host`,`ifconfig`,`inetd`,`netcat`,`netstat`,`nslookup`,`ping`,`rdate`,`rlogin`,`ssh`,`traceroute`;
+- **Searching** : `find`,`grep`,`locate`,`whatis`,`whereis`;
+- **Documentation** : `apropos`,`help`,`man`;
+- **Miscellaneous** : `bc`,`dc`,`cal`,`date`,`lp`,`lpr`.
 
 &emsp;Hardware initialization when The BIOS (Basic Input/Output System) execute (the firts code of software). In other words 'puts in an available state' every piece of hardware, such as the network card, the hard disk, the graphic card, the optical drive, the keyboard, the mouse, etc.
 
@@ -56,12 +45,17 @@ Nth position of the number is the power of base 2, and the number (0 or 1) mutip
 
 
 A byte is a set of 8 bits (and a bit is a binary code, 0 and 1): 
-2^0 = 1 = 1 bit                                    10^0 = 1 = 1 bit
-2^3 = 8 = 8 bits = 1 byte
-2^10 = 1,024 b = 1 KIBIbit                         10^3 = 1,000 kb = 1 KILObit
-2^20 = 1,048,576 Kib =  1 MEGIbit                  10^6 = 1,000,000 Mb = 1 MEGAbit
-2^30 = 1,073,741,824 Gib =  1 GIBIbit              10^9 = 1,000,000,000 Gb = 1 GIGAbit
-2^40 = 1,099,511,627,776 Tib = 1 TEBIbit           10^12 = 1,000,000,000,000 Tb = 1 TERAbit
+
+| Base 2 | Qtd. Bits | Qtd. Bytes | Unidade Binária (Nome/Sigla) | Base 10 | Qtd. Bits | Qtd. Bytes | Unidade Decimal (Nome/Sigla) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| $2^0$ | 1 | 0,125 | 1 bit (b) | $10^0$ | 1 | 0,125 | 1 bit (b) |
+| $2^3$ | 8 | 1 | 1 byte (B) | — | — | — | Não se aplica |
+| $2^{10}$ | 1.024 | 128 | 1 Kibibit (1 Kib) | $10^3$ | 1.000 | 125 | 1 Kilobit (1 kb) |
+| $2^{20}$ | 1.048.576 | 131.072 | 1 Mebibit (1 Mib) | $10^6$ | 1.000.000 | 125.000 | 1 Megabit (1 Mb) |
+| $2^{30}$ | 1.073.741.824 | 134.217.728 | 1 Gibibit (1 Gib) | $10^9$ | 1.000.000.000 | 125.000.000 | 1 Gigabit (1 Gb) |
+| $2^{40}$ | 1.099.511.627.776 | 137.438.953.472 | 1 Tebibit (1 Tib) | $10^{12}$ | 1.000.000.000.000 | 125.000.000.000 | 1 Terabit (1 Tb) |
+
+
 
 [Shift] + [Insert] = Ctrl V
 green is the terminal and. ~ is the way to your user terminal. / is the root, and below that, we have a top-down tree
