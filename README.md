@@ -28,8 +28,10 @@
 &emsp;The OS kernel searches for known hardware... It loads the drivers for every computer hardware found... It creates interfaces for applications to communicate with the computer hardware... It starts all system services. Its waiting for user make the command
 
 # The binary code: base 2, digits only 0 and 1 
-## "*There are only 10 kinds of people: the people how knows the binary code, and the people how doesnt know the binary code*"
-Nth position of the number is the power of base 2, and the number (0 or 1) mutiply the 2^n
+> "*There are only 10 kinds of people: the people how knows the binary code, and the people how doesnt know the binary code*"
+
+`Nth` position of the number is the power of base 2, and the number (0 or 1) mutiply the 2^n
+
 | Number base 2 | Number base 10 | 1 x 2^n or 0 x 2^n | 
 |:-------------:|:--------------:|:--------------------------------------:|
 | 0 | 0 | 0x2<sup>0</sup> |
@@ -51,7 +53,7 @@ Nth position of the number is the power of base 2, and the number (0 or 1) mutip
 
 A byte is a group of 8 bits, and a bit is a single binary digit representing a 0 or a 1: 
 
-| Base 2 | Bits | Bytes | Unidade Binária | Base 10 | Bits | Bytes | Unidade Decimal |
+| Base 2 | Bits (b) | Bytes (B) | Unidade Binária | Base 10 | Bits (b) | Bytes (B) | Unidade Decimal |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | $2^0$ | 1 | 0,125 | 1 bit (b) | $10^0$ | 1 | 0,125 | 1 bit (b) |
 | $2^3$ | 8 | 1 | 1 byte (B) | — | — | — | Não se aplica |
@@ -60,13 +62,13 @@ A byte is a group of 8 bits, and a bit is a single binary digit representing a 0
 | $2^{30}$ | 1.073.741.824 | 134.217.728 | 1 Gibibit (1 Gib) | $10^9$ | 1.000.000.000 | 125.000.000 | 1 Gigabit (1 Gb) |
 | $2^{40}$ | 1.099.511.627.776 | 137.438.953.472 | 1 Tebibit (1 Tib) | $10^{12}$ | 1.000.000.000.000 | 125.000.000.000 | 1 Terabit (1 Tb) |
 
-
 [Shift] + [Insert] = Ctrl V
 green is the terminal and. ~ is the way to your user terminal. / is the root, and below that, we have a top-down tree
 The prompt display tree things in the screen: the name of computer/server
                                               the name of currently directory ~ 
                                               the user name
 <server> :~ <user_name> $
+
 ## Hierarchical structure
  Many sub directories which organize the files and sub directories of the system.
 | Hierarchical filesystem structure | Whats means&Content | 
@@ -89,6 +91,17 @@ The prompt display tree things in the screen: the name of computer/server
 | /*usr* | programs, libraries, documentation etc. for all user-related programs. Originally intended to keep all user-related commands |
 | /*var* | storage for all variable files and temporary files created by users, such as  log files, the mail queue, the print spooler area, space for temporary storage of  files downloaded from the Internet, etc. | 
 
+| ABSOLUTE PATH - starts at the root '/' | RELATIVE PATH - starts at the current directory |
+|:----------------------------------------|------------------------------------------------:|
+|/*home*/*user*/*main_directory*/*folder*/*file*.txt | *file*.txt |
+| ~/*main_directory*/*folder*/*file*.txt | ./*file*.txt | 
+
+> `.` = currently directory
+> `..` = directory above currently directory
+
+| CURRENT DIRECTORY | PARENT DIRECTORY |
+|:---------------------------|---------------------------:|
+
 ## Files
 &emsp;Under UNIX, file extensions are arbitrary and do not have a particular meaning (Windows have tree letter extensions). So convencionaly in Linux have some cods to reference a kind of files
 - `*script*.sh` = shell scripts, text files containing a series of shell commands
@@ -98,86 +111,81 @@ The prompt display tree things in the screen: the name of computer/server
 - `*file*.txt` = text files with no particular format
 - `*file*.fasta` = text files containing sequences in FASTA format
 
-| ABSOLUTE PATH - starts at the root '/' | RELATIVE PATH - starts at the current directory |
-|:----------------------------------------|------------------------------------------------:|
-|/*home*/*user*/*main_directory*/*folder*/*file*.txt | *file*.txt |
-| ~/*main_directory*/*folder*/*file*.txt | ./*file*.txt | 
+# Standar Streams-> Redirection Input/Output
 
-| CURRENT DIRECTORY | PARENT DIRECTORY |
-|:---------------------------|---------------------------:|
+- Standard input (stdin) is represented by number 0, where data comes from to enter the program
+- Standard output (stdout) is represented by number 1, where data goes when it gets out of the program
+- Standard error (stderr) is represented by number 2,  where program errors (or warnings or diagnostic messages) go to when issued
 
-###################################################################################################################################################################################################################
-Standard input (stdin) is represented by number 0, where data comes from to enter the program
-Standard output (stdout) is represented by number 1, where data goes when it gets out of the program
-Standard error (stderr) is represented by number 2,  where program errors (or warnings or diagnostic messages) go to when issued
-List of commands accept only stdin : less, more, tail, head 
-List of commands accept only stdout : rev , colrm
-List of commands use to redirect the stdin : 
-List of commands use to redirect the stdout : 
-List of commands dont accept either: mkdir , cd , wget , 
- > : redirect STDOUT to the file named after the sign / can create new files OR OVERWRITE AN EXIST FILE, so be carefull
-<command> <file> > <other_file> = make a direction of the archive to save in "other_file"
- 2> : redirect STDERR to the file / only the erro will and redirect to the file / can create new files OR OVERWRITE AN EXIST FILE
- >> : redirect, appending STDOUT to the file
- 2>> : redirect, appending STDERR to the file (Redirect standard error from program to file, appending)
-<file> 2>> <other_file> = redirect JUST A STARDAR ERROR (STDERR), appending to a existing file
- < : redirect STDIN from a file to a programm
-<new_file> < <file> = redirect the standard input (STDIN)
- << : redirect STDIN as a here-document,
- <<< : redirect STDIN as a here-string to a program
- && :
- & : 
-<command_line> > <file> 2>&1 = It is possible to merge STDOUT and STDERR and send them to the same file
-<command_line> &> <file> = the same above / send the two streams to the same file 
-<command_line> >> <file> 2>&1 = Appending, without overwrite, the STDOUT and STDERR in the previous exist file
-<command_line> &>> <file> = 
-<command> && <command> = 
-<command> & <command> = 
-. = currently directory
-.. = directory above currently directory
-
-### Redirecionamento e Fluxos de Dados no Terminal
-
-| Comportamento de Entrada/Saída | Exemplos de Comandos |
+| Redirectin pattern | Commands |
 | :--- | :--- |
 | **Aceitam apenas Entrada Padrão (stdin)** | `less`, `more`, `tail`, `head`, `grep`, `wc`, `sort` |
 | **Aceitam apenas Saída Padrão (stdout)** | `rev`, `colrm`, `ls`, `pwd`, `date`, `whoami` |
+| **Não aceitam entrada nem saída padrão (via streams)** | `mkdir`, `cd`, `wget`, `rm`, `mv`, `cp` |
 | **Usados para redirecionar a Entrada (stdin)** | `<` *(redireciona arquivo para comando)*, `<<` *(heredoc)* |
 | **Usados para redirecionar a Saída (stdout)** | `>` *(sobrescreve arquivo)*, `>>` *(anexa ao arquivo)*, `\|` *(pipe)* |
-| **Não aceitam entrada nem saída padrão (via streams)** | `mkdir`, `cd`, `wget`, `rm`, `mv`, `cp` |
 
-######################################################## Metacharacter ##########################################################################################################################################
-. = Any character. You represent a caracther with dot
-^ = anchor the beggin of line 
-$ = anchor the end of line
-[  ] = enclose a character list so its a OR b OR c ... Can be used as a range or a 
-[^ ] = is the same above but negation the content among the brackets
-ls [XYZ]* = show list files with started X OR Y OR Z
-* = quantifier zero or more occurrences
-\ = remove the metacharacter "special power" and belong a normal characher, therefore is the literal value of the character
-\ = in some programms make the normal character change the mean and gives new power for them
- | = concatenate 2 or more commands in one line (its a pipe), redirect STDOUT of one program to STDIN of the next program.
-<command1> | <command2> | <command3>  =  STDERR does not get in the pipe, by default, so use |& to have the STDERR go along with STDOUT
-+ = match the preceding element one or more times
-? = match the preceding element zero or one time
-( ) =  group some parts of the regex, and save the match in a special variable
+ `>` : redirect STDOUT to the file named after the sign / can create new files OR OVERWRITE AN EXIST FILE, so be carefull
+<command> <file> > <other_file> = make a direction of the archive to save in "other_file"
+ `2>` : redirect STDERR to the file / only the erro will and redirect to the file / can create new files OR OVERWRITE AN EXIST FILE
+ `>>` : redirect, appending STDOUT to the file
+ `2>>` : redirect, appending STDERR to the file (Redirect standard error from program to file, appending)
+`<file> 2>> <other_file>` : redirect JUST A STARDAR ERROR (STDERR), appending to a existing file
+ `<` : redirect STDIN from a file to a programm
+`<new_file> < <file>` : redirect the standard input (STDIN)
+ `<<` : redirect STDIN as a here-document,
+ `<<<` : redirect STDIN as a here-string to a program
+ `&&` :
+ `&` : 
+`<command_line> > <file> 2>&1` = It is possible to merge STDOUT and STDERR and send them to the same file
+`<command_line> &> <file>` = the same above / send the two streams to the same file 
+`<command_line> >> <file> 2>&1` = Appending, without overwrite, the STDOUT and STDERR in the previous exist file
+`<command_line> &>> <file>` = 
+`<command> && <command>` = 
+`<command> & <command>` = 
 
-################################################################# Securities ###################################################################################################################
+# Metacharacter
+`.` = Any character. You represent a caracther with dot
+`^` = anchor the beggin of line 
+`$` = anchor the end of line
+`[  ]` = enclose a character list so its a OR b OR c ... Can be used as a range or a 
+`[^ ]` = is the same above but negation the content among the brackets
+`*` = quantifier zero or more occurrences
+`\` = remove the metacharacter "special power" and belong a normal characher, therefore is the literal value of the character
+`\` = in some programms make the normal character change the mean and gives new power for them
+ `|` = concatenate 2 or more commands in one line (its a pipe), redirect STDOUT of one program to STDIN of the next program.
+`<command1> | <command2> | <command3>`  =  STDERR does not get in the pipe, by default, so use |& to have the STDERR go along with STDOUT
+`+` = match the preceding element one or more times
+`?` = match the preceding element zero or one time
+`( )` =  group some parts of the regex, and save the match in a special variable
+
+# Securities and Acess
 Access rights in Linux are defined by WHO can take the acess and WHAT KIND of acess (see chmod command)
-user: the user who owns the file                                    | read: permission to display the content of the file
-group: other users in the same group as the user who owns the file  | write: permission to modify the content of the file - add or remove some content
-others: all the other users in the system                           | execute: permission to run a file - scripts or compiled programs
+### Linux Access Rights (Permissions & Ownership)
 
+| Target (WHO) | Description | Permission (WHAT KIND) | Description |
+| :------------- | :----------------------------- | :--------------- | :------------------------------------------------------------------------ |
+| **User** (`u`) | The user who owns the file. | **Read** (`r`) | Permission to display the content of the file. |
+| **Group** (`g`) | Other users in the same group as the owner. | **Write** (`w`) | Permission to modify the file content (add or remove data). |
+| **Others** (`o`) | All the other users in the system. | **Execute** (`x`) | Permission to run a file (scripts or compiled programs). |
+
+```
 ~$ ll <file>
 <type_of_file><permissions> <number_of_> <owner_of_the_file> <gruop> <size_file> <modification_time> <file_name>
 -             rwx rwx rwx   62          fssalles             LDG                 Month Day Hour      file
              user group others
-r = Read the file
-w = Write the file
-x = eXecute the file
+```
+
+`r` = Read the file
+
+`w` = Write the file
+
+`x` = eXecute the file
+
 file type d = Directory
+
 file type l = Link
-###################################################################################################################################################################################################################
+
 # An Intro Codeline
 make list and viewr the conttents of a directory
 ls = list show ; -l = in list way | -a = show hidden files in the shell that start the name with dots "." | -h = print size with parameters | -s = size | -r = reverse the list
