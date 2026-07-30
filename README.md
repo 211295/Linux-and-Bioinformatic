@@ -43,10 +43,15 @@ Nth position of the number is the power of base 2, and the number (0 or 1) mutip
 | 1001010 | 74 | 1x2<sup>6</sup> + 0x2<sup>5</sup> + 0x2<sup>4</sup> + 1x2<sup>3</sup> + 0x2<sup>2</sup> + 1x2<sup>1</sup> + 0x2<sup>0</sup> |
 | 11111111 | 255 | 1x2<sup>8</sup> + 1x2<sup>7</sup> + 1x2<sup>6</sup> + 1x2<sup>5</sup> + 1x2<sup>4</sup> + 1x2<sup>3</sup> + 1x2<sup>2</sup> + 1x2<sup>1</sup> + 1x2<sup>0</sup> | 
 
+# Correlation of Bit (Memory) and Byte (System): Data Meansured
 
-A byte is a set of 8 bits (and a bit is a binary code, 0 and 1): 
+&emsp; A **Bit** represents the physical layer of data transmission, where electrical pulses travel through hardware to create logic. A **64-bit architecture** means the computer's CPU registers can process 64 of these electrical pulses simultaneously.
 
-| Base 2 | Qtd. Bits | Qtd. Bytes | Unidade Binária (Nome/Sigla) | Base 10 | Qtd. Bits | Qtd. Bytes | Unidade Decimal (Nome/Sigla) |
+&emsp; **Byte** is a unit based on the architecture of the computing **system**. It is a combination of exactly 8 bits, acting as the fundamental unit of meaning used by software to store data and measure file sizes.. 
+
+A byte is a group of 8 bits, and a bit is a single binary digit representing a 0 or a 1: 
+
+| Base 2 | Bits | Bytes | Unidade Binária | Base 10 | Bits | Bytes | Unidade Decimal |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | $2^0$ | 1 | 0,125 | 1 bit (b) | $10^0$ | 1 | 0,125 | 1 bit (b) |
 | $2^3$ | 8 | 1 | 1 byte (B) | — | — | — | Não se aplica |
@@ -54,7 +59,6 @@ A byte is a set of 8 bits (and a bit is a binary code, 0 and 1):
 | $2^{20}$ | 1.048.576 | 131.072 | 1 Mebibit (1 Mib) | $10^6$ | 1.000.000 | 125.000 | 1 Megabit (1 Mb) |
 | $2^{30}$ | 1.073.741.824 | 134.217.728 | 1 Gibibit (1 Gib) | $10^9$ | 1.000.000.000 | 125.000.000 | 1 Gigabit (1 Gb) |
 | $2^{40}$ | 1.099.511.627.776 | 137.438.953.472 | 1 Tebibit (1 Tib) | $10^{12}$ | 1.000.000.000.000 | 125.000.000.000 | 1 Terabit (1 Tb) |
-
 
 
 [Shift] + [Insert] = Ctrl V
@@ -87,12 +91,12 @@ The prompt display tree things in the screen: the name of computer/server
 
 ## Files
 &emsp;Under UNIX, file extensions are arbitrary and do not have a particular meaning (Windows have tree letter extensions). So convencionaly in Linux have some cods to reference a kind of files
-- *script*.sh = shell scripts, text files containing a series of shell commands
-- *script*.pl = perl scripts, text files containing PERL commands
-- *script*.py = python scripts, text files containing PYTHON commands (use command **python3** before those files)
-- *table*.csv = text files with Comma-Separated Values, generally used in tables
-- *file*.txt = text files with no particular format
-- *file*.fasta = text files containing sequences in FASTA format
+- `*script*.sh` = shell scripts, text files containing a series of shell commands
+- `*script*.pl` = perl scripts, text files containing PERL commands
+- `*script*.py` = python scripts, text files containing PYTHON commands (use command **python3** before those files)
+- `*table*.csv` = text files with Comma-Separated Values, generally used in tables
+- `*file*.txt` = text files with no particular format
+- `*file*.fasta` = text files containing sequences in FASTA format
 
 | ABSOLUTE PATH - starts at the root '/' | RELATIVE PATH - starts at the current directory |
 |:----------------------------------------|------------------------------------------------:|
@@ -131,6 +135,16 @@ List of commands dont accept either: mkdir , cd , wget ,
 <command> & <command> = 
 . = currently directory
 .. = directory above currently directory
+
+### Redirecionamento e Fluxos de Dados no Terminal
+
+| Comportamento de Entrada/Saída | Exemplos de Comandos |
+| :--- | :--- |
+| **Aceitam apenas Entrada Padrão (stdin)** | `less`, `more`, `tail`, `head`, `grep`, `wc`, `sort` |
+| **Aceitam apenas Saída Padrão (stdout)** | `rev`, `colrm`, `ls`, `pwd`, `date`, `whoami` |
+| **Usados para redirecionar a Entrada (stdin)** | `<` *(redireciona arquivo para comando)*, `<<` *(heredoc)* |
+| **Usados para redirecionar a Saída (stdout)** | `>` *(sobrescreve arquivo)*, `>>` *(anexa ao arquivo)*, `\|` *(pipe)* |
+| **Não aceitam entrada nem saída padrão (via streams)** | `mkdir`, `cd`, `wget`, `rm`, `mv`, `cp` |
 
 ######################################################## Metacharacter ##########################################################################################################################################
 . = Any character. You represent a caracther with dot
