@@ -1,5 +1,10 @@
 ######################################################################################################################################
-### 2 OPTIONS USE TRINITY, ONE IN THE SERVIDOR AND OTHER IN A CONDA ENVOIRMENT
+# de novo assembly of transcriptomes (RNA-Seq), without needing reference genome 
+# First module -> Inchworm: Assembles the reads into longer linear sequences called contigs. It does this by looking for overlaps based on fixed-length words (K-mers).
+# Second module -> Chrysalis: Clusters the related contigs and builds De Bruijn graphs for each cluster. Each graph represents the complexity of a gene (or a set of overlapping genes).
+# Thirt module -> Butterfly: Processes the graphs and reconstructs the final transcript sequences, separating different alternative splicing isoforms and allelic variants.
+######################################################################################################################################
+### 2 OPTIONS USE TRINITY, ONE PC AND OTHER IN A CONDA ENVOIRMENT
 
 ### 1 OPTION
 ### Download Trinity 
