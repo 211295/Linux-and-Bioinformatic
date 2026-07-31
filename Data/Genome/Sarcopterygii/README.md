@@ -1,4 +1,4 @@
-| Order | Family | Specie name | Assembly | Genome Size (GB) | Chromossoma Number (NCBI) |
+| Order | Family | Specie name | Assembly | Genome Size (GB) | Chromossome Number (NCBI) |
 |:----------:|:--------------:|:----------------:|:-------------------:|:---------:|:----------:|
 | Coelacanthiformes | Coelacanthidae | Latimera chalumnae | LatCha1 LatCha_J1.0 | 2,7 | scaffold |
 | Ceratodontiformes | Ceratodontidae | Neoceratodus forsteri | neoFor_v3.1 | 34,6 | 26 |
