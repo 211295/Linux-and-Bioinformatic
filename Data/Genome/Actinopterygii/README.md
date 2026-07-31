@@ -1,5 +1,5 @@
-| Order | Famaly | Specie name | Assemblie | Genome size (GB) | Chromossome numbers (NCBI) |
-|:-------------:|:-------------:|:--------------:|:-----------:|:-------:|:-------:|
+| Order | Famaly | Specie name | Assemblie | Genome size (GB) | Chromossome Number (NCBI) |
+|:--------------------:|:-------------------:|:-----------------------:|:--------------------:|:-------:|:-------:|
 | Polypteriformes | Polypteridae | Erpetoichthys calabarius | fErpCal1.3 | 3,6 | 18 |
 | Polypteriformes | Polypteridae | Polypterus senegalus | ASM1683550v1 | 3,7 | 18 |
 | Polypteriformes | Polypteridae | Polypterus bichir | ASM2640214v1 | 3,8 | scaffold |
